@@ -1,16 +1,66 @@
 import React from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
-export default props => {
+const NavLink = ({ toggleDisplay, to, children }) => {
+  return <Link to={ to } className={`headerFont ${css(styles.item)}`} onClick={ toggleDisplay } >{ children }</Link>
+}
+
+const Menu =  ({ toggleDisplay }) => {
   return (
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg">
-        <symbol id="ic-close-24px" viewBox="0 0 24 24">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </symbol>
-      </svg>
-
+    <div className={css(styles.menu)}>
+      <div className={css(styles.exit)} >
+        <svg onClick={ toggleDisplay } xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </div>
+      <div className={css(styles.list)}>
+        <NavLink toggleDisplay={ toggleDisplay } to="/competitions">Competitions</NavLink>
+        <NavLink toggleDisplay={ toggleDisplay } to="/about">About</NavLink>
+        <NavLink toggleDisplay={ toggleDisplay } to="/sign-up">Sign Up</NavLink>
+        <NavLink toggleDisplay={ toggleDisplay } to="/profile">Profile</NavLink>
+      </div>
     </div>
   )
 }
+
+Menu.propTypes = {
+  toggleDisplay: PropTypes.func
+}
+
+const styles = StyleSheet.create({
+  menu: {
+    background: '#404040',
+    color: '#fff',
+    padding: 13,
+    boxShadow: '0 2px 10px rgba(0,0,0,.2)',
+    position: 'absolute',
+    boxSizing: 'border-box',
+    top: 0,
+    width: '100%'
+  },
+  exit: {
+    textAlign: 'right'
+  },
+  list: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: ''
+  },
+  item: {
+    textAlign: 'center',
+    width: '80%',
+    padding: 20,
+    color: 'white',
+    borderTopStyle: 'solid',
+    borderWidth: 'thin',
+    borderColor: '#95989A',
+    ':first-of-type': {
+      borderTop: 'none'
+    }
+  }
+})
+
+export default Menu
