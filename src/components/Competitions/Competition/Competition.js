@@ -19,7 +19,6 @@ class Competition extends Component {
     this.setState({
       [property]: !this.state[property]
     })
-    console.log(property, 'toggleView')
   }
 
   render() {
@@ -28,9 +27,10 @@ class Competition extends Component {
         <div>
           <Details
             competition={ competition }
-            showDetails={ this.showDetails }
-            toggleView={ this.toggleView }
+            showDetails={ this.state.showDetails }
+            toggleView={ () => this.toggleView('showDetails') }
           />
+        <h1>Need something to get covered</h1>
         </div>
     )
   }

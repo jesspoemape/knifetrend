@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     boxSizing: 'border-box',
     top: 0,
-    width: '100%'
+    width: '100%',
+    zIndex: 1000
   },
   exit: {
     textAlign: 'right'
