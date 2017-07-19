@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const NavLink = ({ toggleDisplay, to, children }) => {
-  return <Link to={ to } className={`headerFont ${css(styles.item)}`} onClick={ toggleDisplay } >{ children }</Link>
+  return (
+    <Link to={ to } className={`headerFont ${css(styles.item)}`} onClick={ toggleDisplay } >
+      { children }
+    </Link>
+  )
 }
 
 const Menu =  ({ toggleDisplay }) => {
@@ -23,10 +27,6 @@ const Menu =  ({ toggleDisplay }) => {
       </div>
     </div>
   )
-}
-
-Menu.propTypes = {
-  toggleDisplay: PropTypes.func
 }
 
 const styles = StyleSheet.create({
@@ -63,5 +63,9 @@ const styles = StyleSheet.create({
     }
   }
 })
+
+Menu.propTypes = {
+  toggleDisplay: PropTypes.func
+}
 
 export default Menu

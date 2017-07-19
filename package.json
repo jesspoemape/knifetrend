@@ -9,6 +9,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
+    "react-svg": "^2.1.21",
     "redux": "^3.7.1"
   },
   "devDependencies": {

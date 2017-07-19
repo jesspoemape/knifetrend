@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import ReactSVG from 'react-svg';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 import logo from './../../assets/knifetrend-logo.png';
+import menu from './../../assets/menu.svg';
+import chevronLeft from './../../assets/chevron-left.svg';
 
 import Menu from './Menu'
 
@@ -22,13 +25,19 @@ class Navbar extends Component {
     return (
       <div>
         <div className={css(styles.nav)}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6"/>
-          </svg>
+          <ReactSVG
+            path={ chevronLeft }
+            callback={ (svg) => svg.addEventListener("click", this.props.history.goBack) }
+            className={ css(styles.backIcon) }
+          />
+
           <img className={css(styles.logo)} src={ logo } alt="KnifeTrend Logo" />
-          <svg onClick={ this.toggleDisplay } xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"  strokeLinejoin="round">
-              <path d="M3 12h18M3 6h18M3 18h18"/>
-          </svg>
+
+          <ReactSVG
+            path={ menu }
+            callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
+            className={ css(styles.menuIcon) }
+          />
         </div>
         { this.state.displayMenu ? <Menu toggleDisplay={ this.toggleDisplay } /> : null }
       </div>
@@ -48,6 +57,14 @@ const styles = StyleSheet.create({
   logo: {
     height: 30
   },
+  backIcon: {
+    stroke: 'white'
+  },
+  menuIcon: {
+    width: 30,
+    height: 40,
+    stroke: 'white'
+  }
 })
 
 export default Navbar
