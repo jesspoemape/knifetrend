@@ -1,7 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 *.css
+# settings
+/server/db/config/config.json
 
+# migrations
+/server/db/migrations/*
 # dependencies
 /node_modules
 
@@ -17,6 +21,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 npm-debug.log*
 yarn-debug.log*
