@@ -1,6 +1,7 @@
 const { GraphQLSchema, GraphQLInterfaceType,
         GraphQLID, GraphQLObjectType,
-        GraphQLString, GraphQLNonNull } = require('graphql');
+        GraphQLString, GraphQLNonNull,
+        GraphQLList, GraphQLInt } = require('graphql');
 
 const NodeType = new GraphQLInterfaceType({
   name: 'Node',
@@ -18,7 +19,8 @@ const ContestType = new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     imgUrl: { type: GraphQLString },
     desc: { type: GraphQLString },
-    award: { type: GraphQLString}
+    award: { type: GraphQLString },
+    endDate: { type: GraphQLString }
   }
 })
 
@@ -27,9 +29,21 @@ const QueryType = new GraphQLObjectType({
   fields: {
     contest: {
       type: ContestType,
-      args: { name: { type: new GraphQLNonNull(GraphQLString) } },
+      args: {
+        id: { type: GraphQLInt },
+        name: { type: GraphQLString }
+      },
       resolve: (parent, args, req) => {
         return req.db.Contest.findOne({ where: args }).then(contest => contest.get())
+      }
+    },
+    contests: {
+      type: new GraphQLList(ContestType),
+      args: { name: { type: GraphQLString } },
+      resolve: (parent, args, req) => {
+        return req.db.Contest.findAll({ where: args }).then(contests => {
+          return contests.map(contest => contest.get() )
+        })
       }
     }
   }

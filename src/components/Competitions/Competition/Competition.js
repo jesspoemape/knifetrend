@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { gql, graphql } from 'react-apollo';
 
+import { DataLoader } from 'shared-components';
 import Details from './Details';
 
 class Competition extends Component {
@@ -22,25 +23,38 @@ class Competition extends Component {
   }
 
   render() {
-    const{ competition } = this.props
+    const{ data } = this.props
     return (
-        <div>
+      <DataLoader data={data}>
           <Details
-            competition={ competition }
+            competition={ data.contest }
             showDetails={ this.state.showDetails }
             toggleView={ () => this.toggleView('showDetails') }
           />
-        <h1>Need something to get covered</h1>
-        </div>
+          <h1>Need something to get covered</h1>
+      </DataLoader>
     )
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const{ competitionId: id} = ownProps.match.params;
-  return {
-    competition: state.competitions.find(comp => comp.id === id/1)
-  }
-}
+const ContestQuery = gql(`
+    query($id: Int) {
+      contest(id: $id) {
+        id,
+        name,
+        imgUrl,
+        desc,
+        award,
+        endDate
+      }
+    }
+  `)
 
-export default connect(mapStateToProps)(Competition)
+export default graphql( ContestQuery, {
+    options: props => ({
+      variables: {
+        id: props.match.params.competitionId
+      }
+    })
+  }
+)(Competition)

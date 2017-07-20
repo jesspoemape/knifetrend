@@ -22,7 +22,7 @@ const Details = ({ competition, showDetails, toggleView }) => {
         showDetails ?
           <div className={ css(styles.body) }>
             <p className={`smallBodyFont ${css(styles.spacer)}`}>
-              { competition.description }
+              { competition.desc }
             </p>
 
             <MinimalButton style={inline_styles.redButton}>
@@ -34,7 +34,7 @@ const Details = ({ competition, showDetails, toggleView }) => {
             </h1>
             <Divider width={40} background="#DBDBDB" />
             <p className={`smallBodyFont ${css(styles.spacer)}`}>
-              { competition.awardDescription }
+              { competition.award }
             </p>
 
             <h1 className={`subHeaderFont ${css(styles.spacer)}`}>
@@ -42,7 +42,7 @@ const Details = ({ competition, showDetails, toggleView }) => {
             </h1>
             <Divider width={40} background="#DBDBDB" />
             <p className={`smallBodyFont ${css(styles.spacer)}`}>
-              Competition closes at { competition.endDate.toDateString() }
+              Competition closes at { competition.endDate }
             </p>
 
             <div className={ css(styles.flex) }>
@@ -64,6 +64,12 @@ const Details = ({ competition, showDetails, toggleView }) => {
       }
     </div>
   )
+}
+
+Details.propTypes = {
+   competition: PropTypes.object,
+   showDetails: PropTypes.bool,
+   toggleView: PropTypes.func
 }
 
 const inline_styles = {
@@ -120,11 +126,5 @@ const styles = StyleSheet.create({
     marginBottom: 12
   }
 })
-
-Details.propTypes = {
-   competition: PropTypes.object.isRequired,
-   showDetails: PropTypes.bool,
-   toggleView: PropTypes.func
-}
 
 export default Details

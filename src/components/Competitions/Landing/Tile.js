@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 class Tile extends Component {
   render() {
-    const{ id, name, description, imgUrl } = this.props.competition
+    const{ id, name, desc, imgUrl } = this.props.competition
     return (
         <Link to={`/competitions/${id}`} className={ css(styles.container) }>
           <img className={ css(styles.image) } src={ imgUrl } alt={ name } />
@@ -13,7 +13,7 @@ class Tile extends Component {
             <div className={ css(styles.name) }>{ name }</div>
             <div className={ css(styles.divider) }></div>
             <div className={ css(styles.description) }>
-              { description }
+              { desc }
             </div>
           </div>
         </Link>
@@ -23,9 +23,9 @@ class Tile extends Component {
 
 Tile.propTypes = {
   competition: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string,
+    desc: PropTypes.string,
     imgUrl: PropTypes.string
   })
 }

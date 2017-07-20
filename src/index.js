@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
 import './styles/base.css';
-import store from './redux/store'
 import App from './components/App';
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'http://localhost:3001/graphql'
+  })
+})
 
 ReactDOM.render(
   <HashRouter>
-    <Provider store={ store }>
+    <ApolloProvider client={ client }>
       <App />
-    </Provider>
+    </ApolloProvider>
   </HashRouter>
   , document.getElementById('root')
 );
