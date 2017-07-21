@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
 
 import { DataLoader } from 'shared-components';
-import Details from './Details';
+import DetailsBanner from './DetailsBanner/DetailsBanner';
 
 class Competition extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Competition extends Component {
     const{ data } = this.props
     return (
       <DataLoader data={data}>
-          <Details
+          <DetailsBanner
             competition={ data.contest }
             showDetails={ this.state.showDetails }
             toggleView={ () => this.toggleView('showDetails') }

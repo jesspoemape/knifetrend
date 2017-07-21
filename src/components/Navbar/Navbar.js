@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ReactSVG from 'react-svg';
-import { StyleSheet, css } from 'aphrodite/no-important';
+import styled from 'styled-components';
 
 import logo from './../../assets/knifetrend-logo.png';
 import menu from './../../assets/menu.svg';
 import chevronLeft from './../../assets/chevron-left.svg';
 
 import Menu from './Menu'
+import MobileMenu from './MobileMenu';
 
 class Navbar extends Component {
   constructor(props) {
@@ -23,48 +24,57 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <div>
-        <div className={css(styles.nav)}>
-          <ReactSVG
-            path={ chevronLeft }
-            callback={ (svg) => svg.addEventListener("click", this.props.history.goBack) }
-            className={ css(styles.backIcon) }
-          />
+      <Nav>
+        <BackButton
+          path={ chevronLeft }
+          callback={ (svg) => svg.addEventListener("click", this.props.history.goBack) }
+        />
+        <Logo src={ logo } alt="KnifeTrend Logo" />
+        <Menu toggleDisplay={ this.toggleDisplay } />
+        <MobileMenuButton
+          path={ menu }
+          callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
+        />
+        { this.state.displayMenu ? <MobileMenu toggleDisplay={ this.toggleDisplay } /> : null }
 
-          <img className={css(styles.logo)} src={ logo } alt="KnifeTrend Logo" />
-
-          <ReactSVG
-            path={ menu }
-            callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
-            className={ css(styles.menuIcon) }
-          />
-        </div>
-        { this.state.displayMenu ? <Menu toggleDisplay={ this.toggleDisplay } /> : null }
-      </div>
+      </Nav>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  nav: {
-    background: '#E2131D',
-    height: 60,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '0 5px'
-  },
-  logo: {
-    height: 30
-  },
-  backIcon: {
-    stroke: 'white'
-  },
-  menuIcon: {
-    width: 30,
-    height: 40,
-    stroke: 'white'
+const Nav = styled.nav`
+  background: ${props => props.theme.main};
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ${props => props.theme.media.tablet} {
+    height: 70px;
   }
-})
+  ${props => props.theme.media.desktop} {
+    padding: 0 100px;
+    height: 70px;
+  }
+`
+const Logo = styled.img`
+  height: 30px;
+  padding: 0px 10px;
+`
+const BackButton = styled(ReactSVG)`
+  stroke: white;
+  margin-left: 5px;
+  ${props => props.theme.media.tablet} {
+    display: none;
+  }
+`
+const MobileMenuButton = styled(ReactSVG)`
+  width: 30px;
+  height: 40px;
+  stroke: white;
+  margin-right: 5px;
+  ${props => props.theme.media.tablet} {
+    display: none;
+  }
+`
 
 export default Navbar

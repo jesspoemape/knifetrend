@@ -1,0 +1,23 @@
+@mixin mr-eaves($font-weight) {
+  font-family: mr-eaves-xl-modern, sans-serif;
+  font-style: normal;
+  font-weight: $font-weight;
+}
+
+@mixin mr-eaves-reg {
+  @include mr-eaves(400)
+}
+
+@mixin mr-eaves-light{
+  @include mr-eaves(200)
+}
+
+@mixin mr-eaves-heavy {
+  @include mr-eaves(800)
+}
+
+@mixin league-gothic {
+  font-family: league-gothic, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+}

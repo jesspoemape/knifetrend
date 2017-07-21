@@ -1,0 +1,22 @@
+.Landing_Tile__container {
+  margin: 5px;
+  width: 100%;
+  background: rgba(33,33,33,.6);
+}
+
+.Landing_Tile__image {
+  width: 100%;
+}
+
+.Landing_Tile__text-container {
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Landing_Tile__header {
+  color: white;
+  margin-bottom: 10px;
+}
