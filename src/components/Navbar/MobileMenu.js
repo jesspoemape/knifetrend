@@ -15,10 +15,11 @@ const MobileMenu =  ({ toggleDisplay }) => {
         callback={ svg => svg.addEventListener("click", toggleDisplay) }
       />
       <MenuList>
+        <NavLink onClick={ toggleDisplay } to="/">Home</NavLink>
         <NavLink onClick={ toggleDisplay } to="/competitions">Competitions</NavLink>
-        <NavLink onClick={ toggleDisplay } to="/about">About</NavLink>
-        <NavLink onClick={ toggleDisplay } to="/sign-up">Sign Up</NavLink>
-        <NavLink onClick={ toggleDisplay } to="/profile">Profile</NavLink>
+        <NavLink onClick={ toggleDisplay } to="#">Shop</NavLink>
+        <NavLink onClick={ toggleDisplay } to="#">Makers</NavLink>
+        <NavLink onClick={ toggleDisplay } to="#">Login</NavLink>
       </MenuList>
     </MenuContainer>
   )

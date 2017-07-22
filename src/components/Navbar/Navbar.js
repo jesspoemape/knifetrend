@@ -36,7 +36,6 @@ class Navbar extends Component {
           callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
         />
         { this.state.displayMenu ? <MobileMenu toggleDisplay={ this.toggleDisplay } /> : null }
-
       </Nav>
     )
   }
@@ -58,7 +57,7 @@ const Nav = styled.nav`
 `
 const Logo = styled.img`
   height: 30px;
-  padding: 0px 10px;
+  padding: 0px 40px;
 `
 const BackButton = styled(ReactSVG)`
   stroke: white;

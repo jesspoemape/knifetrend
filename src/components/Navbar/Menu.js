@@ -10,17 +10,17 @@ const Menu = props => {
   return (
     <MenuContainer>
       <MenuList>
-        <MenuLink to="/">Home</MenuLink>
+        <MenuLink exact={true} to="/">Home</MenuLink>
         <MenuLink to="/competitions">Competitions</MenuLink>
-        <MenuLink to="/sign-up">Shop</MenuLink>
-        <MenuLink to="/profile">Makers</MenuLink>
+        <MenuLink to="#">Shop</MenuLink>
+        <MenuLink to="#">Makers</MenuLink>
       </MenuList>
       <MenuList>
-        <MenuLink to="/sign-up">
+        <MenuLink to="/profile">
           <ProfileIcon path={ profile } />
           Login
         </MenuLink>
-        <SignUpLink to="/profile">Sign Up</SignUpLink>
+        <SignUpLink to="/sign-up">Sign Up</SignUpLink>
       </MenuList>
     </MenuContainer>
   )
@@ -44,8 +44,7 @@ const MenuContainer = MenuList.extend`
   }
 `
 const MenuLink = styled(NavLink).attrs({
-  activeClassName: 'navLinkActive',
-  exact: true
+  activeClassName: 'navLinkActive'
 })`
   text-align: center;
   padding: 0 15px;

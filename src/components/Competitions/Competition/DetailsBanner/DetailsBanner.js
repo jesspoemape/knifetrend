@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
+import styled from 'styled-components';
 
 import { MinimalButton, Divider } from 'shared-components';
 
@@ -26,9 +27,7 @@ const DetailsBanner = ({ competition, showDetails, toggleView }) => {
               { competition.desc }
             </p>
 
-            <MinimalButton style={styles.redButton}>
-              Enter
-            </MinimalButton>
+            <RedButton>Enter</RedButton>
 
             <h1 className="subHeaderFont spacer">
               Competition Award
@@ -50,7 +49,7 @@ const DetailsBanner = ({ competition, showDetails, toggleView }) => {
               <MinimalButton>
                 Official
               </MinimalButton>
-              <MinimalButton action={ toggleView }>
+              <MinimalButton onClick={ toggleView }>
                 Details
                 <ReactSVG path={ chevronUp } className="buttonIcon" />
               </MinimalButton>
@@ -58,7 +57,7 @@ const DetailsBanner = ({ competition, showDetails, toggleView }) => {
 
           </div>
           :
-          <MinimalButton action={ toggleView }>
+          <MinimalButton onClick={ toggleView }>
             Details
             <ReactSVG path={ chevronDown } className="buttonIcon" />
           </MinimalButton>
@@ -73,14 +72,11 @@ DetailsBanner.propTypes = {
    toggleView: PropTypes.func
 }
 
-const styles = {
-  redButton: {
-    backgroundColor: "#E2131D",
-    borderColor: "#E2131D",
-    color: 'white',
-    marginTop: 12,
-    marginBottom: 12
-  }
-}
+const RedButton = MinimalButton.extend`
+  margin: 12px 0px;
+  background-color: ${props => props.theme.main};
+  border-color: ${props => props.theme.main};
+  color: white;
+`
 
 export default DetailsBanner
