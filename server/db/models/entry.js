@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   Entry.associate = (models => {
-    Entry.belongsTo(models.Contest)
+    Entry.belongsTo(models.Competition)
   })
 
   return Entry;

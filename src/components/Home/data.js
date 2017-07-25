@@ -1,6 +1,6 @@
 export const text =  [
   {
-    title: `Make More Money`,
+    title: `Make More Money Doing What You Love`,
     text:   `Knife Trend competitions are designed to help you make more money.
             You make money by taking preorders for custom, mid-tech, or production versions
             of the designs you enter in the competition.`
@@ -31,3 +31,18 @@ export const images = {
   craft : `https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-craft.jpg`,
   enterNow : `https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-enter-now.jpg`
 }
+
+export const testimonials = [
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
+    name: 'Jackson Duncan',
+    location: 'Jackson',
+    quote: 'Knife Trend has allowed me to get more exposure than ever on my personal designs. Its been a great resource for gaining a lot of customers!'
+  },
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
+    name: 'Joe Isabell',
+    location: 'Bentonville, AR',
+    quote: "Knife Trend has allowed me to get more exposure than ever on my personal designs. It is seriously the best!"
+  }
+]

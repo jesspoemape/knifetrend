@@ -11,8 +11,8 @@ const NodeType = new GraphQLInterfaceType({
   resolveType: () => { }
 })
 
-const ContestType = new GraphQLObjectType({
-  name: 'Contest',
+const CompetitionType = new GraphQLObjectType({
+  name: 'Competition',
   interfaces: [ NodeType ],
   fields: {
     id: { type: new GraphQLNonNull(GraphQLID) },
@@ -27,23 +27,23 @@ const ContestType = new GraphQLObjectType({
 const QueryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
-    contest: {
-      type: ContestType,
+    competition: {
+      type: CompetitionType,
       args: {
         id: { type: GraphQLInt },
         name: { type: GraphQLString }
       },
       resolve: (parent, args, req) => {
-        return req.db.Contest.findOne({ where: args }).then(contest => contest.get())
+        return req.db.Competition.findOne({ where: args }).then(competition => competition.get())
       }
     },
-    contests: {
-      type: new GraphQLList(ContestType),
+    competitions: {
+      type: new GraphQLList(CompetitionType),
       args: { name: { type: GraphQLString } },
       resolve: (parent, args, req) => {
-        return req.db.Contest.findAll({ where: args }).then(contests => {
-          return contests.map(contest => contest.get() )
-        })
+        return req.db.Competition.findAll({ where: args }).then(competitions => {
+          return competitions.map(competition => competition.get() )
+        });
       }
     }
   }

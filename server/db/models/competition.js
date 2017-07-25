@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const Contest = sequelize.define("Contest", {
+  const Competition = sequelize.define("Competition", {
     name: DataTypes.STRING,
     desc: DataTypes.TEXT,
     imgUrl: DataTypes.STRING,
@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     award: DataTypes.TEXT
   })
 
-  Contest.associate = (models => {
-    Contest.hasMany(models.Entry, {as: 'Entries'})
+  Competition.associate = (models => {
+    Competition.hasMany(models.Entry, {as: 'Entries'})
   })
 
-  return Contest;
+  return Competition;
 }

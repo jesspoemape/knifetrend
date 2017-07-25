@@ -14,20 +14,19 @@ const Header = props => (
   </Container>
 )
 const Container = styled.header`
-  background: url('https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-header.jpg') no-repeat center center fixed;
-  background-position-y: -110px;
+  background: url('https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-header.jpg') no-repeat center center;
   background-size: cover;
-  padding: 80px 0px;
+  padding: 60px 0px;
   text-align: center;
   ${props => props.theme.media.desktop} {
-    padding: 80px 100px;
+    padding: 60px 100px;
   }
 `
 const Title = styled.h1`
   ${props => props.theme.secondaryFont({})}
   font-size: 50px;
   color: white;
-  padding: 40px;
+  padding: 20px 40px 40px 40px;
   ${props => props.theme.media.desktop} {
     font-size: 70px;
   }

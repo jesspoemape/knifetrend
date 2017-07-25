@@ -48,14 +48,18 @@ const MenuLink = styled(NavLink).attrs({
 })`
   text-align: center;
   padding: 0 15px;
-  ${({theme}) => theme.mainFont({color:'white'})}
-  font-size: 18px;
+  ${({theme}) => theme.mainFont({color:'white', weight: '800'})}
+  font-size: 16px;
+  letter-spacing: 1.2pt;
   text-transform: uppercase;
   height: 100%;
   display: flex;
   align-items: center;
   &.navLinkActive {
     background: ${({theme}) => theme.secondary}
+  }
+  &:hover {
+    background: #8D8D8D;
   }
 `
 const SignUpLink = MenuLink.extend`

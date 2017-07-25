@@ -24,10 +24,14 @@ const Section = styled.section`
   align-items: center;
   padding: 15px 0px;
   ${props => props.theme.media.desktop} {
+    padding: 20px 100px;
+  }
+  ${props => props.theme.media.xl} {
     padding: 20px 150px;
   }
 `
 const H2 = styled.h2`
+  ${props => props.theme.secondaryFont({})};
   color: ${props => props.theme.main};
   text-transform: uppercase;
   font-size: 36px;
@@ -36,11 +40,9 @@ const H2 = styled.h2`
 `
 const P = styled.p`
   ${props => props.theme.mainFont({})};
-  font-size: 18px;
+  font-size: 16pt;
+  line-height: 20pt;
   padding: 20px 30px;
   text-align: center;
-  ${props => props.theme.media.desktop} {
-    max-width: 70%;
-  }
 `
 export default TextBanner

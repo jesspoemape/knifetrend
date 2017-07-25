@@ -17,11 +17,13 @@ class Navbar extends Component {
     }
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
+
   toggleDisplay() {
     this.setState({
       displayMenu: !this.state.displayMenu
     })
   }
+
   render() {
     return (
       <Nav>
@@ -47,6 +49,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
   ${props => props.theme.media.tablet} {
     height: 70px;
   }
