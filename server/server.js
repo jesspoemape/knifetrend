@@ -1,23 +1,50 @@
-const express = require('express')
+const env = require('dotenv').config();
+const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const session = require('express-session');
 
-const db = require('./db/models/index')
-const{ schema } = require('./graphql/index')
+const passport = require('./auth');
+const { addDatabase } = require('./middleware');
+const{ schema } = require('./graphql/index');
 
 const app = express();
+
+// Middleware
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}))
+app.use(session({
+	secret: process.env.SESSION_SECRET,
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(addDatabase);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use((req, res, next) => {
-  req.db = db;
-  next();
-});
-
+// Endpoints
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   graphiql: true
 }));
+
+app.get('/auth', passport.authenticate('auth0'));
+
+app.get('/auth/callback',
+  passport.authenticate('auth0', {
+    successRedirect: 'http://localhost:3000/'
+  })
+);
+
+app.get('/auth/me', (req, res) => {
+  !req.user ?
+  	res.status(200).send('No one logged in!')
+    :
+    res.status(200).send(req.user)
+});
 
 app.listen(3001);

@@ -24,11 +24,13 @@ const Container = styled.header`
 `
 const Title = styled.h1`
   ${props => props.theme.secondaryFont({})}
-  font-size: 50px;
+  font-size: 38pt;
+  line-height: 45pt;
   color: white;
   padding: 20px 40px 40px 40px;
   ${props => props.theme.media.desktop} {
-    font-size: 70px;
+    font-size: 60pt;
+    line-height: 68pt;
   }
 `
 const RedButton = MinimalButton.extend`

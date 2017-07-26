@@ -3,8 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Entry = sequelize.define("Entry", {
     name: DataTypes.STRING,
     desc: DataTypes.TEXT,
-    imgUrl: DataTypes.STRING,
-    secondaryImgUrls: DataTypes.ARRAY(DataTypes.TEXT)
+    imgUrl: DataTypes.STRING
   })
 
   Entry.associate = (models => {

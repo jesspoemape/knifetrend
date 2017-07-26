@@ -36,11 +36,13 @@ const Background = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('${props => props.background}') no-repeat center center ;
+  background: linear-gradient(#2d2828, #2d2828),
+  url('${props => props.background}') no-repeat center center ;
   background-size: cover;
   text-align: center;
   width: 100%;
   height: 100%;
+  background-blend-mode: overlay;
 `
 const H2 = styled.h2`
   ${props => props.theme.mainFont({})}

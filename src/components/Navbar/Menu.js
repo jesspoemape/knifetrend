@@ -59,7 +59,8 @@ const MenuLink = styled(NavLink).attrs({
     background: ${({theme}) => theme.secondary}
   }
   &:hover {
-    background: #8D8D8D;
+    background: #B20E0D;
+    color: white;
   }
 `
 const SignUpLink = MenuLink.extend`
