@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     terms: DataTypes.TEXT,
-    award: DataTypes.TEXT
+    award: DataTypes.TEXT,
+    awardValue: DataTypes.INTEGER
   })
 
   Competition.associate = (models => {

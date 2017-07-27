@@ -7,7 +7,7 @@ const session = require('express-session');
 
 const passport = require('./auth');
 const { addDatabase } = require('./middleware');
-const{ schema } = require('./graphql/index');
+const{ schema } = require('./graphql/schema');
 
 const app = express();
 

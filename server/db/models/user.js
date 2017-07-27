@@ -9,5 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     auth_provider: DataTypes.TEXT
   })
 
+  User.associate = (models => {
+    User.hasMany(models.Entry, { as: 'entries' })
+  })
+
   return User;
 }

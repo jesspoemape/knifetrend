@@ -16,11 +16,11 @@ const Menu = props => {
         <MenuLink to="#">Makers</MenuLink>
       </MenuList>
       <MenuList>
-        <MenuLink to="/profile">
+        <MenuLink to="/auth">
           <ProfileIcon path={ profile } />
           Login
         </MenuLink>
-        <SignUpLink to="/sign-up">Sign Up</SignUpLink>
+        <SignUpLink to="/auth">Sign Up</SignUpLink>
       </MenuList>
     </MenuContainer>
   )
