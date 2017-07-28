@@ -9,6 +9,7 @@ const passport = require('./auth');
 const { addDatabase } = require('./middleware');
 const{ schema } = require('./graphql/schema');
 
+const port = process.env.PORT || 3001;
 const app = express();
 
 // Middleware
@@ -47,4 +48,4 @@ app.get('/auth/me', (req, res) => {
     res.status(200).send(req.user)
 });
 
-app.listen(3001);
+app.listen(port);

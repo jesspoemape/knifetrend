@@ -1,5 +1,6 @@
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
+const env = require('dotenv').config();
 
 var db = require('./server/db/models/index')
 

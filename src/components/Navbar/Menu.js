@@ -16,11 +16,11 @@ const Menu = props => {
         <MenuLink to="#">Makers</MenuLink>
       </MenuList>
       <MenuList>
-        <MenuLink to="/auth">
+        <LoginLink href="/auth">
           <ProfileIcon path={ profile } />
           Login
-        </MenuLink>
-        <SignUpLink to="/auth">Sign Up</SignUpLink>
+        </LoginLink>
+        <SignUpLink href="/auth">Sign Up</SignUpLink>
       </MenuList>
     </MenuContainer>
   )
@@ -55,6 +55,7 @@ const MenuLink = styled(NavLink).attrs({
   height: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
   &.navLinkActive {
     background: ${({theme}) => theme.secondary}
   }
@@ -63,7 +64,8 @@ const MenuLink = styled(NavLink).attrs({
     color: white;
   }
 `
-const SignUpLink = MenuLink.extend`
+const LoginLink = MenuLink.withComponent('a');
+const SignUpLink = LoginLink.extend`
   background: white;
   color: ${({theme}) => theme.main}
 `
@@ -81,6 +83,5 @@ const ProfileIcon = styled(ReactSVG)`
     fill: ${({theme}) => theme.main};
   }
 `
-
 
 export default Menu

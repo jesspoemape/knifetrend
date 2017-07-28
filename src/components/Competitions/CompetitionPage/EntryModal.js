@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Modal from 'react-modal';
 import ReactSVG from 'react-svg';
 
 import { MinimalButton } from 'shared-components';
@@ -8,26 +9,56 @@ import check from './../../../assets/check.svg';
 import share from './../../../assets/share.svg';
 import tag from './../../../assets/tag.svg';
 
-const EntryTile = ({ id, name, imgUrl, user, viewEntry }) => {
+const styles = {
+  overlay : {
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    display: 'flex'
+  },
+  content : {
+    top                   : 'auto',
+    left                  : 'auto',
+    right                 : 'auto',
+    bottom                : 'auto',
+    position: 'relative',
+    margin: 'auto',
+    border: 'none',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '0',
+    outline: 'none',
+    padding: '0'
+  }
+}
+
+const EntryModal = ({ id, name, imgUrl, user={}, isOpen, onRequestClose  }) => {
+
   return (
-    <Tile onClick={ () => viewEntry(id) }>
-      <TileHeader>
-        <ProfileImg src={ user.avatar } />
-        <DesignerName>{ user.name }</DesignerName>
-      </TileHeader>
-      <ProductImg src={ imgUrl } />
-      <TileFooter>
-        <ProductName>{ name }</ProductName>
-        <Votes>
-          300 <p>votes</p>
-        </Votes>
-        <ButtonGroup>
-          <Button>Vote <Icon path={ check } /></Button>
-          <Button>Share <Icon path={ share } /></Button>
-          <Button>Pre-Order <Icon path={ tag } /></Button>
-        </ButtonGroup>
-    </TileFooter>
-    </Tile>
+    <Modal
+      isOpen={ isOpen }
+      onRequestClose={ onRequestClose }
+      contentLabel="Test Modal"
+      style={ styles }
+      >
+      <Tile>
+        <ProductImg src={ imgUrl } />
+        <TileHeader>
+          <ProfileImg src={ user.avatar } />
+          <DesignerName>{ user.name }</DesignerName>
+        </TileHeader>
+        <TileFooter>
+          <ProductName>{ name }</ProductName>
+          <Votes>
+            300 <p>votes</p>
+          </Votes>
+          <ButtonGroup>
+            <Button>Vote <Icon path={ check } /></Button>
+            <Button>Share <Icon path={ share } /></Button>
+            <Button>Pre-Order <Icon path={ tag } /></Button>
+          </ButtonGroup>
+      </TileFooter>
+      </Tile>
+    </Modal>
   )
 }
 
@@ -37,6 +68,9 @@ const Tile = styled.div`
   background: #FFFFFF;
   margin: 10px;
   width: 315px;
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
 `
 const TileHeader = styled.div`
   display: flex;
@@ -103,4 +137,5 @@ const Icon = styled(ReactSVG)`
   margin-left: 5px;
 `
 
-export default EntryTile;
+
+export default EntryModal;

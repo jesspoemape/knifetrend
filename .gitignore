@@ -2,7 +2,6 @@
 
 *.css
 # settings
-/server/db/config/config.json
 
 # migrations
 /server/db/migrations/*
