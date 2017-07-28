@@ -9,7 +9,7 @@ const passport = require('./auth');
 const { addDatabase } = require('./middleware');
 const{ schema } = require('./graphql/schema');
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middleware
@@ -18,6 +18,7 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }))
+app.use(express.static(`${__dirname}/../build`));
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: true,
@@ -37,15 +38,12 @@ app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback',
   passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/'
+    successRedirect: '/'
   })
 );
 
-app.get('/auth/me', (req, res) => {
-  !req.user ?
-  	res.status(200).send('No one logged in!')
-    :
-    res.status(200).send(req.user)
+app.get('*', (req, res) => {
+  res.sendFile(`${__dirname}/../build/index.html`);
 });
 
 app.listen(port);
