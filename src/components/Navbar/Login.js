@@ -7,7 +7,7 @@ import ReactSVG from 'react-svg';
 import profile from './../../assets/profile.svg';
 
 const Login = ({ data }) => {
-  const authLink = process.env.REACT_APP_AUTH_URL || "http://localhost:3000/auth";
+  const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
 
   if(data.viewer) {
     return (

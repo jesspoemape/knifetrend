@@ -22,7 +22,9 @@ app.use(cors({
   credentials: true
 }))
 
-// app.use(express.static(`${__dirname}/../build`));
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(`${__dirname}/../build`));
+}
 
 app.use(session({
 	secret: process.env.SESSION_SECRET,
@@ -47,8 +49,10 @@ app.get('/auth/callback',
   })
 );
 
-// app.get('*', (req, res) => {
-//   res.sendFile(`${__dirname}/../build/index.html`);
-// });
+if(process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(`${__dirname}/../build/index.html`);
+  });
+}
 
 app.listen(port);
