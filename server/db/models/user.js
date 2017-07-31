@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING,
     email: DataTypes.TEXT,
     auth_id: DataTypes.STRING,
-    auth_provider: DataTypes.TEXT
+    auth_provider: DataTypes.TEXT,
+    storeName: DataTypes.STRING,
+    isAdmin: DataTypes.BOOLEAN
   })
 
   User.associate = (models => {

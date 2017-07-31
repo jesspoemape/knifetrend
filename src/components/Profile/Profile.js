@@ -3,7 +3,7 @@ import React from 'react';
 export default props => {
   return (
     <header>
-      Profile Page
+      Sign-up Page
     </header>
   )
 }

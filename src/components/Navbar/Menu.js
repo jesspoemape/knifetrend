@@ -1,10 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
-import PropTypes from 'prop-types';
 
-import profile from './../../assets/profile.svg';
+import Login from './Login';
 
 const Menu = props => {
   return (
@@ -15,19 +13,9 @@ const Menu = props => {
         <MenuLink to="#">Shop</MenuLink>
         <MenuLink to="#">Makers</MenuLink>
       </MenuList>
-      <MenuList>
-        <LoginLink href="/auth">
-          <ProfileIcon path={ profile } />
-          Login
-        </LoginLink>
-        <SignUpLink href="/auth">Sign Up</SignUpLink>
-      </MenuList>
+      <Login />
     </MenuContainer>
   )
-}
-
-Menu.propTypes = {
-  toggleDisplay: PropTypes.func
 }
 
 const MenuList = styled.div`
@@ -62,25 +50,6 @@ const MenuLink = styled(NavLink).attrs({
   &:hover {
     background: #B20E0D;
     color: white;
-  }
-`
-const LoginLink = MenuLink.withComponent('a');
-const SignUpLink = LoginLink.extend`
-  background: white;
-  color: ${({theme}) => theme.main}
-`
-const ProfileIcon = styled(ReactSVG)`
-  border: solid white;
-  border-radius: 20px;
-  margin: 5px;
-  width: 14px;
-  height: 14px;
-  display: flex;
-  align-items: center;
-  background: white;
-  & > path, circle {
-    stroke: ${({theme}) => theme.main};
-    fill: ${({theme}) => theme.main};
   }
 `
 

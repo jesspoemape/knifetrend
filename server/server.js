@@ -1,15 +1,18 @@
-const env = require('dotenv').config();
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const session = require('express-session');
+import 'babel-polyfill'
+import dotenv from 'dotenv';
+dotenv.config()
+
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import session from 'express-session';
 
 const passport = require('./auth');
 const { addDatabase } = require('./middleware');
 const{ schema } = require('./graphql/schema');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const app = express();
 
 // Middleware
@@ -18,7 +21,9 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }))
-app.use(express.static(`${__dirname}/../build`));
+
+// app.use(express.static(`${__dirname}/../build`));
+
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: true,
@@ -38,12 +43,12 @@ app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback',
   passport.authenticate('auth0', {
-    successRedirect: '/'
+    successRedirect: 'http://localhost:3000'
   })
 );
 
-app.get('*', (req, res) => {
-  res.sendFile(`${__dirname}/../build/index.html`);
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(`${__dirname}/../build/index.html`);
+// });
 
 app.listen(port);

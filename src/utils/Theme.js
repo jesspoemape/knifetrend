@@ -75,4 +75,7 @@ export const inject = injectGlobal`
     text-decoration: none;
     color: inherit;
   }
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
 `

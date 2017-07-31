@@ -17,7 +17,7 @@ const CompetitionPage = ({ data: { competition={} }, match }) => {
   )
 }
 
-const CompetitionData = gql(`
+const CompetitionData = gql`
   query($id: Int!) {
     competition(id:$id) {
       id
@@ -26,18 +26,11 @@ const CompetitionData = gql(`
       award
       awardValue
       endDate
-      entries {
-        id
-        name
-        imgUrl
-        user {
-          name
-          avatar
-        }
-      }
+      ...EntriesContainer
     }
   }
-`)
+  ${EntriesContainer.fragment}
+`
 
 export default graphql(CompetitionData,{
   options: props => ({

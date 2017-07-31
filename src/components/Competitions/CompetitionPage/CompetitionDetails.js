@@ -21,32 +21,45 @@ const CompetitionDetails = ({ competition }) => {
         <P>{ competition.award }</P>
         <LargeText>Grand Prize Value: { value }</LargeText>
       </Section>
-      <Section>
+      <SectionWithoutTitle>
         <LargeText>{`${daysLeft} left`}</LargeText>
         <LargeText>{`Entry Deadline: ${deadline}`}</LargeText>
-        <LargeText>1,234 Entries</LargeText>
+        <LargeText>{competition.entries ? competition.entries.length : null} Entries</LargeText>
         <RedButton>Enter Now</RedButton>
-      </Section>
+      </SectionWithoutTitle>
     </Container>
   )
 }
 
 const Container = styled.section`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   border-bottom: solid ${props => props.theme.main};
   padding: 10px 5%;
   margin: 0 auto;
   padding: 10px;
+  ${props => props.theme.media.tablet} {
+    flex-direction: row;
+  }
 `
 const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 30%;
   text-align: center;
+  ${props => props.theme.media.tablet} {
+    width: 300px;
+    padding: 0 20px;
+  }
 `
+
+const SectionWithoutTitle = Section.extend`
+  justify-content: center;
+  flex-direction: column;
+
+`
+
 const H2 = styled.h2`
   ${props => props.theme.secondaryFont({})};
   color: ${props => props.theme.main};
@@ -59,21 +72,31 @@ const P = styled.p`
   font-weight: 200px;
   font-size: 12pt;
   line-height: 16pt;
+  margin-bottom: 10px;
 `
 const LargeText = styled.p`
   ${props => props.theme.mainFont({})};
   font-weight: 300;
-  font-size: 16pt;
-  line-height: 28pt;
+  font-size: 14pt;
+  line-height: 22pt;
   text-transform: capitalize;
 `
 const RedButton = MinimalButton.extend`
-  margin: 12px 0px;
+  margin: 12px 0px 12px 0px;
   background-color: ${props => props.theme.main};
   border-color: ${props => props.theme.main};
   color: white;
-  padding: 10px 20px;
-  font-size: 14pt;
+  padding: 8px 16px;
+  font-size: 12pt;
+  font-weight: 400;
+  letter-spacing: 1.2pt;
+  &:hover {
+    background: #B20E0D;
+    color: white;
+  }
+  ${props => props.theme.media.tablet} {
+    margin: 12px 0px 0px 0px;
+  }
 `
 
 export default CompetitionDetails;

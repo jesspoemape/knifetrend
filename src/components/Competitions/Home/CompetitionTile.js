@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import moment from 'moment';
 
-const CompetitionTile = ({ id, name, desc, endDate, imgUrl, to, children }) => {
+const CompetitionTile = ({ id, name, shortDesc, endDate, imgUrl, to, children }) => {
   const numOfDays = moment(new Date(endDate).toJSON()).fromNow(true);
   return (
     <FlexItemContainer >
       <Link to={ to || `/competitions/${id}`} >
         <Background background={ imgUrl }>
           <H2>{ name }</H2>
-          <P>{ desc }</P>
+          <P>{ shortDesc }</P>
           { children || <DaysLeft>{ `${numOfDays} left` }</DaysLeft> }
         </Background>
       </Link>

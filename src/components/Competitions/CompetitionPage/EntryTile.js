@@ -1,36 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
+import { gql } from 'react-apollo';
 
-import { MinimalButton } from 'shared-components';
+import EntryButtonGroup from './EntryButtonGroup';
 
-import check from './../../../assets/check.svg';
-import share from './../../../assets/share.svg';
-import tag from './../../../assets/tag.svg';
-
-const EntryTile = ({ id, name, imgUrl, user, viewEntry }) => {
+const EntryTile = ({ id, name, imgUrl, user, totalVotes, viewerVote, showModal, sendVote }) => {
   return (
-    <Tile onClick={ () => viewEntry(id) }>
+    <Tile>
       <TileHeader>
         <ProfileImg src={ user.avatar } />
-        <DesignerName>{ user.name }</DesignerName>
+        <StoreName>{ user.storeName }</StoreName>
       </TileHeader>
-      <ProductImg src={ imgUrl } />
+      <ProductImg src={ imgUrl }  onClick={ () => showModal(id) }/>
       <TileFooter>
-        <ProductName>{ name }</ProductName>
+        <ProductName onClick={ () => showModal(id) }>
+          { name }
+        </ProductName>
         <Votes>
-          300 <p>votes</p>
+          { totalVotes } <p>votes</p>
         </Votes>
-        <ButtonGroup>
-          <Button>Vote <Icon path={ check } /></Button>
-          <Button>Share <Icon path={ share } /></Button>
-          <Button>Pre-Order <Icon path={ tag } /></Button>
-        </ButtonGroup>
+        <EntryButtonGroup
+          id={id}
+          viewerVote={viewerVote}
+          sendVote={sendVote}
+        />
     </TileFooter>
     </Tile>
   )
 }
 
+EntryTile.fragment = gql`
+  fragment EntryTile on Entry {
+    id
+    name
+    desc
+    imgUrl
+    totalVotes
+    viewerVote
+    user {
+      name
+      avatar
+      storeName
+    }
+    comments {
+      id
+      createdAt
+      text
+      user {
+        name
+      }
+    }
+  }
+`
+
+export default EntryTile;
+
+
+// styled-components
 const Tile = styled.div`
   ${props => props.theme.mainFont({})}
   box-shadow: 0px 3px 6px rgba(0,0,0,.16);
@@ -48,16 +74,18 @@ const ProfileImg = styled.img`
   width: 35px;
   height: auto;
 `
-const DesignerName = styled.h2`
+const StoreName = styled.h2`
   font-weight: 700;
   text-transform: uppercase;
   margin: 10px;
   color: #606060;
+  cursor: pointer;
 `
 
 const ProductImg = styled.img`
   width: 315px;
   height: 315px;
+  cursor: pointer;
 `
 
 const TileFooter = TileHeader.extend`
@@ -68,6 +96,7 @@ const TileFooter = TileHeader.extend`
 const ProductName = styled.h2`
   font-weight: 700;
   text-transform: uppercase;
+  cursor: pointer;
 `
 const Votes = styled.div`
   color: ${props => props.theme.main};
@@ -81,26 +110,3 @@ const Votes = styled.div`
     text-transform: uppercase;
   }
 `
-const ButtonGroup = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 10px 0px;
-`
-const Button = MinimalButton.extend`
-  color: #606060;
-  border-color: #606060;
-  font-size: 12px;
-`
-const Icon = styled(ReactSVG)`
-  width: 14px;
-  height: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  stroke: #606060;
-  margin-left: 5px;
-`
-
-export default EntryTile;

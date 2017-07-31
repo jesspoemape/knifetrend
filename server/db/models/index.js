@@ -13,9 +13,10 @@ var sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    dialectOptions: {
-      ssl: process.env.SSL
-    }
+    // port: process.env.DB_PORT || 1443,
+    // dialectOptions: {
+    //   ssl: process.env.SSL || true
+    // }
   }
 );
 

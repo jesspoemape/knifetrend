@@ -50,6 +50,7 @@ const CompetitionsQuery = gql(`
         name,
         imgUrl,
         endDate,
+        shortDesc,
         desc
       }
     }

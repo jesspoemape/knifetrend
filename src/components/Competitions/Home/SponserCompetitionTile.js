@@ -8,7 +8,7 @@ export default props => (
   <CompetitionTile
       imgUrl="https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-competition-sponser.png"
       name="Sponsor Your Own Competition!"
-      desc="Want to host your own competition? You can start now!"
+      shortDesc="Want to host your own competition? You can start now!"
       to="/"
   >
     <Button> Learn More </Button>

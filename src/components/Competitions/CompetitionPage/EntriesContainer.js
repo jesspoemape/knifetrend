@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
-import Modal from 'react-modal';
 
-import MyModal from './EntryModal';
-
+import EntryModal from './Modal/EntryModal';
 import EntryTile from './EntryTile';
 
 class EntriesContainer extends Component {
@@ -11,8 +10,8 @@ class EntriesContainer extends Component {
     super(props)
 
     this.state = {
-      showModal: false,
-      selectedEntry: null
+      modalOpen: false,
+      modalEntryIndex: null
     }
 
     this.openModal = this.openModal.bind(this);
@@ -20,40 +19,60 @@ class EntriesContainer extends Component {
   }
 
   openModal(entryId) {
-    const entry = this.props.competition.entries.find(entry => entry.id == entryId)
-    this.setState({
-      showModal: true,
-      selectedEntry: entry
-    })
+    const entryIndex = this.props.competition.entries.findIndex(entry => entry.id === entryId)
+    this.setState({modalOpen:true, modalEntryIndex:entryIndex})
   }
 
   closeModal() {
-    this.setState({ showModal: false })
+    this.setState({ modalOpen: false })
   }
 
   render() {
-    const { competition } = this.props
-    const { showModal, selectedEntry } = this.state
+    const { competition, mutate } = this.props
+    const { modalOpen, modalEntryIndex } = this.state
 
     const entryTiles = competition.entries ? competition.entries.map(entry => {
       return (
-        <EntryTile key={entry.id} {...entry} viewEntry={ this.openModal }/>
+        <EntryTile key={entry.id} sendVote={ mutate } showModal={ this.openModal } {...entry} />
       )
     }) : ''
 
     return (
       <Container>
         { entryTiles }
-        <MyModal
-          isOpen={ showModal }
-          onRequestClose={ this.closeModal }
-          contentLabel="Test Modal"
-          {...selectedEntry}
-        />
+        {
+          modalOpen ?
+            <EntryModal
+              entry={competition.entries[modalEntryIndex]}
+              close={this.closeModal}
+              sendVote={mutate}
+            /> : ' '
+        }
       </Container>
     )
   }
 }
+
+EntriesContainer.fragment = gql`
+  fragment EntriesContainer on Competition {
+    entries {
+      ...EntryTile
+    }
+  }
+  ${EntryTile.fragment}
+`
+
+const vote = gql`
+  mutation addVote($entryId: Int!) {
+    vote(EntryId: $entryId),
+    {
+      ...EntryTile
+    }
+  }
+  ${EntryTile.fragment}
+`
+
+export default graphql(vote)(EntriesContainer)
 
 const Container = styled.main`
   display: flex;
@@ -63,5 +82,3 @@ const Container = styled.main`
   background: #F5F5F5;
   padding: 0 10px;
 `
-
-export default EntriesContainer
