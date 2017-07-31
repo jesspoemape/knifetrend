@@ -43,6 +43,11 @@ app.use('/graphql', graphqlHTTP({
 
 app.get('/auth', passport.authenticate('auth0'));
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect(process.env.REACT_APP_SERVER_URL);
+});
+
 app.get('/auth/callback',
   passport.authenticate('auth0', {
     successRedirect: process.env.REACT_APP_SERVER_URL
