@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { graphql, gql } from 'react-apollo';
 
-import { MinimalButton } from 'shared-components';
+import MinimalButton from 'kt-components/MinimalButton';
 
 import EntryTile from './../EntryTile';
 

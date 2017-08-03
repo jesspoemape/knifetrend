@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -6,25 +6,41 @@ import Filter from './../Filter/Filter';
 import SponserCompetitionTile from './SponserCompetitionTile';
 import CompetitionTile from './CompetitionTile';
 
-class Landing extends Component {
-  render() {
-    const{ competitions=[] } = this.props.data
-    const tiles = competitions.map(comp => (
-      <CompetitionTile key={ comp.id } {...comp} />
-    ))
-    return (
-      <div>
-        <Section>
-          <Filter />
-        </Section>
-        <Container>
-          { tiles }
-          <SponserCompetitionTile />
-        </Container>
-      </div>
-    )
-  }
+
+const Landing = props => {
+  const{ competitions=[] } = props.data
+  const tiles = competitions.map(comp => (
+    <CompetitionTile key={ comp.id } {...comp} />
+  ))
+  return (
+    <div>
+      <Section>
+        <Filter />
+      </Section>
+      <Container>
+        { tiles }
+        <SponserCompetitionTile />
+      </Container>
+    </div>
+  )
 }
+
+
+
+const CompetitionsQuery = gql(`
+    query {
+      competitions {
+        id,
+        name,
+        imgUrl,
+        endDate,
+        shortDesc,
+        desc
+      }
+    }
+  `)
+
+export default graphql(CompetitionsQuery)(Landing)
 
 const Section = styled.div`
   height: 60px;
@@ -43,17 +59,3 @@ const Container = styled.section`
 
   }
 `
-const CompetitionsQuery = gql(`
-    query {
-      competitions {
-        id,
-        name,
-        imgUrl,
-        endDate,
-        shortDesc,
-        desc
-      }
-    }
-  `)
-
-export default graphql(CompetitionsQuery)(Landing)

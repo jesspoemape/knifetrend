@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
-import { Divider } from 'shared-components';
+import Divider from 'kt-components/Divider';
 
 const TextBanner = ({ title, text }) => (
     <Section>
@@ -16,6 +16,8 @@ TextBanner.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 }
+
+export default TextBanner
 
 const Section = styled.section`
   display: flex;
@@ -45,4 +47,3 @@ const P = styled.p`
   padding: 20px 30px;
   text-align: center;
 `
-export default TextBanner

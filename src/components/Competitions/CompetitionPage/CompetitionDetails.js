@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import numeral from 'numeral';
 import moment from 'moment';
 
-import { MinimalButton } from 'shared-components';
+import MinimalButton from 'kt-components/MinimalButton';
 
 const CompetitionDetails = ({ competition }) => {
   const value = numeral(competition.awardValue).format('$ 0,0[.]00');
@@ -31,6 +31,8 @@ const CompetitionDetails = ({ competition }) => {
   )
 }
 
+export default CompetitionDetails;
+
 const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -53,13 +55,10 @@ const Section = styled.div`
     padding: 0 20px;
   }
 `
-
 const SectionWithoutTitle = Section.extend`
   justify-content: center;
   flex-direction: column;
-
 `
-
 const H2 = styled.h2`
   ${props => props.theme.secondaryFont({})};
   color: ${props => props.theme.main};
@@ -98,5 +97,3 @@ const RedButton = MinimalButton.extend`
     margin: 12px 0px 0px 0px;
   }
 `
-
-export default CompetitionDetails;

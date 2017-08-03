@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 
-import { MinimalButton } from 'shared-components';
+import MinimalButton from 'kt-components/MinimalButton';
 
 import check from './../../../assets/check.svg';
 import share from './../../../assets/share.svg';

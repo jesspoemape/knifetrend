@@ -1,16 +1,13 @@
-import 'babel-polyfill'
-import dotenv from 'dotenv';
-dotenv.config()
-
-import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import session from 'express-session';
+const dotenv = require('dotenv').config();
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const session = require('express-session');
 
 const passport = require('./auth');
 const { addDatabase } = require('./middleware');
-const{ schema } = require('./graphql/schema');
+const { schema } = require('./graphql/index') ;
 
 const port = process.env.PORT || 3001;
 const app = express();

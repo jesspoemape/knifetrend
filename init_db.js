@@ -1,14 +1,11 @@
-var async = require('asyncawait/async');
-var await = require('asyncawait/await');
 const env = require('dotenv').config();
+const db = require('./server/db/models/index')
 
-var db = require('./server/db/models/index')
+const sync_database = async function() {
+  await db.sequelize.drop();
+  await db.sequelize.sync();
 
-var sync_database = async (function() {
-  await (db.sequelize.drop());
-  await (db.sequelize.sync());
-
-  await (db.User.bulkCreate([
+  await db.User.bulkCreate([
     {
       name: 'Joe Isabell',
       username: 'josephisabell',
@@ -37,9 +34,9 @@ var sync_database = async (function() {
       isAdmin: false
     },
 
-  ]))
+  ])
 
-  await (db.Competition.bulkCreate([
+  await db.Competition.bulkCreate([
     {
       name: 'EDC Folding Knives',
       shortDesc: 'This competition is open to any folding EDC knife design.',
@@ -70,9 +67,9 @@ var sync_database = async (function() {
       award: 'All expenses paid trip to Blade Show 2018. This prize includes airfare, lodging for 3 nights and $300 spending money!',
       awardValue: 1500
     }
-  ]));
+  ])
 
-  await (db.Entry.bulkCreate([
+  await db.Entry.bulkCreate([
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
@@ -213,9 +210,9 @@ var sync_database = async (function() {
       CompetitionId: 2,
       UserId: 3
     }
-  ]))
+  ])
 
-  await (db.Vote.bulkCreate([
+  await db.Vote.bulkCreate([
     {
       active: true,
       EntryId: 1 ,
@@ -251,9 +248,9 @@ var sync_database = async (function() {
       EntryId: 7 ,
       UserId: 1
     }
-  ]))
+  ])
 
-  await (db.Comment.bulkCreate([
+  await db.Comment.bulkCreate([
     {
       text: "I love this knife!!!",
       EntryId: 1 ,
@@ -304,22 +301,8 @@ var sync_database = async (function() {
       EntryId: 7 ,
       UserId: 1
     }
-  ]))
-
-  // var competition = await (db.Competition.findOne({
-  //   include: [
-  //     {model: db.Entry, as: 'Entries'}
-  //   ]
-  // })).get({plain:true});
-  //
-  // console.log(competition.Entries)
-  //
-  // const test = await (db.Competition.findAll({ include: [{model: db.Entry, as: 'Entries'}]}).then(competitions => {
-  //   return competitions.map(competition => competition.get() )
-  // }))
-  // // console.log(test)
-
-});
+  ])
+}
 
 
 

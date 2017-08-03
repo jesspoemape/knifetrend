@@ -1,12 +1,11 @@
-'use strict';
+const fs        = require('fs');
+const path      = require('path');
+const Sequelize = require('sequelize');
 
-var fs        = require('fs');
-var path      = require('path');
-var Sequelize = require('sequelize');
-var basename  = path.basename(module.filename);
-var db        = {};
+const basename  = path.basename(module.filename);
+const db        = {};
 
-var sequelize = new Sequelize(
+const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASS,

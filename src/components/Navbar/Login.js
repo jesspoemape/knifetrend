@@ -1,18 +1,19 @@
 import React from 'react';
-import { graphql, gql } from 'react-apollo';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 
+import withViewer from 'kt-hocs/withViewer'
+
 import profile from './../../assets/profile.svg';
 
-const Login = ({ data }) => {
+const Login = ({ viewer }) => {
   const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
 
-  if(data.viewer) {
+  if(viewer) {
     return (
       <ProfileLink to="/profile">
-        <ProfileImg src={ data.viewer.avatar } />
+        <ProfileImg src={ viewer.avatar } />
       </ProfileLink>
     )
   } else {
@@ -28,17 +29,7 @@ const Login = ({ data }) => {
   }
 }
 
-const Viewer = gql`
-  query {
-    viewer {
-      id
-      name
-      avatar
-    }
-  }
-`
-export default graphql(Viewer)(Login)
-
+export default withViewer(Login)
 
 const ProfileImg = styled.img`
   border-radius: 50%;
@@ -72,6 +63,7 @@ const LoginLink = styled.a`
   }
 `
 const ProfileLink = LoginLink.withComponent(NavLink);
+
 const SignUpLink = LoginLink.extend`
   background: white;
   color: ${({theme}) => theme.main}

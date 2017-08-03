@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import onClickOutside from 'react-onclickoutside';
-import { MinimalButton } from 'shared-components';
+import MinimalButton from 'kt-components/MinimalButton';
 import { withRouter } from 'react-router-dom';
 
 import chevronDown from './../../../assets/chevron-down.svg';

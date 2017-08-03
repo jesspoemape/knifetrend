@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { MinimalButton } from 'shared-components';
+import MinimalButton from 'kt-components/MinimalButton';
 import instagram from './../../assets/instagram.png'
 
 const Header = props => (
