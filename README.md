@@ -48,3 +48,5 @@ SESSION_SECRET=
 ```
 
 ### What's the deal with the second `node_modules` folder in the `src` directory? 
+This is basically a hack that allows us to refer to the components in there by `folder_name/component_name` instead of `./../../../../../../folder_name/deeper_folder_name/even_deeper/component_name`.
+The idea is to only have 
