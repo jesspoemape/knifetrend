@@ -1,14 +1,15 @@
 import React from 'react';
-import { gql, graphql } from 'react-apollo';
+import { gql } from 'react-apollo';
 import styled from 'styled-components';
 
+import graphqlWithLoading from 'kt-hocs/graphqlWithLoading'
 import Filter from './../Filter/Filter';
 import SponserCompetitionTile from './SponserCompetitionTile';
 import CompetitionTile from './CompetitionTile';
 
 
 const Landing = props => {
-  const{ competitions=[] } = props.data
+  const{ competitions } = props.data
   const tiles = competitions.map(comp => (
     <CompetitionTile key={ comp.id } {...comp} />
   ))
@@ -25,22 +26,20 @@ const Landing = props => {
   )
 }
 
-
-
-const CompetitionsQuery = gql(`
+const CompetitionsQuery = gql`
     query {
       competitions {
-        id,
-        name,
-        imgUrl,
-        endDate,
-        shortDesc,
+        id
+        name
+        imgUrl
+        endDate
+        shortDesc
         desc
       }
     }
-  `)
+  `
 
-export default graphql(CompetitionsQuery)(Landing)
+export default graphqlWithLoading(CompetitionsQuery)(Landing)
 
 const Section = styled.div`
   height: 60px;

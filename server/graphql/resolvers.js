@@ -16,6 +16,9 @@ module.exports = {
     },
     viewer(obj, args, context) {
       return getSignedInUser(context);
+    } ,
+    users(obj, args, context) {
+      return findAll('User', args);
     }
   },
   User: {

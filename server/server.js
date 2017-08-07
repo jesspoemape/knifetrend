@@ -7,7 +7,7 @@ const session = require('express-session');
 
 const passport = require('./auth');
 const { addDatabase } = require('./middleware');
-const { schema } = require('./graphql/index') ;
+const { schema } = require('./graphql/index');
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -18,10 +18,6 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }))
-
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(`${__dirname}/../build`));
-}
 
 app.use(session({
 	secret: process.env.SESSION_SECRET,
@@ -42,16 +38,17 @@ app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect(process.env.REACT_APP_SERVER_URL);
+  res.redirect(process.env.REACT_APP_CLIENT_SERVER || '/');
 });
 
 app.get('/auth/callback',
   passport.authenticate('auth0', {
-    successRedirect: process.env.REACT_APP_SERVER_URL
+    successRedirect: process.env.REACT_APP_CLIENT_SERVER || '/'
   })
 );
 
 if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(`${__dirname}/../build`));
   app.get('*', (req, res) => {
     res.sendFile(`${__dirname}/../build/index.html`);
   });

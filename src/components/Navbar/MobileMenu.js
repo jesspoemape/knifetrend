@@ -11,7 +11,6 @@ const MobileMenu =  ({ toggleDisplay }) => {
     <MenuContainer>
       <Exit
         path={ exitIcon }
-        onClick={ toggleDisplay }
         callback={ svg => svg.addEventListener("click", toggleDisplay) }
       />
       <MenuList>

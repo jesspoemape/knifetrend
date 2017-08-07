@@ -57,6 +57,7 @@ module.exports = `
     competitions: [Competition]
     entry(id: Int!): Entry
     entries: [Entry]
+    users: [User]
     viewer: User
   }
 
