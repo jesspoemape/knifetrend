@@ -106,27 +106,27 @@ const sync_database = async function() {
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-13.jpg",
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
       UserId: 1
     },
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-13.jpg",
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
       UserId: 1
     }
     ,
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-13.jpg",
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
       UserId: 1
     }
     ,
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-13.jpg",
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
       UserId: 1
     }
   ])
@@ -296,7 +296,7 @@ const sync_database = async function() {
     },
   ])
 
-  
+
 
   await db.Item.bulkCreate([
     {
