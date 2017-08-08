@@ -1,18 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
 
   const User = sequelize.define("User", {
-    name: DataTypes.TEXT,
-    username: DataTypes.TEXT,
-    avatar: DataTypes.STRING,
+    name: DataTypes.STRING(25),
+    username: DataTypes.STRING(25),
+    providerAvatar: DataTypes.TEXT,
+    customAvatar: DataTypes.TEXT,
     email: DataTypes.TEXT,
+    userJoinDate: DataTypes.DATE,
+    favorites: DataTypes.JSON,
     auth_id: DataTypes.STRING,
     auth_provider: DataTypes.TEXT,
-    storeName: DataTypes.STRING,
-    isAdmin: DataTypes.BOOLEAN
+    isAdmin: DataTypes.BOOLEAN,
+    // billing info goes here
   })
 
   User.associate = (models => {
-    User.hasMany(models.Entry, { as: 'entries' })
+    User.hasMany(models.Design, { as: 'designs' });
+    User.hasMany(models.Vote, {as: 'votes'});
+    User.hasMany(models.Comment, {as: 'comments'});
+    User.hasOne(models.Maker);
+    User.hasOne(models.ShoppingCart);
+    User.hasMany(models.Order, {as: 'orders'});
   })
 
   return User;

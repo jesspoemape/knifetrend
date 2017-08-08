@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
 
   const Competition = sequelize.define("Competition", {
-    name: DataTypes.STRING,
-    shortDesc: DataTypes.TEXT,
+    name: DataTypes.STRING(25),
+    shortDesc: DataTypes.STRING(70),
     desc: DataTypes.TEXT,
-    imgUrl: DataTypes.STRING,
+    primaryPhoto: DataTypes.TEXT,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     terms: DataTypes.TEXT,
