@@ -5,14 +5,15 @@ async function vote(obj, args, context) {
   if(!viewer) {
     return null;
   }
-  const vote = await findOne('Vote', {UserId:UserId,EntryId:args.EntryId})
+  const vote = await context.db.Vote.findOne({where:{UserId:viewer.id,EntryId:args.EntryId}})
   if(vote) {
     vote.active = !vote.active
+    console.log(vote);
     await vote.save()
   } else {
     await context.db.Vote.create({
       active: true,
-      UserId: UserId,
+      UserId: viewer.id,
       EntryId: args.EntryId
     })
   }
@@ -25,7 +26,7 @@ async function comment(obj, args, context) {
     return null;
   }
   await context.db.Comment.create({
-    text: args.text,
+    content: args.text,
     UserId: viewer.id,
     EntryId: args.EntryId
   })

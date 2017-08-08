@@ -4,7 +4,7 @@ import { gql } from 'react-apollo';
 
 import EntryButtonGroup from './EntryButtonGroup';
 
-const EntryTile = ({ id, name, imgUrl, user, totalVotes, viewerVote, showModal, sendVote }) => {
+const EntryTile = ({ id, design: {name, imgUrl, user}, totalVotes, viewerVote, showModal, sendVote }) => {
   return (
     <Tile>
       <TileHeader>
@@ -32,18 +32,16 @@ const EntryTile = ({ id, name, imgUrl, user, totalVotes, viewerVote, showModal, 
 EntryTile.fragment = gql`
   fragment EntryTile on Entry {
     id
+    totalVotes
+    viewerVote
     design {
       name
       desc
       imgUrl: primaryPhoto
-    }
-    
-    totalVotes
-    viewerVote
-    makeruser {
-      name
-      avatar
-      storeName
+      user {
+        storeName: name
+        avatar: providerAvatar
+    	}
     }
     comments {
       id

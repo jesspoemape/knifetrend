@@ -13,22 +13,22 @@ const EntryModal = props => {
       <Container>
         <Media query="(max-width: 950px)" render={()=>(
           <TileHeader>
-            <ProfileImg src={ entry.user.avatar } />
-            <StoreName>{ entry.user.storeName }</StoreName>
+            <ProfileImg src={ entry.design.user.avatar } />
+            <StoreName>{ entry.design.user.storeName }</StoreName>
           </TileHeader>
           )}/>
-        <EntryImg src={ entry.imgUrl } />
+        <EntryImg src={ entry.design.imgUrl } />
         <EntryDetails>
           <Media query="(min-width: 950px)" render={()=>(
             <TileHeader>
-              <ProfileImg src={ entry.user.avatar } />
-              <StoreName>{ entry.user.storeName }</StoreName>
+              <ProfileImg src={ entry.design.user.avatar } />
+              <StoreName>{ entry.design.user.storeName }</StoreName>
             </TileHeader>
             )}/>
 
           <Section>
             <ProductName>
-              { entry.name }
+              { entry.design.name }
             </ProductName>
             <Votes>
               { entry.totalVotes } <p>votes</p>
@@ -38,7 +38,7 @@ const EntryModal = props => {
             <div>
               <EntryButtonGroup id={entry.id} viewerVote={entry.viewerVote} sendVote={sendVote} />
               <EntryDesc>
-                { entry.desc }
+                { entry.design.desc }
               </EntryDesc>
             </div>
           </Section>
