@@ -134,38 +134,38 @@ const sync_database = async function() {
   await db.Entry.bulkCreate([
     {
       active: true,
-      designId: 1,
-      competitionId: 1
+      DesignId: 1,
+      CompetitionId: 1
     },
     {
       active: true,
-      designId: 2,
-      competitionId: 2
+      DesignId: 2,
+      CompetitionId: 2
     },
     {
       active: true,
-      designId: 3,
-      competitionId: 3
+      DesignId: 3,
+      CompetitionId: 3
     },
     {
       active: true,
-      designId: 4,
-      competitionId: 1
+      DesignId: 4,
+      CompetitionId: 1
     },
     {
       active: true,
-      designId: 5,
-      competitionId: 2
+      DesignId: 5,
+      CompetitionId: 2
     },
     {
       active: true,
-      designId: 6,
-      competitionId: 3
+      DesignId: 6,
+      CompetitionId: 3
     },
     {
       active: true,
-      designId: 7,
-      competitionId: 1
+      DesignId: 7,
+      CompetitionId: 1
     },
   ])
 
@@ -262,7 +262,7 @@ const sync_database = async function() {
 
   await db.Maker.bulkCreate([
     {
-      userId: 1,
+      UserId: 1,
       makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
@@ -273,7 +273,7 @@ const sync_database = async function() {
       FAQs: {"question": "answer"}
     },
     {
-      userId: 2,
+      UserId: 2,
       makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
@@ -284,7 +284,7 @@ const sync_database = async function() {
       FAQs: {"question": "answer"}
     },
     {
-      userId: 3,
+      UserId: 3,
       makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
@@ -293,6 +293,88 @@ const sync_database = async function() {
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"}
+    },
+  ])
+
+  
+
+  await db.Item.bulkCreate([
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 1
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 1,
+      DesignId: 2
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 1,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: true,
+      MakerId: 3,
+      DesignId: 3
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 4
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 5
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 1,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: true,
+      MakerId: 3,
+      DesignId: 6
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 1,
+      DesignId: 7
     },
   ])
 
@@ -345,141 +427,68 @@ const sync_database = async function() {
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 1,
+      ItemId: 1,
       OrderId: 1
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 1,
+      ItemId: 1,
       OrderId: 2
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 1,
+      ItemId: 1,
       OrderId: 3
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 7,
+      ItemId: 7,
       OrderId: 7
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 6,
+      ItemId: 6,
       OrderId: 6
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 5,
+      ItemId: 5,
       OrderId: 5
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 4,
+      ItemId: 4,
       OrderId: 4
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 3,
+      ItemId: 3,
       OrderId: 3
     },
     {
       quantity: 2,
       salePrice: 100.99,
-      itemId: 2,
+      ItemId: 2,
       OrderId: 2
-    },
-  ])
-
-  await db.Item.bulkCreate([
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: false,
-      MakerId: 2,
-      DesignId: 1
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: false,
-      MakerId: 1,
-      DesignId: 2
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 1,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: true,
-      MakerId: 3,
-      DesignId: 3
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: false,
-      MakerId: 2,
-      DesignId: 4
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: false,
-      MakerId: 2,
-      DesignId: 5
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 1,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: true,
-      MakerId: 3,
-      DesignId: 6
-    },
-    {
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      price: 213.15,
-      quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
-      isUnique: false,
-      MakerId: 1,
-      DesignId: 7
     },
   ])
 
   await db.ShoppingCart.bulkCreate([
     {
-      userId: 1
+      UserId: 1
     },
     {
-      userId: 2
+      UserId: 2
     },
     {
-      userId: 3
+      UserId: 3
     },
   ])
 

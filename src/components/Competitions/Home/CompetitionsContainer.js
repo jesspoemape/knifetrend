@@ -31,7 +31,7 @@ const CompetitionsQuery = gql`
       competitions {
         id
         name
-        imgUrl
+        imgUrl: primaryPhoto
         endDate
         shortDesc
         desc

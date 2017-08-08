@@ -32,12 +32,15 @@ const EntryTile = ({ id, name, imgUrl, user, totalVotes, viewerVote, showModal, 
 EntryTile.fragment = gql`
   fragment EntryTile on Entry {
     id
-    name
-    desc
-    imgUrl
+    design {
+      name
+      desc
+      imgUrl: primaryPhoto
+    }
+    
     totalVotes
     viewerVote
-    user {
+    makeruser {
       name
       avatar
       storeName
@@ -45,7 +48,7 @@ EntryTile.fragment = gql`
     comments {
       id
       createdAt
-      text
+      text: content
       user {
         name
       }

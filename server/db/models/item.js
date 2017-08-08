@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   const Item = sequelize.define("Item", {
+    name: DataTypes.STRING(25),
     desc: DataTypes.TEXT,
     price: DataTypes.DECIMAL,
     quantity: DataTypes.INTEGER,
