@@ -38,7 +38,7 @@ export const inject = injectGlobal`
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+  time, mark, audio, video, input{
   	margin: 0;
   	padding: 0;
   	border: 0;
@@ -74,6 +74,9 @@ export const inject = injectGlobal`
   a {
     text-decoration: none;
     color: inherit;
+  }
+  input {
+    outline: none;
   }
   .ReactModal__Body--open {
     overflow: hidden;

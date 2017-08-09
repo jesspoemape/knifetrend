@@ -16,7 +16,7 @@ const MobileMenu =  ({ toggleDisplay }) => {
       <MenuList>
         <NavLink onClick={ toggleDisplay } to="/">Home</NavLink>
         <NavLink onClick={ toggleDisplay } to="/competitions">Competitions</NavLink>
-        <NavLink onClick={ toggleDisplay } to="#">Shop</NavLink>
+        <NavLink onClick={ toggleDisplay } to="/shop">Shop</NavLink>
         <NavLink onClick={ toggleDisplay } to="#">Makers</NavLink>
         <NavLink onClick={ toggleDisplay } to="#">Login</NavLink>
       </MenuList>

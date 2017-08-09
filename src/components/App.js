@@ -8,7 +8,8 @@ import Home from './Home/Home';
 import Competitions from './Competitions/Competitions';
 import Profile from './Profile/Profile';
 import SignUp from './SignUp/SignUp';
-import Admin from './Admin/Admin'
+import Admin from './Admin/Admin';
+import Shop from './Shop/Shop';
 
 const App = props => (
   <div>
@@ -20,6 +21,7 @@ const App = props => (
       <Route path="/profile" component={ Profile } />
       <Route path="/sign-up" component={ SignUp } />
       <Route path="/admin" component={ Admin } />
+      <Route path="/Shop" component={ Shop } />
     </Switch>
     <Footer />
   </div>

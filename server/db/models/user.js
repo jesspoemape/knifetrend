@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     auth_provider: DataTypes.TEXT,
     isAdmin: DataTypes.BOOLEAN,
     // billing info goes here
+    avatar: {
+      type: new DataTypes.VIRTUAL(DataTypes.TEXT, ['providerAvatar', 'customAvatar']),
+      get: function() {
+        return this.get('customAvatar') || this.get('providerAvatar');
+      }
+    }
   })
 
   User.associate = (models => {
