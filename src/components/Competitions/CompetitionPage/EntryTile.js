@@ -40,7 +40,7 @@ EntryTile.fragment = gql`
       imgUrl: primaryPhoto
       user {
         storeName: name
-        avatar: providerAvatar
+        avatar
     	}
     }
     comments {

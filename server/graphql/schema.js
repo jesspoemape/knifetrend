@@ -5,8 +5,7 @@ module.exports = `
     name: String
     username: String
     email: String
-    providerAvatar: String
-    customAvatar: String
+    avatar: String
     userJoinDate: String
     auth_id: String
     auth_provider: String
@@ -31,12 +30,12 @@ module.exports = `
   type Entry {
     id: Int!
     active: Boolean
-    competition: Competition
-    votes: [Vote]
-    comments: [Comment]
-    design: Design!
     totalVotes: Int
     viewerVote: Boolean
+    design: Design!
+    competition: Competition!
+    comments: [Comment]
+    votes: [Vote]
   }
 
   type Competition {
@@ -56,10 +55,10 @@ module.exports = `
   type Comment {
     id: Int!
     content: String!
-    user: User
-    entry: Entry
     createdAt: String
     updatedAt: String
+    user: User
+    entry: Entry
   }
 
   type Vote {

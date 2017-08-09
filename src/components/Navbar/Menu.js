@@ -10,7 +10,7 @@ const Menu = props => {
       <MenuList>
         <MenuLink exact={true} to="/">Home</MenuLink>
         <MenuLink to="/competitions">Competitions</MenuLink>
-        <MenuLink to="#">Shop</MenuLink>
+        <MenuLink to="/shop">Shop</MenuLink>
         <MenuLink to="#">Makers</MenuLink>
       </MenuList>
       <Login />
