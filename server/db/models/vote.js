@@ -5,11 +5,10 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   Vote.associate = (models => {
-    Vote.belongsTo(models.Entry)
+    Vote.belongsTo(models.Entry);
+    Vote.belongsTo(models.User);
   })
-  Vote.associate = (models => {
-    Vote.belongsTo(models.User)
-  })
+
 
   return Vote;
 }

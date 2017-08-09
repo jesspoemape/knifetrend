@@ -9,28 +9,25 @@ const sync_database = async function() {
     {
       name: 'Joe Isabell',
       username: 'josephisabell',
-      avatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
+      providerAvatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
       auth_id: '1581915443',
       auth_provider: 'instagram',
-      storeName: 'Isabell Custom',
       isAdmin: true
     },
     {
       name: 'Jack Steel',
       username: 'sweetknives',
-      avatar: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
+      providerAvatar: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
       auth_id: '',
       auth_provider: '',
-      storeName: 'Jack\'s Knives',
       isAdmin: false
     },
     {
       name: 'Josh Isabell',
       username: 'joshisabell',
-      avatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
       auth_id: '',
       auth_provider: '',
-      storeName: 'Outback Designs',
       isAdmin: false
     },
 
@@ -41,7 +38,7 @@ const sync_database = async function() {
       name: 'EDC Folding Knives',
       shortDesc: 'This competition is open to any folding EDC knife design.',
       desc: 'Knife Trend presents the EDC Folding Knives competition. This competition is open to all EDC folding knive designs and will be judged on originality, style, and shape. The most votes will be awarded the Grand Prize.',
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-competition-edc-folding.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-competition-edc-folding.jpg',
       startDate: new Date('May 1, 2017 23:59:59 CST'),
       endDate: new Date('August 1, 2017 23:59:59 CST'),
       award: 'All expenses paid trip to Blade Show 2018. This prize includes airfare, lodging for 3 nights and $300 spending money!',
@@ -51,7 +48,7 @@ const sync_database = async function() {
       name: 'Outdoor & Bushcraft',
       shortDesc: 'Open to all bushcraft or outdoor style knife designs.',
       desc: 'Knife Trend presents the Outdoor & Bushcraft competition. This competition is open to all EDC folding knive designs and will be judged on originality, style, and shape. The most votes will be awarded the Grand Prize.',
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-compeitition-bushcraft.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-compeitition-bushcraft.jpg',
       startDate: new Date('May 1, 2017 23:59:59 CST'),
       endDate: new Date('August 20, 2017 23:59:59 CST'),
       award: 'All expenses paid trip to Blade Show 2018. This prize includes airfare, lodging for 3 nights and $300 spending money!',
@@ -61,7 +58,7 @@ const sync_database = async function() {
       name: 'Wood Handled Knives',
       shortDesc: 'This competition is open to any wood handled knife.',
       desc: 'Knife Trend presents the Wood Handled Knives competition. This competition is open to all EDC folding knive designs and will be judged on originality, style, and shape. The most votes will be awarded the Grand Prize.',
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-competition-wood-handled.JPG',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/competitions/kt-competition-wood-handled.JPG',
       startDate: new Date('May 1, 2017 23:59:59 CST'),
       endDate: new Date('August 5, 2017 23:59:59 CST'),
       award: 'All expenses paid trip to Blade Show 2018. This prize includes airfare, lodging for 3 nights and $300 spending money!',
@@ -69,147 +66,107 @@ const sync_database = async function() {
     }
   ])
 
+  await db.Design.bulkCreate([
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
+      UserId: 2
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg",
+      UserId: 3
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg",
+      UserId: 2
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-11.jpg",
+      UserId: 1
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg",
+      UserId: 3
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
+      UserId: 2
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
+      UserId: 1
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
+      UserId: 1
+    }
+    ,
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
+      UserId: 1
+    }
+    ,
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
+      UserId: 1
+    }
+  ])
+
   await db.Entry.bulkCreate([
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
-      CompetitionId: 1,
-      UserId: 2
+      active: true,
+      DesignId: 1,
+      CompetitionId: 1
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg",
-      CompetitionId: 1,
-      UserId: 1
+      active: true,
+      DesignId: 2,
+      CompetitionId: 2
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg",
-      CompetitionId: 1,
-      UserId: 1
+      active: true,
+      DesignId: 3,
+      CompetitionId: 3
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg",
-      CompetitionId: 1,
-      UserId: 2
+      active: true,
+      DesignId: 4,
+      CompetitionId: 1
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-5.jpg",
-      CompetitionId: 1,
-      UserId: 1
+      active: true,
+      DesignId: 5,
+      CompetitionId: 2
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-6.jpg",
-      CompetitionId: 1,
-      UserId: 2
+      active: true,
+      DesignId: 6,
+      CompetitionId: 3
     },
     {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-7.jpg",
-      CompetitionId: 1,
-      UserId: 2
+      active: true,
+      DesignId: 7,
+      CompetitionId: 1
     },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-8.jpg",
-      CompetitionId: 1,
-      UserId: 1
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-9.jpg",
-      CompetitionId: 1,
-      UserId: 3
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      CompetitionId: 1,
-      UserId: 1
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
-      CompetitionId: 2,
-      UserId: 3
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg",
-      CompetitionId: 2,
-      UserId: 3
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg",
-      CompetitionId: 2,
-      UserId: 1
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg",
-      CompetitionId: 2,
-      UserId: 2
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-5.jpg",
-      CompetitionId: 2,
-      UserId: 1
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-6.jpg",
-      CompetitionId: 2,
-      UserId: 2
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-7.jpg",
-      CompetitionId: 2,
-      UserId: 1
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-8.jpg",
-      CompetitionId: 2,
-      UserId: 3
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-9.jpg",
-      CompetitionId: 2,
-      UserId: 3
-    },
-    {
-      name: '6" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
-      imgUrl: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      CompetitionId: 2,
-      UserId: 3
-    }
   ])
 
   await db.Vote.bulkCreate([
@@ -252,55 +209,346 @@ const sync_database = async function() {
 
   await db.Comment.bulkCreate([
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 1 ,
       UserId: 1
     },
     {
-      text: "I think its a great design too, can't wait to get mine in the mail!",
+      content: "I think its a great design too, can't wait to get mine in the mail!",
       EntryId: 1 ,
       UserId: 2
     },
     {
-      text: "Looks sharp :)",
+      content: "Looks sharp :)",
       EntryId: 1 ,
       UserId: 3
     },
     {
-      text: "When will this one be available to buy?",
+      content: "When will this one be available to buy?",
       EntryId: 1 ,
       UserId: 2
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 2 ,
       UserId: 1
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 3 ,
       UserId: 1
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 4 ,
       UserId: 1
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 5 ,
       UserId: 1
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 6 ,
       UserId: 1
     },
     {
-      text: "I love this knife!!!",
+      content: "I love this knife!!!",
       EntryId: 7 ,
       UserId: 1
     }
+  ])
+
+  await db.Maker.bulkCreate([
+    {
+      UserId: 1,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"}
+    },
+    {
+      UserId: 2,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"}
+    },
+    {
+      UserId: 3,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"}
+    },
+  ])
+
+
+
+  await db.Item.bulkCreate([
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 1
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 1,
+      DesignId: 2
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 1,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: true,
+      MakerId: 3,
+      DesignId: 3
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 4
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 2,
+      DesignId: 5
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 1,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: true,
+      MakerId: 3,
+      DesignId: 6
+    },
+    {
+      name: '6" Folding Bushcraft',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      price: 213.15,
+      quantity: 100,
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      isUnique: false,
+      MakerId: 1,
+      DesignId: 7
+    },
+  ])
+
+  await db.Order.bulkCreate([
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 2
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 3
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 1
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 2
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 3
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 1
+    },
+    {
+      orderDate: new Date('May 1, 2017 23:59:59 CST'),
+      shippingPrice: 550.01,
+      tax: 4.99,
+      UserId: 2
+    },
+  ])
+
+  await db.OrderLineItem.bulkCreate([
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 1,
+      OrderId: 1
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 1,
+      OrderId: 2
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 1,
+      OrderId: 3
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 7,
+      OrderId: 7
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 6,
+      OrderId: 6
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 5,
+      OrderId: 5
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 4,
+      OrderId: 4
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 3,
+      OrderId: 3
+    },
+    {
+      quantity: 2,
+      salePrice: 100.99,
+      ItemId: 2,
+      OrderId: 2
+    },
+  ])
+
+  await db.ShoppingCart.bulkCreate([
+    {
+      UserId: 1
+    },
+    {
+      UserId: 2
+    },
+    {
+      UserId: 3
+    },
+  ])
+
+  await db.ShoppingCartLineItem.bulkCreate([
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 1,
+      ShoppingCartId: 1
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 7,
+      ShoppingCartId: 3
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 6,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 5,
+      ShoppingCartId: 1
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 4,
+      ShoppingCartId: 1
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 3,
+      ShoppingCartId: 3
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 2,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 3,
+      ShoppingCartId: 1
+    },
   ])
 }
 
