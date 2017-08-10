@@ -1,28 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo';
 
 import Divider from 'kt-components/Divider';
 
-// { id, coverPhoto, profilePhoto, storeName, location, items: {primaryPhoto} }
-const imgUrl='https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg'
-
-const MakerTile = (props) => {
+const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
     return (
         <Tile>
-            <CoverPhoto url={imgUrl}/>
-            <ProfilePhoto src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg' />
-            <StoreName>Chad Clark Custom Knives</StoreName>
-            <Location>Bentonville, Arkansas</Location>
+            <CoverPhoto url={coverPhoto}/>
+            <ProfilePhoto src={profilePhoto} />
+            <StoreName>{storeName}</StoreName>
+            <Location>{location}</Location>
             <TileDivider/>
             <KnivesContainer>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg' alt='knife'/>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg' alt='knife'/>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg' alt='knife'/>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
             </KnivesContainer>
             <Footer>View Storefront</Footer>
         </Tile>
     )
 }
+
+MakerTile.fragment = gql`
+    fragment MakerTile on Maker {
+        coverPhoto
+        profilePhoto
+        storeName
+        location
+        items {
+            primaryPhoto
+        }
+    }
+`
 
 export default MakerTile;
 
@@ -55,6 +65,7 @@ const StoreName = styled.h3`
 
 const ProfilePhoto = styled.img`
     width: 160px;
+    height: 160px;
     border-radius: 50%;
     border: none;
     position: absolute;
