@@ -1,21 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo'
 
 import ItemTile from '../../ItemTile';
+import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
-const Carousel = () => {
+const Carousel = ({data}) => {
     return (
         <TileWrapper>
-            <ItemTile/>
-            <ItemTile/>
-            <ItemTile/>
-            <ItemTile/>
-            <ItemTile/>
+            {data.items.map(item => {
+              return(
+                <ItemTile {...item} />
+              )
+            })}
         </TileWrapper>
     );
 };
 
-export default Carousel;
+const ItemsQuery = gql`
+  query {
+    items{
+      ...ItemTile
+    }
+}
+${ItemTile.fragment}
+`
+
+export default graphqlWithLoading(ItemsQuery)(Carousel);
 
 const TileWrapper = styled.section`
     display: flex;
@@ -29,12 +40,12 @@ const TileWrapper = styled.section`
     }
 
     @media(max-width: 1164px) {
-       max-width: 875px; 
+       max-width: 875px;
     }
     @media(max-width: 874px) {
-       max-width: 580px; 
+       max-width: 580px;
     }
     @media(max-width: 579px) {
-       max-width: 292px; 
+       max-width: 292px;
     }
 `

@@ -3,7 +3,7 @@ const { findAll, findOne, getSignedInUser } = require('./connectors/db-connector
 module.exports = {
   User: {
     // entries(user, args, context) {
-    //   return findAll('Entry', {UserId:user.id}); 
+    //   return findAll('Entry', {UserId:user.id});
     // },
     designs(user, args, context) {
       return findAll('Design', {UserId:user.id});
@@ -80,6 +80,22 @@ module.exports = {
     },
     items(maker, args, context) {
       return findAll('Item', {MakerId: maker.id})
+    },
+    async profilePhoto(maker, args, context) {
+      if(maker.profilePhoto) {
+        return maker.profilePhoto
+      } else {
+        const user = await findOne('User', {id: maker.UserId});
+        return user.avatar
+      }
+    },
+    async storeName(maker, args, context) {
+      if(maker.storeName) {
+        return maker.storeName
+      } else {
+        const user = await findOne('User', {id: maker.UserId});
+        return `${user.name}'s Store`
+      }
     }
   },
   Item: {
@@ -90,7 +106,7 @@ module.exports = {
       return findOne('Design', {id: item.DesignId})
     },
     // check this later
-    async orders(item, args, context) { 
+    async orders(item, args, context) {
 
       const orders = await context.db.Order.findAll({
         include: [{
@@ -134,7 +150,7 @@ module.exports = {
       return findOne('Item', {id: shoppingCartLineItem.ItemId})
     }
   },
-  
+
   Query: {
     competition(obj, args, context) {
       return findOne('Competition', args);
@@ -156,6 +172,9 @@ module.exports = {
     },
     makers(obj, args, context) {
       return findAll('Maker', args);
+    },
+    items(obj, args, context) {
+      return findAll('Item', args);
     }
   },
 }

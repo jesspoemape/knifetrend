@@ -137,6 +137,7 @@ module.exports = `
     users: [User]
     viewer: User
     makers: [Maker]
+    items: [Item]
   }
 
   type Mutation {
