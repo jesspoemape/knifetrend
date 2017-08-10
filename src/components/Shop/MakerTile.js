@@ -30,10 +30,11 @@ const Tile = styled.div`
     background-color: white;
     width: 330px;
     height: 440px;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    margin: 0 10px;
 `
 const CoverPhoto = styled.div`
     background: url('${props => props.url}') no-repeat center;
