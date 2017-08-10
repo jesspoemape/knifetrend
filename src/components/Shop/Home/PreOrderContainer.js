@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import Media from 'react-media';
 
 import MinimalButton from 'kt-components/MinimalButton'
 import ImageBanner from 'kt-components/ImageBanner';
@@ -13,9 +14,10 @@ const PreOrderContainer = () => {
         <Section>
             <Header>
                 Pre-Order Production Run Knives!
-                <PreOrderButton> 
+                <PreOrderButton>
                     Shop All Pre Order Knives
                     <Arrow path={RightArrow} />
+
                 </PreOrderButton>
             </Header>
             <Knife url={ imageURL }/>
@@ -29,43 +31,47 @@ const Section = styled.div`
 `
 
 const Header = styled.header`
-    background: ${props => props.theme.main};
-    height: 100px;
-    width: 100%;
     ${props => props.theme.secondaryFont({})};
+    height: 100px;
+    background: ${props => props.theme.main};
+    width: 100%;
     color: white;
-    font-size: 39pt;
+    font-size: 28pt;
     font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    ${props => props.theme.media.tablet}{
-        flex-direction: row;
+    ${props => props.theme.media.desktop} {
+      font-size: 39pt;
+      flex-direction: row;
     }
-
 `
 
 const PreOrderButton = styled(MinimalButton)`
-    height: 50px;
-    width: 330px;
     border: solid 1px white;
-    margin-left: 40px;
     border-radius: 50px;
-    padding: 0px;
     justify-content: center;
     letter-spacing: 1pt;
     font-size: 10pt;
     font-weight: 200;
+    padding-left: 20px;
+    ${props => props.theme.media.desktop} {
+      flex-direction: row;
+      margin-left: 40px;
+    }
 `
 
 const Arrow = styled(ReactSVG)`
     stroke: white;
-    fill: white;
     height: 35px;
     margin-top: 3px;
 `
 
-const Knife = styled(ImageBanner)`  
-    height: 410px;
+const Knife = styled(ImageBanner)`
+    height: 280px;
+    background-size:cover;
+    ${props => props.theme.media.desktop} {
+      height: 350px;
+    }
 `

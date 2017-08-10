@@ -6,7 +6,7 @@ import MakerTile from './../../MakerTile';
 
 const MakerCarousel = props => {
     return(
-        <CarouselContainer>  
+        <CarouselContainer>
             <MakerTile/>
             <MakerTile/>
             <MakerTile/>
@@ -18,12 +18,14 @@ const MakerCarousel = props => {
 export default MakerCarousel;
 
 const CarouselContainer = styled.div`
-    height: 570px; 
-    background: #F5F5F5; 
-    width: 100%; 
-    padding: 30px; 
+    height: 570px;
+    background: #F5F5F5;
+    width: 100%;
+    padding: 30px;
     margin: 2px;
     white-space: nowrap;
     overflow: scroll;
-    
+    ${props => props.theme.media.desktop} {
+      padding: 30px 125px;
+    }
 `
