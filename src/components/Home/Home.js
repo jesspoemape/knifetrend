@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import TextBanner from './TextBanner';
 import ImageBanner from './ImageBanner';
-import Carousel from './Carousel/Carousel';
+import TestimonialCarousel from './TestimonialCarousel';
 
 import { text, images, testimonials } from './data';
 
@@ -13,7 +13,7 @@ const Home = props => (
     <Header />
     <TextBanner title={ text[0].title } text={ text[0].text } />
     <ImageBanner url={ images.testimonial }>
-      <Carousel testimonials={ testimonials } />
+      <TestimonialCarousel testimonials={ testimonials } />
     </ImageBanner>
     <TextBanner title={ text[1].title } text={ text[1].text } />
     <ImageBanner url={ images.following } />
