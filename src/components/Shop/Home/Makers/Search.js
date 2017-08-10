@@ -33,17 +33,21 @@ const SearchBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    margin: 30px 0;
+    background-size: auto;
 `
 
 const SearchBarInput = styled.input`
-${props => props.theme.mainFont({})};
-    width: 500px;
+    ${props => props.theme.mainFont({})};
+    max-width: 500px;
     height: 50px;
     border: 1px solid #95989A;
     border-radius: 15px 0 0 15px;
     padding: 10px 20px;
-    font-size: 18pt; 
+    font-size: 18pt;
+    ${props => props.theme.media.desktop} {
+      width: 500px;
+    }
 `
 
 const SearchIcon = styled(ReactSVG)`

@@ -28,31 +28,38 @@ const Section = styled.div`
 `
 const Header = styled.header`
     ${props => props.theme.secondaryFont({})};
-    height: 100px;
+    height: 80px;
     background: ${props => props.theme.main};
     width: 100%;
     color: white;
-    font-size: 39pt;
+    font-size: 28pt;
     font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
+    ${props => props.theme.media.desktop} {
+      font-size: 39pt;
+      height: 100px;
+    }
 `
-
 const Desc = styled.div`
 ${props => props.theme.mainFont({})};
     background-color: white;
     display: flex;
     justify-content: center;
-    font-size: 19pt;
+    font-size: 16pt;
     text-align: center;
     font-weight: 200;
-    padding: 30px 150px;
-    line-height: 32pt;
+    padding: 30px;
+    line-height: 26pt;
+    ${props => props.theme.media.desktop} {
+      padding: 30px 150px;
+      line-height: 32pt;
+      font-size: 19pt;
+    }
 `
-
 const BrowseButton = styled(MinimalButton)`
-${props => props.theme.mainFont({})}; 
+    ${props => props.theme.mainFont({})};
     background: ${props => props.theme.main};
     color: white;
     padding: 10px 20px;
@@ -62,4 +69,3 @@ ${props => props.theme.mainFont({})};
     border: none;
     margin-bottom: 30px;
 `
-

@@ -32,6 +32,7 @@ const Tile = styled.div`
     height: 440px;
     display: inline-flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     position: relative;
     margin: 0 10px;
@@ -57,6 +58,7 @@ const ProfilePhoto = styled.img`
     border: none;
     position: absolute;
     top: 30px;
+    left: 85px;
 `
 
 const Location = styled.h4`
