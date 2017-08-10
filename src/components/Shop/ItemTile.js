@@ -1,23 +1,36 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { gql } from 'react-apollo';
 
 const imgURL = 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg';
 
-const ItemTile = (props) => {
+const ItemTile = ({maker: {profilePhoto, storeName}, primaryPhoto, name, price}) => {
     return (
         <div>
             <Tile>
                 <Header>
-                    <ProfileImage src={imgURL} />
-                    Isabell Custom Knives
+                    <ProfileImage src={profilePhoto} />
+                    {storeName}
                 </Header>
-                <KnifeImage/>
-                <Name>6" Folding bushcrafter</Name>
-                <Price>$299.00</Price>
+                <KnifeImage url={primaryPhoto}/>
+                <Name>{name}</Name>
+                <Price>${price}</Price>
             </Tile>
         </div>
     );
 };
+
+ItemTile.fragment = gql`
+  fragment ItemTile on Item {
+    maker {
+      profilePhoto
+      storeName
+    }
+    primaryPhoto
+    name
+    price
+  }
+`
 
 export default ItemTile;
 
@@ -46,7 +59,7 @@ const ProfileImage = styled.img`
     margin-right: 10px;
 `
 const KnifeImage = styled.div`
-    background: url('https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg');
+    background: url(${props => props.url});
     background-size: cover;
     background-position: center;
     height: 272px;

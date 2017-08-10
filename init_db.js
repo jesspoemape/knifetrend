@@ -15,6 +15,38 @@ const sync_database = async function() {
       isAdmin: true
     },
     {
+      name: 'Mitch Foster',
+      username: 'mitchfoster3@gmail.com',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      auth_id: '5988a86fc164ea2039b3ce39',
+      auth_provider: 'auth0',
+      isAdmin: false
+    },
+    {
+      name: 'Jess Poemape',
+      username: 'jesspoemape@gmail.com',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      auth_id: '5984affc72b7861aa78ed225',
+      auth_provider: 'auth0',
+      isAdmin: false
+    },
+    {
+      name: 'Jacky Boy',
+      username: 'jackyboy',
+      providerAvatar: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
+      auth_id: '',
+      auth_provider: '',
+      isAdmin: false
+    },
+    {
+      name: 'Clark Hansen',
+      username: 'clarkhansen',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      auth_id: '',
+      auth_provider: '',
+      isAdmin: false
+    },
+    {
       name: 'Jack Steel',
       username: 'sweetknives',
       providerAvatar: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg',
@@ -30,7 +62,76 @@ const sync_database = async function() {
       auth_provider: '',
       isAdmin: false
     },
+    {
+      name: 'Ricky Bobby',
+      username: 'fastricky',
+      providerAvatar: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-talladega-nights-the-ballad-of-ricky-bobby-will-ferrell.jpg',
+      auth_id: '',
+      auth_provider: '',
+      isAdmin: false
+    },
 
+  ])
+  await db.Maker.bulkCreate([
+    {
+      UserId: 4,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
+
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"},
+
+    },
+    {
+      UserId: 5,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"},
+      storeName: 'Knife Shop'
+    },
+    {
+      UserId: 6,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"},
+      storeName: 'Knife Shop'
+    },
+    {
+      UserId: 7,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"},
+      storeName: 'Knife Shop'
+    },
+    {
+      UserId: 8,
+      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
+      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
+      logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
+      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
+      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      location: 'Utah',
+      socialLinks: {"facebook": "facebook-link.com"},
+      FAQs: {"question": "answer"},
+      storeName: 'Knife Shop'
+    },
   ])
 
   await db.Competition.bulkCreate([
@@ -165,7 +266,42 @@ const sync_database = async function() {
     {
       active: true,
       DesignId: 7,
+      CompetitionId: 3
+    },
+    {
+      active: true,
+      DesignId: 1,
+      CompetitionId: 2
+    },
+    {
+      active: true,
+      DesignId: 2,
+      CompetitionId: 2
+    },
+    {
+      active: true,
+      DesignId: 3,
       CompetitionId: 1
+    },
+    {
+      active: true,
+      DesignId: 4,
+      CompetitionId: 2
+    },
+    {
+      active: true,
+      DesignId: 5,
+      CompetitionId: 3
+    },
+    {
+      active: true,
+      DesignId: 6,
+      CompetitionId: 1
+    },
+    {
+      active: true,
+      DesignId: 7,
+      CompetitionId: 2
     },
   ])
 
@@ -260,41 +396,7 @@ const sync_database = async function() {
     }
   ])
 
-  await db.Maker.bulkCreate([
-    {
-      UserId: 1,
-      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
-      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
-      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      location: 'Utah',
-      socialLinks: {"facebook": "facebook-link.com"},
-      FAQs: {"question": "answer"}
-    },
-    {
-      UserId: 2,
-      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
-      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
-      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      location: 'Utah',
-      socialLinks: {"facebook": "facebook-link.com"},
-      FAQs: {"question": "answer"}
-    },
-    {
-      UserId: 3,
-      makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
-      biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
-      logo: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      location: 'Utah',
-      socialLinks: {"facebook": "facebook-link.com"},
-      FAQs: {"question": "answer"}
-    },
-  ])
+
 
 
 
@@ -316,7 +418,7 @@ const sync_database = async function() {
       price: 213.15,
       quantity: 100,
       primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
-      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
+      otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg'],
       isUnique: false,
       MakerId: 1,
       DesignId: 2
