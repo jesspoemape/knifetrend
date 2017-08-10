@@ -21,15 +21,19 @@ const Section = styled.section`
 `
 
 const Header = styled.section`
-    height: 120px;
+    height: 80px;
     width: 100%;
     ${props => props.theme.secondaryFont({})}
     color: ${props => props.theme.main};
     font-weight: 400;
-    font-size: 39pt;
+    font-size: 28pt;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     background: white;
+    ${props => props.theme.media.desktop} {
+      font-size: 39pt;
+      height: 120px;
+    }
 `

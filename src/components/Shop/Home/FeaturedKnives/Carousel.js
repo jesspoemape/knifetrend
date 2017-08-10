@@ -24,6 +24,10 @@ const TileWrapper = styled.section`
     max-width: 1165px;
     margin: auto;
 
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
     @media(max-width: 1164px) {
        max-width: 875px; 
     }

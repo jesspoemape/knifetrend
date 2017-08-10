@@ -13,7 +13,9 @@ const MakersContainer = props => {
             <Desc>The Knife Trend community is made of of hundreds of highly skilled craftsmen from all over the world. Browse through our library of knife makers and follow your favorites to see their latest work!</Desc>
             <Divider width={70} />
             <Search/>
-            <BrowseButton>Browse All Makers</BrowseButton>
+            <ButtonWrapper>
+                <BrowseButton>Browse All Makers</BrowseButton>
+            </ButtonWrapper>
             <MakerCarousel/>
         </Section>
     )
@@ -25,6 +27,7 @@ const Section = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #f5f5f5;
 `
 const Header = styled.header`
     ${props => props.theme.secondaryFont({})};
@@ -45,6 +48,7 @@ const Header = styled.header`
 const Desc = styled.div`
 ${props => props.theme.mainFont({})};
     background-color: white;
+    width: 100%;
     display: flex;
     justify-content: center;
     font-size: 16pt;
@@ -53,10 +57,11 @@ ${props => props.theme.mainFont({})};
     padding: 30px;
     line-height: 26pt;
     ${props => props.theme.media.desktop} {
-      padding: 30px 150px;
+      padding: 30px 20%;
       line-height: 32pt;
       font-size: 19pt;
     }
+    
 `
 const BrowseButton = styled(MinimalButton)`
     ${props => props.theme.mainFont({})};
@@ -68,4 +73,13 @@ const BrowseButton = styled(MinimalButton)`
     letter-spacing: 1pt;
     border: none;
     margin-bottom: 30px;
+`
+
+const ButtonWrapper = styled.div`
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
 `

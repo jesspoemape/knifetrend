@@ -42,6 +42,7 @@ const Header = styled.header`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
     ${props => props.theme.media.desktop} {
       font-size: 39pt;
       flex-direction: row;
@@ -55,17 +56,20 @@ const PreOrderButton = styled(MinimalButton)`
     letter-spacing: 1pt;
     font-size: 10pt;
     font-weight: 200;
-    padding-left: 20px;
+    padding: 0 20px;
+    margin-top: 13px;
     ${props => props.theme.media.desktop} {
       flex-direction: row;
-      margin-left: 40px;
+      margin: 15px 40px;
     }
 `
 
 const Arrow = styled(ReactSVG)`
     stroke: white;
-    height: 35px;
     margin-top: 3px;
+    ${props => props.theme.media.desktop} {
+      height: 35px;
+    }
 `
 
 const Knife = styled(ImageBanner)`
