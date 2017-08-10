@@ -77,6 +77,7 @@ module.exports = `
     coverPhoto: String
     profilePhoto: String
     location: String
+    storeName: String
     user: User!
     items: [Item]
   }

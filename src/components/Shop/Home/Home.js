@@ -3,6 +3,8 @@ import React from 'react';
 import Header from './Header';
 import Search from './Search';
 import Filter from './Filter';
+import MakersContainer from './Makers/MakersContainer';
+import PreOrderContainer from './PreOrderContainer';
 
 const Home = props => {
   return (
@@ -10,7 +12,8 @@ const Home = props => {
       <Header />
       <Search />
       <Filter />
-      shop home
+      <MakersContainer />
+      <PreOrderContainer />
     </div>
   )
 }
