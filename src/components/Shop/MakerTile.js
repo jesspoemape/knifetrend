@@ -1,0 +1,97 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import Divider from 'kt-components/Divider';
+
+// { id, coverPhoto, profilePhoto, storeName, location, items: {primaryPhoto} }
+const imgUrl='https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg'
+
+const MakerTile = (props) => {
+    return (
+        <Tile>
+            <CoverPhoto url={imgUrl}/>
+            <ProfilePhoto src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-testimonial-profile.jpg' />
+            <StoreName>Chad Clark Custom Knives</StoreName>
+            <Location>Bentonville, Arkansas</Location>
+            <TileDivider/>
+            <KnivesContainer>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg' alt='knife'/>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg' alt='knife'/>
+                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg' alt='knife'/>
+            </KnivesContainer>
+            <Footer>View Storefront</Footer>
+        </Tile>
+    )
+}
+
+export default MakerTile;
+
+const Tile = styled.div`
+    background-color: white;
+    width: 330px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+`
+const CoverPhoto = styled.div`
+    background: url('${props => props.url}') no-repeat center;
+    width: 100%;
+    height: 150px;
+`
+
+const StoreName = styled.h3`
+    ${props => props.theme.mainFont({})};
+    color: ${props => props.theme.main};
+    font-weight: 700;
+    font-size: 15pt;
+    text-transform: uppercase;
+    margin-top: 50px;
+`
+
+const ProfilePhoto = styled.img`
+    width: 160px;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    top: 30px;
+`
+
+const Location = styled.h4`
+    ${props => props.theme.mainFont({})};
+    color: #B5B5B5;
+    font-weight: 300;
+    font-size: 12pt;
+    margin-top: 5px;
+    margin-bottom: 15px;
+`
+
+const TileDivider = styled(Divider)`
+    width: 45px;
+    background: #b5b5b5;
+`
+
+const Footer = styled.footer`
+    ${props => props.theme.mainFont({})}
+    width: 100%;
+    height: 60px;
+    color: white;
+    background-color: ${props => props.theme.main};
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1.5pt;
+`
+const KnivesContainer = styled.div`
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+`
+
+const Knife = styled.img`
+    width: 33.1%;
+`
