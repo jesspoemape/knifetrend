@@ -36,6 +36,7 @@ const Tile = styled.div`
     align-items: center;
     position: relative;
     margin: 0 10px;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
 `
 const CoverPhoto = styled.div`
     background: url('${props => props.url}') no-repeat center;

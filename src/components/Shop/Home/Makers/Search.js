@@ -33,8 +33,10 @@ const SearchBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 0;
+    padding: 30px 0;
     background-size: auto;
+    background: white;
+    width: 100%;
 `
 
 const SearchBarInput = styled.input`
