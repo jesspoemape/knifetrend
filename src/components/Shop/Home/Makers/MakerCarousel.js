@@ -1,21 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo';
+
+import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
 // import Carousel from 'kt-components/Carousel'
 import MakerTile from './../../MakerTile';
 
-const MakerCarousel = props => {
+const MakerCarousel = ({ data }) => {
     return(
         <CarouselContainer>
-            <MakerTile/>
-            <MakerTile/>
-            <MakerTile/>
-            <MakerTile/>
+            {data.makers.map(maker => {
+                return (<MakerTile {...maker}/>)
+            })}
         </CarouselContainer>
     )
 }
 
-export default MakerCarousel;
+const MakersQuery = gql`
+    query {
+        makers {
+            ...MakerTile
+        }
+    }
+    ${MakerTile.fragment}
+`
+
+
+export default graphqlWithLoading(MakersQuery)(MakerCarousel);
 
 const CarouselContainer = styled.div`
     background: #F5F5F5;
