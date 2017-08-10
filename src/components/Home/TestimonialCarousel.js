@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CarouselContainer from './CarouselContainer';
+import Carousel from 'kt-components/Carousel';
 
-const Carousel = ({ testimonials }) => {
+const TestimonialCarousel = ({ testimonials }) => {
   return (
-    <CarouselContainer>
+    <Carousel>
     {
       testimonials.map(({ url, name, quote, location }) => (
         <Section key={ name }>
@@ -19,9 +19,11 @@ const Carousel = ({ testimonials }) => {
         </Section>
       ))
     }
-  </CarouselContainer>
+  </Carousel>
   )
 }
+
+export default TestimonialCarousel;
 
 const Section = styled.section`
   padding: 40px 10px;
@@ -54,5 +56,3 @@ const UserInfo = styled.div`
     margin-right: 10px;
   }
 `
-
-export default Carousel;

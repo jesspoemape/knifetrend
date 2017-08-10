@@ -6,6 +6,8 @@ import MinimalButton from 'kt-components/MinimalButton'
 import ImageBanner from 'kt-components/ImageBanner';
 import RightArrow from './../../../assets/chevron-right.svg'
 
+const imageURL = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/pre-order-knife.png'
+
 const PreOrderContainer = () => {
     return (
         <Section>
@@ -16,6 +18,7 @@ const PreOrderContainer = () => {
                     <Arrow path={RightArrow} />
                 </PreOrderButton>
             </Header>
+            <Knife url={ imageURL }/>
         </Section>
     )
 }
@@ -23,13 +26,6 @@ const PreOrderContainer = () => {
 export default PreOrderContainer;
 
 const Section = styled.div`
-    background: url('https://s3-us-west-2.amazonaws.com/knifetrend-assets/pre-order-knife.png') no-repeat center center;       
-    background-position-y: -60px;
-    height: 510px;
-    display: flex;
-    flex-direction: column;
-    background-size: cover;
-    width: 100%;
 `
 
 const Header = styled.header`
@@ -43,6 +39,11 @@ const Header = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    ${props => props.theme.media.tablet}{
+        flex-direction: row;
+    }
+
 `
 
 const PreOrderButton = styled(MinimalButton)`
@@ -65,3 +66,6 @@ const Arrow = styled(ReactSVG)`
     margin-top: 3px;
 `
 
+const Knife = styled(ImageBanner)`  
+    height: 410px;
+`
