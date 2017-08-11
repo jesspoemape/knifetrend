@@ -79,7 +79,7 @@ module.exports = {
       return findOne('User', {id: maker.UserId});
     },
     items(maker, args, context) {
-      return findAll('Item', {MakerId: maker.id})
+      return findAll('Item', {MakerId: maker.id}, args.limit)
     },
     async profilePhoto(maker, args, context) {
       if(maker.profilePhoto) {

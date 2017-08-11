@@ -1,4 +1,5 @@
 import { injectGlobal } from 'styled-components';
+import ReactModal from 'react-modal';
 
 export default {
   main: '#E2131D',
@@ -23,6 +24,44 @@ export default {
     phone: '@media(min-width: 414px)'
   }
 }
+
+// REACT MODAL GLOBAL STYLING //
+// Remove all default inline styles
+ReactModal.defaultStyles = {}
+// Default css styling, injected globally just after reset.css below
+const ReactModalDefaultStyle = `
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
+
+  .ReactModal__Overlay {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.65);
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .ReactModal__Content {
+    margin: 40px 0 ;
+    outline: none;
+    color: inherit;
+    overflow: initial;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    @media(max-width: 414px) {
+      margin: 0;
+    }
+  }
+`
 
 // Inject reset.css into main style sheet;
 export const inject = injectGlobal`
@@ -78,7 +117,6 @@ export const inject = injectGlobal`
   input {
     outline: none;
   }
-  .ReactModal__Body--open {
-    overflow: hidden;
-  }
+
+  ${ReactModalDefaultStyle}
 `

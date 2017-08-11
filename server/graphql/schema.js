@@ -79,7 +79,7 @@ module.exports = `
     location: String
     storeName: String
     user: User!
-    items: [Item]
+    items(limit: Int): [Item]
   }
 
   type Item {

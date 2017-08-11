@@ -1,11 +1,11 @@
 const db = require('./../../db/models/index');
 
-async function findAll(model, filter) {
-  const list = await db[model].findAll({where:filter})
+async function findAll(model, filter, limit) {
+  const list = await db[model].findAll({where:filter, limit: limit})
   return list.map(instance => instance.get())
 }
 
-async function findOne(model, filter) {
+async function findOne(model, filter, limit) {
   const instance = await db[model].findOne({where:filter})
   return instance ? instance.get(): null
 }
