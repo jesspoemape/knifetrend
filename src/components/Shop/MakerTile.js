@@ -5,6 +5,14 @@ import { gql } from 'react-apollo';
 import Divider from 'kt-components/Divider';
 
 const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
+
+    const itemImages = [];
+    const itemPlacholder = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knifePlaceholder.png';
+    for(let i = 0; i < 3; i++) {
+      let image = items[i] ? items[i].primaryPhoto : itemPlacholder;
+      itemImages.push(image);
+    }
+
     return (
         <Tile>
             <CoverPhoto url={coverPhoto}/>
@@ -13,9 +21,7 @@ const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
             <Location>{location}</Location>
             <TileDivider/>
             <KnivesContainer>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
-                <Knife src='https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg' alt='knife'/>
+                { itemImages.map(image => <Knife src={image} alt="knife" />) }
             </KnivesContainer>
             <Footer>View Storefront</Footer>
         </Tile>
@@ -29,7 +35,7 @@ MakerTile.fragment = gql`
         profilePhoto
         storeName
         location
-        items {
+        items(limit:3) {
             primaryPhoto
         }
     }

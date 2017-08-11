@@ -11,7 +11,7 @@ class EntriesContainer extends Component {
 
     this.state = {
       modalOpen: false,
-      modalEntryIndex: null
+      modalEntryIndex: 0
     }
 
     this.openModal = this.openModal.bind(this);
@@ -40,14 +40,14 @@ class EntriesContainer extends Component {
     return (
       <Container>
         { entryTiles }
-        {
-          modalOpen ?
+
             <EntryModal
               entry={competition.entries[modalEntryIndex]}
               close={this.closeModal}
               sendVote={mutate}
-            /> : ' '
-        }
+              isOpen={modalOpen}
+            />
+
       </Container>
     )
   }

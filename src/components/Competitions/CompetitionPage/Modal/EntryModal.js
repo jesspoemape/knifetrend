@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import Media from 'react-media';
+import ReactModal from 'react-modal';
+import ReactSVG from 'react-svg';
 
 import EntryButtonGroup from './../EntryButtonGroup';
-import ModalContainer from './ModalContainer';
 import CommentInput from './CommentInput';
+import exit from './../../../../assets/exit.svg';
 
 const EntryModal = props => {
-  const { entry, sendVote } = props
+  const { entry, sendVote, close, isOpen } = props
   return (
-    <ModalContainer {...props}>
+    <ReactModal
+          contentLabel='modal-label'
+          isOpen={isOpen}
+          onRequestClose={close}
+        >
       <Container>
         <Media query="(max-width: 950px)" render={()=>(
           <TileHeader>
             <ProfileImg src={ entry.design.user.avatar } />
             <StoreName>{ entry.design.user.storeName }</StoreName>
+            <Exit callback={ svg => svg.addEventListener("click", close) } path={exit} />
           </TileHeader>
           )}/>
         <EntryImg src={ entry.design.imgUrl } />
@@ -23,6 +30,7 @@ const EntryModal = props => {
             <TileHeader>
               <ProfileImg src={ entry.design.user.avatar } />
               <StoreName>{ entry.design.user.storeName }</StoreName>
+              <Exit callback={ svg => svg.addEventListener("click", close) } path={exit} />
             </TileHeader>
             )}/>
 
@@ -45,28 +53,25 @@ const EntryModal = props => {
           <Section>
             <CommentBox>
               {
-                entry.comments.map(comment => {
-
-                  return (
+                entry.comments.map(comment => (
                     <Comment key={comment.id}>
                       <em>{ comment.user.name }</em> { comment.text }
                     </Comment>
-                  )
-                })
+                ))
               }
             </CommentBox>
           </Section>
           <CommentInput id={entry.id} />
         </EntryDetails>
       </Container>
-    </ModalContainer>
+    </ReactModal>
   )
 }
 
 export default EntryModal;
 
 const CommentBox = styled.div`
-  max-height: 100px;
+  max-height: 200px;
   overflow: scroll;
 `
 const Comment = styled.div`
@@ -84,7 +89,17 @@ const Container = styled.div`
   flex-direction: column;
   ${props => props.theme.media.desktop} {
     flex-direction: row;
+    height: 500px;
   }
+`
+const Exit = styled(ReactSVG)`
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  stroke: #606060;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 `
 const Section = styled.section`
   display: flex;
