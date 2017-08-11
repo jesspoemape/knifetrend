@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import MinimalButton from 'kt-components/MinimalButton';
 import instagram from './../../assets/instagram.png'
 
+const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
+
 const Header = props => (
   <Container>
     <Title>Knife design competitions for the world’s greatest knife makers.</Title>
-    <RedButton>
-      Sign Up With
-      <InstagramLogo />
-    </RedButton>
+    <LoginLink href={ authLink }>
+      <RedButton>
+        Sign Up With
+        <InstagramLogo />
+      </RedButton>
+    </LoginLink>
   </Container>
 )
 const Container = styled.header`
@@ -33,6 +37,11 @@ const Title = styled.h1`
     line-height: 68pt;
   }
 `
+
+const LoginLink = styled.a`
+  text-decoration: none;
+`
+
 const RedButton = MinimalButton.extend`
   background-color: ${props => props.theme.main};
   border-color: ${props => props.theme.main};
