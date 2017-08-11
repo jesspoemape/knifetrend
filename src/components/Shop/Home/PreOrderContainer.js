@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
-import Media from 'react-media';
 
 import MinimalButton from 'kt-components/MinimalButton'
 import ImageBanner from 'kt-components/ImageBanner';

@@ -24,6 +24,7 @@ const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
 
 MakerTile.fragment = gql`
     fragment MakerTile on Maker {
+        id
         coverPhoto
         profilePhoto
         storeName

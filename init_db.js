@@ -78,7 +78,6 @@ const sync_database = async function() {
       makerJoinDate: new Date('May 1, 2017 23:59:59 CST'),
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
-
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
@@ -90,11 +89,9 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
-      storeName: 'Knife Shop'
     },
     {
       UserId: 6,
@@ -102,11 +99,9 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
-      storeName: 'Knife Shop'
     },
     {
       UserId: 7,
@@ -114,11 +109,9 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
-      storeName: 'Knife Shop'
     },
     {
       UserId: 8,
@@ -126,11 +119,9 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      profilePhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
-      storeName: 'Knife Shop'
     },
   ])
 
@@ -402,7 +393,7 @@ const sync_database = async function() {
 
   await db.Item.bulkCreate([
     {
-      name: '6" Folding Bushcraft',
+      name: '3" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 100,
@@ -413,11 +404,11 @@ const sync_database = async function() {
       DesignId: 1
     },
     {
-      name: '6" Folding Bushcraft',
+      name: '2" Fixed Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg'],
       isUnique: false,
       MakerId: 1,
@@ -428,51 +419,51 @@ const sync_database = async function() {
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 1,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-6.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
       isUnique: true,
       MakerId: 3,
       DesignId: 3
     },
     {
-      name: '6" Folding Bushcraft',
+      name: '5" Folding Slasher',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-5.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
       isUnique: false,
       MakerId: 2,
       DesignId: 4
     },
     {
-      name: '6" Folding Bushcraft',
+      name: '4" Folding Panther',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
       isUnique: false,
       MakerId: 2,
       DesignId: 5
     },
     {
-      name: '6" Folding Bushcraft',
+      name: '3" Ice Crusher',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 1,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
       isUnique: true,
       MakerId: 3,
       DesignId: 6
     },
     {
-      name: '6" Folding Bushcraft',
+      name: '3" Folding Naturalist',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       price: 213.15,
       quantity: 100,
-      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
+      primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-3.jpg',
       otherMedia: ['https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg', 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'],
       isUnique: false,
       MakerId: 1,

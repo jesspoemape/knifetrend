@@ -5,12 +5,12 @@ import { gql } from 'react-apollo'
 import ItemTile from '../../ItemTile';
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
-const Carousel = ({data}) => {
+const FeaturedKnivesCarousel = ({data}) => {
     return (
         <TileWrapper>
             {data.items.map(item => {
               return(
-                <ItemTile {...item} />
+                <ItemTile key={item.id}{...item} />
               )
             })}
         </TileWrapper>
@@ -26,7 +26,7 @@ const ItemsQuery = gql`
 ${ItemTile.fragment}
 `
 
-export default graphqlWithLoading(ItemsQuery)(Carousel);
+export default graphqlWithLoading(ItemsQuery)(FeaturedKnivesCarousel);
 
 const TileWrapper = styled.section`
     display: flex;

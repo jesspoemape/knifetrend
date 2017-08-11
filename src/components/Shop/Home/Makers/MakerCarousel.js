@@ -11,7 +11,7 @@ const MakerCarousel = ({ data }) => {
     return(
         <CarouselContainer>
             {data.makers.map(maker => {
-                return (<MakerTile {...maker}/>)
+                return (<MakerTile key={maker.id}{...maker}/>)
             })}
         </CarouselContainer>
     )

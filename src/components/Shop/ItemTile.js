@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
 
-const imgURL = 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg';
-
 const ItemTile = ({maker: {profilePhoto, storeName}, primaryPhoto, name, price}) => {
     return (
         <div>
@@ -26,6 +24,7 @@ ItemTile.fragment = gql`
       profilePhoto
       storeName
     }
+    id
     primaryPhoto
     name
     price

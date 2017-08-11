@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Carousel from './Carousel';
+import FeaturedKnivesCarousel from './FeaturedKnivesCarousel';
 
 const FeaturedKnivesContainer = () => {
     return (
@@ -9,7 +9,7 @@ const FeaturedKnivesContainer = () => {
             <Header>
                 Featured Knives
             </Header>
-            <Carousel/>
+            <FeaturedKnivesCarousel/>
         </Section>
     );
 };
