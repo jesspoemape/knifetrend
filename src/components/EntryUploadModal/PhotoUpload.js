@@ -18,25 +18,63 @@ class PhotoUpload extends Component{
                 x: 0,
                 y: 0,
             },
+            modalIsOpen: false
         }
 
         this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.cropImage = this.cropImage.bind(this);
     }
 
     handleFileUpload(event, index) {
-        let file = event.target.files[0]
-        let reader = new FileReader()
+        let file = event.target.files[0] 
+        let reader = new FileReader() 
         reader.onloadend = () => {
           const imageSources = this.state.imageSources.slice(0)
           imageSources[index] = {originalImageSource: reader.result}
-          console.log('state:', imageSources)
+          console.log('STATE',this.state)
           this.setState({
-            imageSources
+            imageSources,
+            modalIsOpen: true
           })
         }
         reader.readAsDataURL(file)
 
       }
+
+cropImage(crop, index) {
+    console.log('CROP', crop)
+    let image = new Image();
+    image.onload = () => {
+        var imageWidth = image.naturalWidth;
+		var imageHeight = image.naturalHeight;
+
+		var cropX = (crop.x / 100) * imageWidth;
+		var cropY = (crop.y / 100) * imageHeight;
+
+		var cropWidth = (crop.width / 100) * imageWidth;
+		var cropHeight = (crop.height / 100) * imageHeight;
+
+		var canvas = document.createElement('canvas');
+		canvas.width = cropWidth;
+		canvas.height = cropHeight;
+		var ctx = canvas.getContext('2d');
+
+		ctx.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+        let imageSources = this.state.imageSources.splice(0)
+        let imageSrc = canvas.toDataURL('image/jpeg')
+        console.log('State', this.state)
+        imageSources[index] = Object.assign(this.state.imageSources[index], {originalImageSource: imageSrc}) // state is being erased here????
+        // console.log('IMAGE SOURCES',imageSources)
+
+        this.setState({
+        imageSources,
+        modalIsOpen: false
+        })
+    }
+    image.src = this.state.imageSources[index].originalImageSource;
+}
+
 
     render() {
         return (
@@ -47,7 +85,7 @@ class PhotoUpload extends Component{
                             <ImgUpload key={i}>
                                 <ImgInput   type='file'
                                             onChange={(event) => this.handleFileUpload(event, i)}/>
-                            <PhotoCropModal index={i} cropImage={this.cropImage} currentImage={this.state.imageSources[i]} crop={this.state.crop}/>
+                            <PhotoCropModal index={i} cropImage={this.cropImage} currentImage={this.state.imageSources[i]} crop={this.state.crop} modalIsOpen={this.state.modalIsOpen}/>
                             </ImgUpload>
                             
                         )
