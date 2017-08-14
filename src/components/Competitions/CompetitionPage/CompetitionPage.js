@@ -11,6 +11,7 @@ import EntryUploadModal from '../../EntryUploadModal/EntryUploadModal';
 
 const url = "https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-competitions-entries-header.jpg";
 
+
 class CompetitionPage extends Component {
   constructor(props) {
     super(props)
@@ -24,9 +25,11 @@ class CompetitionPage extends Component {
   }
 
   openModal(entryId) {
-    const {viewer, history} = this.props;
+    const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
+    const {viewer} = this.props;
     if (!viewer) {
-      history.push('/login')
+      // redirects to auth0 login page
+      window.location.href = authLink;
     }
     else {
       this.setState({ modalOpen:true })
