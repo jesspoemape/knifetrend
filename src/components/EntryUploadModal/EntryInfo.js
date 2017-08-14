@@ -36,6 +36,7 @@ const DescriptionInput = styled.textarea`
     font-size: 8px;
     height: 80px;
     vertical-align: top;
+    resize: none;
     &::placeholder {
         color: #bfbfbf;
     }
