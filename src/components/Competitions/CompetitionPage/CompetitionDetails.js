@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import MinimalButton from 'kt-components/MinimalButton';
 
-const CompetitionDetails = ({ competition }) => {
+const CompetitionDetails = ({ competition, openModal }) => {
   const value = numeral(competition.awardValue).format('$ 0,0[.]00');
   const endMoment = moment(new Date(competition.endDate).toJSON());
   const daysLeft = endMoment.fromNow(true);
@@ -25,7 +25,7 @@ const CompetitionDetails = ({ competition }) => {
         <LargeText>{`${daysLeft} left`}</LargeText>
         <LargeText>{`Entry Deadline: ${deadline}`}</LargeText>
         <LargeText>{competition.entries ? competition.entries.length : null} Entries</LargeText>
-        <RedButton>Enter Now</RedButton>
+        <RedButton onClick={ openModal }>Enter Now</RedButton>
       </SectionWithoutTitle>
     </Container>
   )
