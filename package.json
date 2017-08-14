@@ -17,6 +17,7 @@
     "passport-auth0": "^0.6.0",
     "pg": "^6.3.0",
     "pg-hstore": "^2.3.2",
+    "pg-search-sequelize": "0.0.10",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-apollo": "^1.4.6",

@@ -1,13 +1,12 @@
 const db = require('./../../db/models/index');
 
-async function findAll(model, filter, limit) {
-  const list = await db[model].findAll({where:filter, limit: limit})
-  return list.map(instance => instance.get())
+function findAll(model, filter, limit) {
+  return db[model].findAll({where:filter, limit: limit})
 }
 
 async function findOne(model, filter, limit) {
   const instance = await db[model].findOne({where:filter})
-  return instance ? instance.get(): null
+  return instance
 }
 
 async function getSignedInUser(context) {
