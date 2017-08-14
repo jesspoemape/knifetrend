@@ -24,7 +24,9 @@ const strategy = new Auth0Strategy({
             avatar: picture,
             auth_id: auth_id,
             auth_provider: provider
-          }).then(newUser => {})
+          }).then(newUser => {
+            newUser.createShoppingCart().then()
+          })
         } else {
           user.update({
             name: name,
