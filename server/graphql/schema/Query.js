@@ -26,7 +26,7 @@ const resolvers = {
     return findAll('Entry', args);
   },
   viewer(obj, args, context) {
-    return getSignedInUser(context);
+    return context.viewer;
   } ,
   users(obj, args, context) {
     return findAll('User', args);

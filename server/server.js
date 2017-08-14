@@ -6,7 +6,7 @@ const cors = require('cors');
 const session = require('express-session');
 
 const passport = require('./auth');
-const { addDatabase } = require('./middleware');
+const { addDatabase, addViewer } = require('./middleware');
 const { schema } = require('./graphql/schema');
 
 const port = process.env.PORT || 3001;
@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Endpoints
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', addViewer, graphqlHTTP({
   schema: schema,
   graphiql: true
 }));

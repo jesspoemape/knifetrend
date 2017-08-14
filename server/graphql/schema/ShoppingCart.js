@@ -1,7 +1,6 @@
 const typeDef = `
   type ShoppingCart {
     id: Int!
-    active: Boolean
     user: User
     lineItems: [ShoppingCartLineItem]
   }

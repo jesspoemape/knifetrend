@@ -4,39 +4,46 @@ const typeDef = `
   type Mutation {
     vote(EntryId: Int!): Entry
     comment(EntryId: Int!, text: String!): Entry
+    addToCart(ItemId: Int!, quantity: Int!): ShoppingCartLineItem
+    updateCartQuantity(ItemId: Int!, newQuantity: Int!): ShoppingCartLineItem
+    removeFromCart(ItemId: Int!): ShoppingCart
+    emptyCart: ShoppingCart
+    confirmCheckout: Order
   }
 `
 const resolvers = {
-  async vote(obj, args, context) {
-    const viewer = await getSignedInUser(context);
-    if(!viewer) {
-      return null;
-    }
-    const vote = await context.db.Vote.findOne({where:{UserId:viewer.id,EntryId:args.EntryId}})
-    if(vote) {
-      vote.active = !vote.active
-      console.log(vote);
-      await vote.save()
-    } else {
-      await context.db.Vote.create({
-        active: true,
-        UserId: viewer.id,
-        EntryId: args.EntryId
-      })
-    }
-    return await findOne('Entry', {id:args.EntryId})
+  async vote(obj, args, { viewer, db }) {
+    const vote = await db.Vote.saveOrChange(args.EntryId, viewer)
+    return await vote.getEntry();
   },
-  async comment(obj, args, context) {
-    const viewer = await getSignedInUser(context);
-    if(!viewer) {
-      return null;
-    }
-    await context.db.Comment.create({
-      content: args.text,
-      UserId: viewer.id,
-      EntryId: args.EntryId
-    })
-    return await findOne('Entry', {id:args.EntryId})
+  async comment(obj, args, { viewer, db }) {
+    const comment = await db.Comment.createOrUpdate(args.EntryId, args.text, viewer)
+    return await comment.getComment();
+  },
+  async updateCartQuantity(obj, args, { viewer }) {
+    if (!viewer) return null;
+    const cart = await viewer.getShoppingCart()
+    return await cart.updateLineItem(args.ItemId, args.newQuantity, viewer)
+  },
+  async addToCart(obj, args, { viewer }){
+    if (!viewer) return null;
+    // const cart = await viewer.getShoppingCart()
+    return await viewer.ShoppingCart.addLineItem(args.ItemId, args.quantity, viewer)
+  },
+  async removeFromCart(obj, args, { viewer }) {
+    if (!viewer) return null;
+    const cart = await viewer.getShoppingCart()
+    return await cart.deleteLineItem(args.ItemId, viewer)
+  },
+  async emptyCart(obj, args, { viewer }) {
+    if (!viewer) return null;
+    const cart = await viewer.getShoppingCart()
+    return await cart.emptyCart()
+  },
+  async confirmCheckout(obj, args, { viewer }) {
+    if (!viewer) return null;
+    const cart = await viewer.getShoppingCart()
+    return await cart.confirmCheckout();
   }
 }
 
