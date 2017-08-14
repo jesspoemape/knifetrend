@@ -9,5 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     Comment.belongsTo(models.User);
   })
 
+  Comment.bindMethods = (db => {
+
+    Comment.createOrUpdate = async (entryId, content, viewer) => {
+      if(!viewer) {
+        return null;
+      }
+      const comment = await Comment.create({
+        content: content,
+        UserId: viewer.id,
+        EntryId: entryId
+      })
+      return comment;
+    }
+  })
+
   return Comment;
 }

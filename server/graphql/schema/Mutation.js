@@ -8,35 +8,12 @@ const typeDef = `
 `
 const resolvers = {
   async vote(obj, args, context) {
-    const viewer = await getSignedInUser(context);
-    if(!viewer) {
-      return null;
-    }
-    const vote = await context.db.Vote.findOne({where:{UserId:viewer.id,EntryId:args.EntryId}})
-    if(vote) {
-      vote.active = !vote.active
-      console.log(vote);
-      await vote.save()
-    } else {
-      await context.db.Vote.create({
-        active: true,
-        UserId: viewer.id,
-        EntryId: args.EntryId
-      })
-    }
-    return await findOne('Entry', {id:args.EntryId})
+    const vote = await context.db.Vote.saveOrChange(args.EntryId, context.viewer)
+    return await vote.getEntry();
   },
   async comment(obj, args, context) {
-    const viewer = await getSignedInUser(context);
-    if(!viewer) {
-      return null;
-    }
-    await context.db.Comment.create({
-      content: args.text,
-      UserId: viewer.id,
-      EntryId: args.EntryId
-    })
-    return await findOne('Entry', {id:args.EntryId})
+    const comment = await context.db.Comment.createOrUpdate(args.EntryId, args.text, context.viewer)
+    return await vote.getComment();
   }
 }
 
