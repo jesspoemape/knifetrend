@@ -28,16 +28,15 @@ const NameInput = styled.input`
 
     }
 `
-const DescriptionInput = styled.input`
+const DescriptionInput = styled.textarea`
     margin-top: 10px;
-    width: 300px;
+    width: 280px;
     border: 0.5px solid #bfbfbf;
     padding: 10px;
     font-size: 8px;
     height: 80px;
-    text-align: top;
+    vertical-align: top;
     &::placeholder {
         color: #bfbfbf;
-
     }
 `
