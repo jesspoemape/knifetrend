@@ -6,6 +6,7 @@ import ReactSVG from 'react-svg';
 import exit from './../../assets/exit.svg';
 
 import PhotoUpload from './PhotoUpload';
+import EntryInfo from './EntryInfo';
 import MinimalButton from 'kt-components/MinimalButton';
 import Divider from 'kt-components/Divider';
 
@@ -27,7 +28,8 @@ const EntryUploadModal = ({ isOpen, onRequestClose }) => {
                 <Title>EDC folding</Title>
                 <Description>Upload up to 5 photos for each entry. Be sure you take nice, well-lit photos of your knife so your design can shine!</Description>
                 <GrayDivider/>
-                <PhotoUpload />
+                <PhotoUpload />  
+                <EntryInfo />
                 <SubmitButton> Submit Entry </SubmitButton>
             </Container>
         </ReactModal>

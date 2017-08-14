@@ -4,25 +4,27 @@ import ReactSVG from 'react-svg';
 
 const PhotoUpload = () => {
     return (
-        <Container>
-            <ImgUpload/>
-            <ImgUpload/>
-            <ImgUpload/>
-            <ImgUpload/>
-            <ImgUpload/>
+        <div>
+            <ImgContainer>
+                <ImgUpload/>
+                <ImgUpload/>
+                <ImgUpload/>
+                <ImgUpload/>
+                <ImgUpload/>
+            </ImgContainer>
             <ImgDescription>(cover photo)</ImgDescription>
-        </Container>
+        </div>
     );
 };
 
 export default PhotoUpload;
 
-const Container = styled.section`
+const ImgContainer = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 20px 20px 3px 20px;
+    padding: 20px 20px 0px 20px;
 `
 const ImgUpload = styled.div`
     border: 3px solid #d9d9d9;
@@ -38,7 +40,7 @@ const ImgUpload = styled.div`
 const ImgDescription = styled.p`
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 8px;
+    font-size: 10px;
     color: #bfbfbf;
-    padding: 28px;
+    padding: 5px 40px;
 `
