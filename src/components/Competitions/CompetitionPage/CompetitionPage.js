@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { gql } from 'react-apollo';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
+import withViewer from 'kt-hocs/withViewer';
 
 import Header from './../Header';
 import CompetitionDetails from './CompetitionDetails';
@@ -9,6 +10,7 @@ import EntriesContainer from './EntriesContainer';
 import EntryUploadModal from '../../EntryUploadModal/EntryUploadModal';
 
 const url = "https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-competitions-entries-header.jpg";
+
 
 class CompetitionPage extends Component {
   constructor(props) {
@@ -23,7 +25,15 @@ class CompetitionPage extends Component {
   }
 
   openModal(entryId) {
-    this.setState({ modalOpen:true })
+    const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
+    const {viewer} = this.props;
+    if (!viewer) {
+      // redirects to auth0 login page
+      window.location.href = authLink;
+    }
+    else {
+      this.setState({ modalOpen:true })
+    }
   }
 
   closeModal() {
@@ -31,7 +41,7 @@ class CompetitionPage extends Component {
   }
 
   render() {
-      const { data: { competition }, match } = this.props
+      const { data: { competition }, match, viewer } = this.props
       return (
         <div>
           <Header imgUrl={ url } title={ competition.name } />
@@ -61,8 +71,8 @@ const CompetitionData = gql`
   ${EntriesContainer.fragment}
 `
 
-export default graphqlWithLoading(CompetitionData,{
+export default withViewer(graphqlWithLoading(CompetitionData,{
   options: props => ({
     variables:{ id: props.match.params.id }
   })
-})(CompetitionPage);
+})(CompetitionPage));
