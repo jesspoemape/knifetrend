@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
   Vote.bindMethods = (db => {
     // static methods (aka classMethods)
     Vote.saveOrChange = async (entryId, viewer) => {
-      console.log('save or change!!!!!!!!!!!!!!!!!!!!!!')
       if(!viewer) return null;
       let votes  = await viewer.getVotes({where:{EntryId:entryId}})
       let vote = votes[0]

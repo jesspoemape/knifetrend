@@ -24,10 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     return `The item has been removed from your cart.`
   }
 
+  ShoppingCart.prototype.emptyCart = async function() {
+    const lineItems = await this.getItems()
+    lineItems.forEach(lineItem => lineItem.destroy())
+    return this
+  }
+
   ShoppingCart.prototype.getOneLineItem = async function(options) {
     const lineItems = await this.getItems(options)
     return lineItems[0]
   }
 
+  
   return ShoppingCart;
 }
