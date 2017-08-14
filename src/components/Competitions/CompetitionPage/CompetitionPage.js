@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { gql } from 'react-apollo';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
+import withViewer from 'kt-hocs/withViewer';
 
 import Header from './../Header';
 import CompetitionDetails from './CompetitionDetails';
@@ -23,7 +24,13 @@ class CompetitionPage extends Component {
   }
 
   openModal(entryId) {
-    this.setState({ modalOpen:true })
+    const {viewer, history} = this.props;
+    if (!viewer) {
+      history.push('/login')
+    }
+    else {
+      this.setState({ modalOpen:true })
+    }
   }
 
   closeModal() {
@@ -31,7 +38,7 @@ class CompetitionPage extends Component {
   }
 
   render() {
-      const { data: { competition }, match } = this.props
+      const { data: { competition }, match, viewer } = this.props
       return (
         <div>
           <Header imgUrl={ url } title={ competition.name } />
@@ -61,8 +68,8 @@ const CompetitionData = gql`
   ${EntriesContainer.fragment}
 `
 
-export default graphqlWithLoading(CompetitionData,{
+export default withViewer(graphqlWithLoading(CompetitionData,{
   options: props => ({
     variables:{ id: props.match.params.id }
   })
-})(CompetitionPage);
+})(CompetitionPage));
