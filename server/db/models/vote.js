@@ -9,7 +9,5 @@ module.exports = (sequelize, DataTypes) => {
     Vote.belongsTo(models.User);
   })
 
-
-
   return Vote;
 }
