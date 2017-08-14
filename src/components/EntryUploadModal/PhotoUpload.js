@@ -1,20 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import ReactCrop from 'react-image-crop';
 
-const PhotoUpload = () => {
-    return (
-        <div>
-            <ImgContainer>
-                <ImgUpload/>
-                <ImgUpload/>
-                <ImgUpload/>
-                <ImgUpload/>
-                <ImgUpload/>
-            </ImgContainer>
-            <ImgDescription>(cover photo)</ImgDescription>
-        </div>
-    );
+import 'react-image-crop/dist/ReactCrop.css'
+import PhotoCropModal from './PhotoCropModal'
+
+class PhotoUpload extends Component{
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            imageSources: ['1', '2', '3', '4', '5',],
+            crop: {
+                width: 40,
+                aspect: 1/1,
+                x: 0,
+                y: 0,
+            },
+        }
+
+        this.handleFileUpload = this.handleFileUpload.bind(this);
+    }
+
+    handleFileUpload(event, index) {
+        let file = event.target.files[0]
+        let reader = new FileReader()
+        reader.onloadend = () => {
+          const imageSources = this.state.imageSources.slice(0)
+          imageSources[index] = {originalImageSource: reader.result}
+          console.log('state:', imageSources)
+          this.setState({
+            imageSources
+          })
+        }
+        reader.readAsDataURL(file)
+
+      }
+
+    render() {
+        return (
+            <div>
+                <ImgContainer>
+                    {this.state.imageSources.map((img, i) => {
+                        return (
+                            <ImgUpload key={i}>
+                                <ImgInput   type='file'
+                                            onChange={(event) => this.handleFileUpload(event, i)}/>
+                            <PhotoCropModal index={i} cropImage={this.cropImage} currentImage={this.state.imageSources[i]} crop={this.state.crop}/>
+                            </ImgUpload>
+                            
+                        )
+                    })}
+                </ImgContainer>
+                <ImgDescription>(cover photo)</ImgDescription>
+            </div>
+        );
+    }
 };
 
 export default PhotoUpload;
@@ -37,6 +79,12 @@ const ImgUpload = styled.div`
         border-color: ${props => props.theme.main};
     }
 `
+const ImgInput = styled.input`
+    opacity: 0;
+    height: 90px;
+    width: 90px;
+`
+
 const ImgDescription = styled.p`
     text-transform: uppercase;
     letter-spacing: 1px;
