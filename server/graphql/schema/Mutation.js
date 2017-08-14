@@ -8,6 +8,7 @@ const typeDef = `
     updateCartQuantity(ItemId: Int!, newQuantity: Int!): ShoppingCartLineItem
     removeFromCart(ItemId: Int!): ShoppingCart
     emptyCart: ShoppingCart
+    confirmCheckout: Order
   }
 `
 const resolvers = {
@@ -26,8 +27,8 @@ const resolvers = {
   },
   async addToCart(obj, args, { viewer }){
     if (!viewer) return null;
-    const cart = await viewer.getShoppingCart()
-    return await cart.addLineItem(args.ItemId, args.quantity, viewer)
+    // const cart = await viewer.getShoppingCart()
+    return await viewer.ShoppingCart.addLineItem(args.ItemId, args.quantity, viewer)
   },
   async removeFromCart(obj, args, { viewer }) {
     if (!viewer) return null;
@@ -38,6 +39,11 @@ const resolvers = {
     if (!viewer) return null;
     const cart = await viewer.getShoppingCart()
     return await cart.emptyCart()
+  },
+  async confirmCheckout(obj, args, { viewer }) {
+    if (!viewer) return null;
+    const cart = await viewer.getShoppingCart()
+    return await cart.confirmCheckout();
   }
 }
 

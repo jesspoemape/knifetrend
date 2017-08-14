@@ -35,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
     return lineItems[0]
   }
 
+  ShoppingCart.prototype.confirmCheckout = async function(viewer) {
+    const order = await viewer.createOrder();
+    const shoppingCartLineItems = await this.getItems();
+    await order.process(shoppingCartLineItems);
+    return order;
+  }
   
   return ShoppingCart;
 }

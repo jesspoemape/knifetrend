@@ -4,11 +4,15 @@ const typeDef = `
     orderDate: String
     shippingPrice: Float
     tax: Float
+    subtotal: Int
     user: User!
     lineItems: [OrderLineItem]!
   }
 `
 const resolvers = {
+  subtotal(order, args, context) {
+    return order.calcSubtotal()
+  },
   user(order, args, context) {
     return order.getUser();
   },
