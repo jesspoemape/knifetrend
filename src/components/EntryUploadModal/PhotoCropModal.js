@@ -3,11 +3,14 @@ import Modal from 'react-modal';
 import ReactCrop from 'react-image-crop';
 import styled from 'styled-components';
 
+import 'react-image-crop/dist/ReactCrop.css'
+
 import MinimalButton from 'kt-components/MinimalButton';
 
 class PhotoCropModal extends Component {
     constructor(props) {
         super(props);
+
         this.state={
             crop: {
                 x: 0,
@@ -18,26 +21,35 @@ class PhotoCropModal extends Component {
         }
     }
     render() {
-        return (
+        const {crop} = this.state
+        const {modalIsOpen, currentImage, cropImage} = this.props
 
+        const modalStyle = {
+            overlay: {backgroundColor: 'rgba(10, 10, 10, 0.60)'},
+            content: {bottom: 'unset', width: '600px', background: '#fff'}
+        }
+
+        return (
             <Modal
                 contentLabel='Photo Crop Modal'
-                isOpen={!!this.props.currentImage.originalImageSource && this.props.modalIsOpen}
-                style={{
-                    overlay: {backgroundColor: 'rgba(10, 10, 10, 0.60)'},
-                    content: {bottom: 'unset', width: '600px', background: '#fff'}
-                }}
-                onRequestClose={() => {this.setState({imageSource: null})}}
+                isOpen={modalIsOpen && !!currentImage}
+                style={modalStyle}
             >
-            {this.props.currentImage.originalImageSource
-            ? <ReactCrop
-                onComplete={crop => {
-                    this.setState({crop})
-                }}
-                crop={this.state.crop}
-                src={this.props.currentImage.originalImageSource}/>
-            : null}
-            <DoneButton onClick={() => this.props.cropImage(this.state.crop, this.props.index)}>Done</DoneButton>
+                {
+                currentImage ? 
+                    <ReactCrop
+                        onComplete={crop => {
+                            this.setState({crop})
+                        }}
+                        crop={crop}
+                        src={currentImage}
+                    />
+                    : 
+                    null
+                }
+                <DoneButton onClick={() => cropImage(crop)}>
+                    Done
+                </DoneButton>
             </Modal>
         );
     }
