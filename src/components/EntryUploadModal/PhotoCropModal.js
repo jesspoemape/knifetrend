@@ -39,7 +39,6 @@ class PhotoCropModal extends Component {
                 currentImage ? 
                     <ReactCrop
                         onComplete={crop => {
-                            console.log('INNER CROP', crop)
                             this.setState({crop})
                         }}
                         crop={crop}

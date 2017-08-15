@@ -18,6 +18,7 @@ class EntryInfo extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.onFinishUpload = this.onFinishUpload.bind(this);
+        this.submitEntry = this.submitEntry.bind(this);
 
     }
     handleChange(event) {
@@ -42,6 +43,9 @@ class EntryInfo extends Component {
             })
         } 
         console.log(this.state)
+    }
+    submitEntry() {
+        
     }
 
     render() {
@@ -68,7 +72,7 @@ class EntryInfo extends Component {
                     onChange={this.handleChange}
                 />
             </Container>
-            <SubmitButton> Submit Entry </SubmitButton>
+            <SubmitButton onClick={this.submitEntry}> Submit Entry </SubmitButton>
         </div>
     );
 };
