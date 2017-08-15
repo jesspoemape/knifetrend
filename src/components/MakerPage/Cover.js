@@ -43,8 +43,7 @@ const ProfilePic = styled.img`
     width: 180px;
     height: 180px;
     border: white 4px solid;
-    position: absolute;
-    top: 165px;
+    margin-top: 30px;
     ${props => props.theme.media.tablet}{
         width: 225px;
         height: 225px;

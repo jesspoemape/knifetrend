@@ -6,18 +6,15 @@ import MenuContainer from './MakerMenu/MenuContainer';
 
 const MakerContainer = () => {
     return (
-        <div>
+        <Container>
             <Cover/>
-            <Container>
-                <MenuContainer/>
-            </Container>
-        </div>
+            <MenuContainer/>
+        </Container>
     );
 };
 
 export default MakerContainer;
 
 const Container = styled.section`
-    display: flex;
-    justify-content: flex-start;
+    background: #f5f5f5;
 `

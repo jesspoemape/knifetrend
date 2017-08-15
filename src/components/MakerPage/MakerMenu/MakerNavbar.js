@@ -20,16 +20,19 @@ const MakerNavbar = () => {
 export default MakerNavbar;
 
 const Container = styled.section`
-    display: flex;
     flex-direction: column;
     justify-content: center;
+    display: none;
+    ${props => props.theme.media.desktop} {
+        display: flex;
+    }
 `
 const MakerLink = styled(NavLink).attrs({
     activeClassName: 'navLinkActive'
   })`
     ${props => props.theme.mainFont({})};
     color: #606060;
-    font-size: 18pt;
+    font-size: 14pt;
     font-weight: 600;
     background: #e0e0e0;
     border-left: 5px solid #404040;
@@ -41,6 +44,13 @@ const MakerLink = styled(NavLink).attrs({
     align-items: center;
     &.navLinkActive {
         border-left: 5px solid ${props => props.theme.main};
+        background: #f5f5f5;
+    }
+    ${props => props.theme.media.tablet} {
+        font-size: 16pt;
+    }
+    ${props => props.theme.media.xl} {
+        font-size: 18pt;
     }
 `
 const Divider = styled.div`
