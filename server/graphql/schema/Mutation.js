@@ -22,28 +22,23 @@ const resolvers = {
   },
   async updateCartQuantity(obj, args, { viewer }) {
     if (!viewer) return null;
-    const cart = await viewer.getShoppingCart()
-    return await cart.updateLineItem(args.ItemId, args.newQuantity, viewer)
+    return await viewer.ShoppingCart.updateLineItem(args.ItemId, args.newQuantity, viewer)
   },
   async addToCart(obj, args, { viewer }){
     if (!viewer) return null;
-    // const cart = await viewer.getShoppingCart()
     return await viewer.ShoppingCart.addLineItem(args.ItemId, args.quantity, viewer)
   },
   async removeFromCart(obj, args, { viewer }) {
     if (!viewer) return null;
-    const cart = await viewer.getShoppingCart()
-    return await cart.deleteLineItem(args.ItemId, viewer)
+    return await viewer.ShoppingCart.deleteLineItem(args.ItemId, viewer)
   },
   async emptyCart(obj, args, { viewer }) {
     if (!viewer) return null;
-    const cart = await viewer.getShoppingCart()
-    return await cart.emptyCart()
+    return await viewer.ShoppingCart.emptyCart()
   },
   async confirmCheckout(obj, args, { viewer }) {
     if (!viewer) return null;
-    const cart = await viewer.getShoppingCart()
-    return await cart.confirmCheckout();
+    return await viewer.ShoppingCart.confirmCheckout();
   }
 }
 
