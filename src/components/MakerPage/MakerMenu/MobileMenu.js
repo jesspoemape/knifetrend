@@ -9,8 +9,11 @@ const MobileMenu = ({toggleDisplay}) => {
     return (
         <Container>
             <MenuLink onClick={ toggleDisplay } exact={true} to="/makers">storefront</MenuLink>
+            <Divider/>
             <MenuLink onClick={ toggleDisplay } to="#">biography</MenuLink>
+            <Divider/>
             <MenuLink onClick={ toggleDisplay } to="#">about the shop</MenuLink>
+            <Divider/>
             <MenuLink onClick={ toggleDisplay } to="/makers/competition">competition</MenuLink>
         </Container>
     );
@@ -27,6 +30,9 @@ const Container = styled.section`
     color: #606060;
     display: flex;
     flex-direction: column;
+    ${props => props.theme.media.tablet}{
+        top: 440px;
+    }
     ${props => props.theme.media.desktop}{
         display: none;
     }
@@ -38,4 +44,9 @@ const MenuLink = styled(Link)`
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
+`
+const Divider = styled.div`
+    background: #f5f5f5;
+    height: 2px;
+    width: 100%;
 `

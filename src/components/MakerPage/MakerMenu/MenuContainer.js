@@ -25,7 +25,7 @@ class MenuContainer extends Component {
     render(){
         return (
             <Container>
-                <MakerNavbar toggleDisplay={ this.toggleDisplay }/>
+                <MakerNavbar/>
                 <MobileMenuButton path={chevronDown}
                 callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
                 />
