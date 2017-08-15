@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
-import ReactCrop from 'react-image-crop';
 
-import 'react-image-crop/dist/ReactCrop.css'
 import PhotoCropModal from './PhotoCropModal'
 
 class PhotoUpload extends Component{
@@ -11,13 +8,12 @@ class PhotoUpload extends Component{
         super(props)
 
         this.state = {
-            imageSources: ['1', '2', '3', '4', '5',],
-            crop: {
-                width: 40,
-                aspect: 1/1,
-                x: 0,
-                y: 0,
-            },
+            imgUrl: ' ',
+            fileReaderResult: null,
+            width: 40,
+            aspect: 1/1,
+            x: 0,
+            y: 0,
             modalIsOpen: false
         }
 
@@ -25,15 +21,13 @@ class PhotoUpload extends Component{
         this.cropImage = this.cropImage.bind(this);
     }
 
-    handleFileUpload(event, index) {
+    handleFileUpload(event) {
         let file = event.target.files[0] 
         let reader = new FileReader() 
+
         reader.onloadend = () => {
-          const imageSources = this.state.imageSources.slice(0)
-          imageSources[index] = {originalImageSource: reader.result}
-          console.log('STATE',this.state)
           this.setState({
-            imageSources,
+            fileReaderResult: reader.result,
             modalIsOpen: true
           })
         }
@@ -41,8 +35,13 @@ class PhotoUpload extends Component{
 
       }
 
-cropImage(crop, index) {
+cropImage(crop) {
+    const {fileReaderResult} = this.state;
+    const {onFinishUpload, id} = this.props;
+
     console.log('CROP', crop)
+    console.log("STATE", this.state)
+
     let image = new Image();
     image.onload = () => {
         var imageWidth = image.naturalWidth;
@@ -61,52 +60,54 @@ cropImage(crop, index) {
 
 		ctx.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-        let imageSources = this.state.imageSources.splice(0)
-        let imageSrc = canvas.toDataURL('image/jpeg')
-        console.log('State', this.state)
-        imageSources[index] = Object.assign(this.state.imageSources[index], {originalImageSource: imageSrc}) // state is being erased here????
-        // console.log('IMAGE SOURCES',imageSources)
+        // let imageSrc = canvas.toDataURL('image/jpeg')
 
         this.setState({
-        imageSources,
-        modalIsOpen: false
+            width: cropWidth,
+            x: cropX,
+            y: cropY,
+            modalIsOpen: false,
+            imgUrl: canvas.toDataURL('image/jpeg')
         })
+        const { imgUrl, width, aspect, x, y} = this.state;
+        onFinishUpload({
+            x,
+            y,
+            url: imgUrl,
+            aspect,
+            width,
+            height: width
+        }, id)
     }
-    image.src = this.state.imageSources[index].originalImageSource;
+
+    image.src = fileReaderResult;
+    console.log(image)
 }
 
 
     render() {
+        const{ imgUrl, fileReaderResult } = this.state;
         return (
-            <div>
-                <ImgContainer>
-                    {this.state.imageSources.map((img, i) => {
-                        return (
-                            <ImgUpload key={i}>
-                                <ImgInput   type='file'
-                                            onChange={(event) => this.handleFileUpload(event, i)}/>
-                            <PhotoCropModal index={i} cropImage={this.cropImage} currentImage={this.state.imageSources[i]} crop={this.state.crop} modalIsOpen={this.state.modalIsOpen}/>
-                            </ImgUpload>
-                            
-                        )
-                    })}
-                </ImgContainer>
-                <ImgDescription>(cover photo)</ImgDescription>
-            </div>
+            <ImgThumbnail imgUrl={imgUrl}>
+                <ImgInput   
+                    type='file'
+                    onChange={this.handleFileUpload}
+                />
+                <PhotoCropModal 
+                    cropImage={this.cropImage} 
+                    currentImage={fileReaderResult}  
+                    modalIsOpen={this.state.modalIsOpen}
+                />
+            </ImgThumbnail>
         );
     }
 };
 
 export default PhotoUpload;
 
-const ImgContainer = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 20px 0px 20px;
-`
-const ImgUpload = styled.div`
+const ImgThumbnail = styled.div`
+    background: url(${props => props.imgUrl});
+    background-size: contain;
     border: 3px solid #d9d9d9;
     height: 90px;
     width: 90px;
@@ -121,12 +122,4 @@ const ImgInput = styled.input`
     opacity: 0;
     height: 90px;
     width: 90px;
-`
-
-const ImgDescription = styled.p`
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 10px;
-    color: #bfbfbf;
-    padding: 5px 40px;
 `
