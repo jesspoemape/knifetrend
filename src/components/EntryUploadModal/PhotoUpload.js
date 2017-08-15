@@ -39,9 +39,6 @@ cropImage(crop) {
     const {fileReaderResult} = this.state;
     const {onFinishUpload, id} = this.props;
 
-    console.log('CROP', crop)
-    console.log("STATE", this.state)
-
     let image = new Image();
     image.onload = () => {
         var imageWidth = image.naturalWidth;
@@ -81,7 +78,6 @@ cropImage(crop) {
     }
 
     image.src = fileReaderResult;
-    console.log(image)
 }
 
 
