@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
   ShoppingCart.prototype.updateLineItem = async function(ItemId, quantity, viewer) {
     const lineItem = await this.getOneLineItem({where: {ItemId}});
-   lineItem.update({quantity})
+    lineItem.update({quantity})
     return lineItem;
   }
 
