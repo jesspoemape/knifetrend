@@ -1,23 +1,28 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
+import Media from 'react-media';
 
 import MakerContainer from './MakerContainer'
 import Storefront from './Storefront/Storefront'
 import Competition from './Competition/Competition'
 import Cover from './Cover'
+import MakerDetails from './MakerMenu/MakerDetails'
 
 
 export default props => (
   <div>
     <Cover/>
     <Container>
-    <Route path='/makers' component = { MakerContainer }/>
-    <Switch>
-      <Route exact path="/makers/" component={ Storefront } />
-      <Route path="/makers/competition" component={ Competition } />
-    </Switch>
+      <Route path='/makers' component = { MakerContainer }/>
+      <Switch>
+        <Route exact path="/makers/" component={ Storefront } />
+        <Route path="/makers/competition" component={ Competition } />
+      </Switch>
     </Container>
+    <Media query="(max-width: 950px)" render={()=>(
+      <MakerDetails/>
+    )}/>
   </div>
 )
 

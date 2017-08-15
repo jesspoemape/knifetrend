@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import Media from 'react-media';
+
 
 import chevronDown from '../../../assets/chevron-down.svg';
 
@@ -30,7 +32,9 @@ class MenuContainer extends Component {
                 callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
                 />
                 { this.state.displayMenu ? <MobileMenu toggleDisplay={ this.toggleDisplay } /> : null }
-                <MakerDetails />
+                <Media query="(min-width: 950px)" render={()=>(
+                    <MakerDetails/>
+                )}/>
             </Container>
         );
     }
