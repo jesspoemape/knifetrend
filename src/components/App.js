@@ -10,6 +10,7 @@ import Profile from './Profile/Profile';
 import SignUp from './SignUp/SignUp';
 import Admin from './Admin/Admin';
 import Shop from './Shop/Shop';
+import MakerPage from './MakerPage/MakerPage';
 
 const App = props => (
   <div>
@@ -21,7 +22,8 @@ const App = props => (
       <Route path="/profile" component={ Profile } />
       <Route path="/sign-up" component={ SignUp } />
       <Route path="/admin" component={ Admin } />
-      <Route path="/Shop" component={ Shop } />
+      <Route path="/shop" component={ Shop } />
+      <Route path="/makers" component={ MakerPage } />
     </Switch>
     <Footer />
   </div>
