@@ -7,7 +7,7 @@ const MakerNavbar = () => {
         <Container>
             <MakerLink exact={true} to='/makers'>Storefront</MakerLink>
             <Divider/>
-            <MakerLink to='#'>About the Shop</MakerLink>
+            <MakerLink to='/makers/about'>About the Shop</MakerLink>
             <Divider/>
             <MakerLink to='/makers/competition'>Competition Entries</MakerLink>
             <Divider/>

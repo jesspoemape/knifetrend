@@ -40,13 +40,14 @@ const Title = styled.h1`
     }
 `
 const ProfilePic = styled.img`
+    position: absolute;
     border-radius: 50%;
-    margin-top: 20px;
+    margin-top: 145px;
     width: 150px;
     height: 150px;
     border: white 4px solid;
+    z-index: 2;
     ${props => props.theme.media.tablet}{
-        margin-top: 30px;
         width: 200px;
         height: 200px;
     }
