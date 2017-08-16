@@ -9,7 +9,7 @@ const typeDef = `
     users: [User]
     viewer: User
     makers: [Maker]
-    items: [Item]
+    items(name: String): [Item]
   }
 `
 const resolvers = {
@@ -35,7 +35,10 @@ const resolvers = {
     return findAll('Maker', args);
   },
   items(obj, args, context) {
-    return findAll('Item', args);
+    if (args.name) {
+      return context.db.Item.findAll({ where: { name: { $iLike: `%${args.name}%`} } })
+    }
+    return findAll('Item');
   }
 }
 
