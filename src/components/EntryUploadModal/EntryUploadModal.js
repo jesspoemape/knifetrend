@@ -5,9 +5,7 @@ import ReactSVG from 'react-svg';
 
 import exit from './../../assets/exit.svg';
 
-import PhotoUpload from './PhotoUpload';
 import EntryInfo from './EntryInfo';
-import MinimalButton from 'kt-components/MinimalButton';
 import Divider from 'kt-components/Divider';
 
 const imgURL = 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-talladega-nights-the-ballad-of-ricky-bobby-will-ferrell.jpg';
@@ -27,10 +25,8 @@ const EntryUploadModal = ({ isOpen, onRequestClose }) => {
                 </Header>
                 <Title>EDC folding</Title>
                 <Description>Upload up to 5 photos for each entry. Be sure you take nice, well-lit photos of your knife so your design can shine!</Description>
-                <GrayDivider/>
-                <PhotoUpload />  
+                <GrayDivider/> 
                 <EntryInfo />
-                <SubmitButton> Submit Entry </SubmitButton>
             </Container>
         </ReactModal>
     );
@@ -96,14 +92,4 @@ const GrayDivider = styled(Divider)`
     width: initial;
     margin: 0 20px;
     background: #d9d9d9;
-`
-const SubmitButton = styled(MinimalButton)`
-    background: ${props => props.theme.main};
-    font: ${props => props.theme.mainFont({})};
-    margin: 30px auto;
-    color: white;
-    font-size: 16pt;
-    padding: 10px 60px;
-    border-radius: 30px;
-    border-style: none;
 `
