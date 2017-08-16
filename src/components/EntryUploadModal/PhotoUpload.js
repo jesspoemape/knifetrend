@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
-import ReactCrop from 'react-image-crop';
+import axios from 'axios'
+import dataURLtoBlob from 'dataurl-to-blob';
 
-import 'react-image-crop/dist/ReactCrop.css'
 import PhotoCropModal from './PhotoCropModal'
 
 class PhotoUpload extends Component{
@@ -11,102 +10,122 @@ class PhotoUpload extends Component{
         super(props)
 
         this.state = {
-            imageSources: ['1', '2', '3', '4', '5',],
-            crop: {
-                width: 40,
-                aspect: 1/1,
-                x: 0,
-                y: 0,
-            },
-            modalIsOpen: false
+            uploadedFile: null,
+            uploadedFileDataURL: null,
+            croppedImageFile: null,
+            croppedImageDataURL: null,
+            croppedImageURL: '',
+            modalIsOpen: false,
         }
 
         this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.cropImage = this.cropImage.bind(this);
+        this.createCroppedImageFile = this.createCroppedImageFile.bind(this);
+        this.sendFile = this.sendFile.bind(this);
     }
 
-    handleFileUpload(event, index) {
-        let file = event.target.files[0] 
-        let reader = new FileReader() 
-        reader.onloadend = () => {
-          const imageSources = this.state.imageSources.slice(0)
-          imageSources[index] = {originalImageSource: reader.result}
-          console.log('STATE',this.state)
-          this.setState({
-            imageSources,
-            modalIsOpen: true
-          })
-        }
-        reader.readAsDataURL(file)
-
-      }
-
-cropImage(crop, index) {
-    console.log('CROP', crop)
-    let image = new Image();
-    image.onload = () => {
-        var imageWidth = image.naturalWidth;
-		var imageHeight = image.naturalHeight;
-
-		var cropX = (crop.x / 100) * imageWidth;
-		var cropY = (crop.y / 100) * imageHeight;
-
-		var cropWidth = (crop.width / 100) * imageWidth;
-		var cropHeight = (crop.height / 100) * imageHeight;
-
-		var canvas = document.createElement('canvas');
-		canvas.width = cropWidth;
-		canvas.height = cropHeight;
-		var ctx = canvas.getContext('2d');
-
-		ctx.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-
-        let imageSources = this.state.imageSources.splice(0)
-        let imageSrc = canvas.toDataURL('image/jpeg')
-        console.log('State', this.state)
-        imageSources[index] = Object.assign(this.state.imageSources[index], {originalImageSource: imageSrc}) // state is being erased here????
-        // console.log('IMAGE SOURCES',imageSources)
-
+    // this event runs only when a file is first uploaded to the input element
+    handleFileUpload(event) {
+      // get file off of input element
+      const file = event.target.files[0]
+      // create file reader object
+      const reader = new FileReader()
+      // configure reader with the logic that runs after it has loaded a file
+      reader.onloadend = () => {
         this.setState({
-        imageSources,
-        modalIsOpen: false
+          uploadedFile: file,
+          uploadedFileDataURL: reader.result,
+          modalIsOpen: true
+        })
+      }
+      // read the file - when this finishes it will run the logic defined above
+      reader.readAsDataURL(file);
+    }
+
+    // gets called by PhotoCropModal component when user clicks done button
+    createCroppedImageFile(cropSettings) {
+      let { uploadedFile, uploadedFileDataURL } = this.state
+      // const reader = new FileReader()
+      // this is passed to the canvas element during image drawing
+      let canvasImage = new Image()
+      // create canvas element
+      let canvas = document.createElement('canvas');
+      // configure canvas image with the logic to run when the image is loading it's src
+      canvasImage.onload = () => {
+        // destructure crop settings passed to createCroppedImageFile method
+        let { x, y, width, height } = cropSettings
+        // Calculate crop dimmensions
+        let imageWidth = canvasImage.naturalWidth;
+        let imageHeight = canvasImage.naturalHeight;
+        let cropX = (x / 100) * imageWidth;
+        let cropY = (y / 100) * imageHeight;
+        let cropWidth = (width / 100) * imageWidth;
+        let cropHeight = (height / 100) * imageHeight;
+        // set canvas settings
+        canvas.width = cropWidth;
+        canvas.height = cropHeight;
+        let ctx = canvas.getContext('2d');
+        // draw cropped image to canvas object
+        ctx.drawImage(
+          canvasImage, cropX, cropY, cropWidth,
+          cropHeight, 0, 0, cropWidth, cropHeight
+        )
+      }
+      // set the source for canvas image
+      canvasImage.src = uploadedFileDataURL
+      // create function to be used as callback when we call canvas.toBlob()
+      const convertAndSendFile = () => {
+        // canvas to dataURL
+        const croppedImageDataURL = canvas.toDataURL('image/jpeg')
+        // convert dataURL to blob
+        const blob = dataURLtoBlob(croppedImageDataURL)
+        // create new file object from blob
+        const croppedImageFile = new File([blob], uploadedFile.name, {type:'image/jpeg'})
+        this.setState({
+          croppedImageFile: croppedImageFile,
+          croppedImageDataURL: croppedImageDataURL,
+          modalIsOpen: false
+        })
+        // send the server to be uploaded on s3
+        this.sendFile(croppedImageFile)
+      }
+      // create blob - this will trigger the above callback and create a new file
+      canvas.toBlob(convertAndSendFile, 'image/jpeg')
+    }
+
+    sendFile(file) {
+      let data = new FormData()
+      data.append('image', file)
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, data)
+        .then(response => {
+          this.setState({
+            croppedImageURL: response.data.imgUrl
+          })
         })
     }
-    image.src = this.state.imageSources[index].originalImageSource;
-}
-
 
     render() {
+        const{ uploadedFileDataURL, croppedImageDataURL, croppedImageURL, modalIsOpen } = this.state;
         return (
-            <div>
-                <ImgContainer>
-                    {this.state.imageSources.map((img, i) => {
-                        return (
-                            <ImgUpload key={i}>
-                                <ImgInput   type='file'
-                                            onChange={(event) => this.handleFileUpload(event, i)}/>
-                            <PhotoCropModal index={i} cropImage={this.cropImage} currentImage={this.state.imageSources[i]} crop={this.state.crop} modalIsOpen={this.state.modalIsOpen}/>
-                            </ImgUpload>
-                            
-                        )
-                    })}
-                </ImgContainer>
-                <ImgDescription>(cover photo)</ImgDescription>
-            </div>
-        );
+            <ImgThumbnail imgUrl={croppedImageURL || croppedImageDataURL}>
+                <ImgInput
+                    type='file'
+                    onChange={this.handleFileUpload}
+                />
+                <PhotoCropModal
+                    createCroppedImageFile={this.createCroppedImageFile}
+                    uploadedFileDataURL={uploadedFileDataURL}
+                    modalIsOpen={modalIsOpen}
+                />
+            </ImgThumbnail>
+        )
     }
-};
+}
 
 export default PhotoUpload;
 
-const ImgContainer = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 20px 0px 20px;
-`
-const ImgUpload = styled.div`
+const ImgThumbnail = styled.div`
+    background: url(${props => props.imgUrl});
+    background-size: contain;
     border: 3px solid #d9d9d9;
     height: 90px;
     width: 90px;
@@ -121,12 +140,4 @@ const ImgInput = styled.input`
     opacity: 0;
     height: 90px;
     width: 90px;
-`
-
-const ImgDescription = styled.p`
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 10px;
-    color: #bfbfbf;
-    padding: 5px 40px;
 `
