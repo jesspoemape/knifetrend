@@ -10,7 +10,7 @@ const MobileMenu = ({toggleDisplay}) => {
         <Container>
             <MenuLink onClick={ toggleDisplay } exact={true} to="/makers">storefront</MenuLink>
             <Divider/>
-            <MenuLink onClick={ toggleDisplay } to="#">about the shop</MenuLink>
+            <MenuLink onClick={ toggleDisplay } to="/makers/about">about the shop</MenuLink>
             <Divider/>
             <MenuLink onClick={ toggleDisplay } to="/makers/competition">competition</MenuLink>
         </Container>

@@ -8,6 +8,7 @@ import Storefront from './Storefront/Storefront'
 import Competition from './Competition/Competition'
 import Cover from './Cover'
 import MakerDetails from './MakerMenu/MakerDetails'
+import AboutTheShop from './AboutTheShop/AboutTheShop'
 
 
 export default props => (
@@ -18,6 +19,7 @@ export default props => (
       <Switch>
         <Route exact path="/makers/" component={ Storefront } />
         <Route path="/makers/competition" component={ Competition } />
+        <Route path="/makers/about" component={ AboutTheShop } />
       </Switch>
     </Container>
     <Media query="(max-width: 949px)" render={()=>(
