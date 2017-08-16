@@ -1,11 +1,28 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Storefront = () => {
     return (
-        <div>
+        <Container>
             Storefront Page
-        </div>
+        </Container>
     );
 };
 
 export default Storefront;
+
+const Container = styled.section`
+    margin-top: 60px;
+    min-height: 200px;
+    background: gray;
+    width: 100vw;
+    margin-left: -32px;
+    ${props => props.theme.media.phone}{
+        margin-top: 80px;
+    }
+    ${props => props.theme.media.tablet}{
+        margin-top: 100px;
+    }
+    ${props => props.theme.media.desktop}{
+        margin-left: 0px;
+`

@@ -10,8 +10,6 @@ const MobileMenu = ({toggleDisplay}) => {
         <Container>
             <MenuLink onClick={ toggleDisplay } exact={true} to="/makers">storefront</MenuLink>
             <Divider/>
-            <MenuLink onClick={ toggleDisplay } to="#">biography</MenuLink>
-            <Divider/>
             <MenuLink onClick={ toggleDisplay } to="#">about the shop</MenuLink>
             <Divider/>
             <MenuLink onClick={ toggleDisplay } to="/makers/competition">competition</MenuLink>
@@ -23,15 +21,18 @@ export default MobileMenu;
 
 const Container = styled.section`
     position: absolute;
-    height: 200px;
+    height: 150px;
     width: 100%;
-    top: 350px;
+    top: 320px;
     background: #e0e0e0;
     color: #606060;
     display: flex;
     flex-direction: column;
+    ${props => props.theme.media.phone}{
+        top: 340px;
+    }
     ${props => props.theme.media.tablet}{
-        top: 440px;
+        top: 415px;
     }
     ${props => props.theme.media.desktop}{
         display: none;
