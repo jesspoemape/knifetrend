@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import { gql, withApollo } from 'react-apollo';
 
 import ImageBanner from 'kt-components/ImageBanner';
 import search from './../../../assets/search.svg'
@@ -10,28 +11,56 @@ const imgUrl = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { userInput: '' }
+    this.state = { searchText: '' }
     this.handleChange = this.handleChange.bind(this);
+    this._executeSearch = this._executeSearch.bind(this);
   }
   handleChange(event) {
-    this.setState({userInput: event.target.value})
+    this.setState({searchText: event.target.value})
+  }
+  _executeSearch = async () => {
+    const { searchText } = this.state;
+    const result = await this.props.client.query({
+      query: ALL_KNIVES_SEARCH_QUERY,
+      variables: { searchText }
+    })
+    console.log('Give me knives', result.data)
   }
   render() {
-    const { userInput } = this.state
+    const { searchText } = this.state
     return (
       <SearchBanner url={ imgUrl }>
         <SearchBar
           placeholder='Search Here'
           onChange={this.handleChange}
-          value={userInput}
+          value={searchText}
         />
-        <SearchIcon path={search} />
+        <SearchIcon 
+          path={search} 
+          callback={ (svg) => svg.addEventListener("click", this._executeSearch) }
+        />
       </SearchBanner>
     )
   }
 }
 
-export default Search;
+const ALL_KNIVES_SEARCH_QUERY = gql`
+  query AllKnivesSearchQuery($searchText: String) {
+    items(name:$searchText) {
+      maker {
+        profilePhoto
+        storeName
+      }
+      id
+      primaryPhoto
+      name
+      desc
+      price
+    }
+  }
+`
+
+export default withApollo(Search);
 
 const SearchBanner = styled(ImageBanner)`
   height: 125px;

@@ -7,7 +7,7 @@ const typeDef = `
     coverPhoto: String
     profilePhoto: String
     location: String
-    storeName: String
+    storeName: String!
     user: User!
     items(limit: Int): [Item]
   }
