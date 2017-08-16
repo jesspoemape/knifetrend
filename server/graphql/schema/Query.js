@@ -41,7 +41,7 @@ const resolvers = {
     if (args.makerId) {
       return context.db.Item.findAll({ where: { name: { $iLike: `%${args.name}%`},  MakerId: args.makerId  } })
     } else if (args.name) {
-      return context.db.Item.findAll({ where: { name: { $iLike: `%${args.name}%`} } })
+      return context.db.Item.findAll({ where: { $or: [{ name: { $iLike: `%${args.name}%`} }, { desc: { $iLike: `%${args.name}%`} } ] }})
     }
     return findAll('Item');
   }

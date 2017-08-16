@@ -399,7 +399,7 @@ const sync_database = async function() {
   await db.Item.bulkCreate([
     {
       name: '3" Folding Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor. word.',
       price: 213.15,
       quantity: 100,
       primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg',
@@ -410,7 +410,7 @@ const sync_database = async function() {
     },
     {
       name: '2" Fixed Bushcraft',
-      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
+      desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor. tamborine',
       price: 213.15,
       quantity: 100,
       primaryPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-2.jpg',
