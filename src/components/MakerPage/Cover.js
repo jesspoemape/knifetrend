@@ -29,24 +29,25 @@ const Header = styled(ImageBanner)`
 `
 const Title = styled.h1`
     ${props => props.theme.secondaryFont({})};
-    font-size: 35pt;
+    font-size: 20pt;
     color: white;
-    line-spacing: 1.5pt;
-    margin-top: 30px;
+    letter-spacing: 1.5pt;
+    margin-top: 60px;
     text-align: center;
-    ${props => props.theme.media.tablet}{
-        font-size: 60pt;
+    ${props => props.theme.media.phone}{
+        font-size: 40pt;
+        font-size: 35pt;
     }
 `
 const ProfilePic = styled.img`
     border-radius: 50%;
-    width: 180px;
-    height: 180px;
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
     border: white 4px solid;
-    margin-top: 30px;
     ${props => props.theme.media.tablet}{
-        width: 225px;
-        height: 225px;
-        top: 205px;
+        margin-top: 30px;
+        width: 200px;
+        height: 200px;
     }
 `

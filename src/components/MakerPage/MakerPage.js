@@ -20,7 +20,7 @@ export default props => (
         <Route path="/makers/competition" component={ Competition } />
       </Switch>
     </Container>
-    <Media query="(max-width: 950px)" render={()=>(
+    <Media query="(max-width: 949px)" render={()=>(
       <MakerDetails/>
     )}/>
   </div>
@@ -28,4 +28,5 @@ export default props => (
 
 const Container = styled.section`
   display: flex;
+  background: #F5F5F5;
 `
