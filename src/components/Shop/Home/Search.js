@@ -13,6 +13,7 @@ class Search extends Component {
     super(props);
     this.state = { searchText: '' }
     this.handleChange = this.handleChange.bind(this);
+    this._executeSearch = this._executeSearch.bind(this);
   }
   handleChange(event) {
     this.setState({searchText: event.target.value})
@@ -36,7 +37,7 @@ class Search extends Component {
         />
         <SearchIcon 
           path={search} 
-          callback={ (svg) => svg.addEventListener("click", this._executeSearch()) }
+          callback={ (svg) => svg.addEventListener("click", this._executeSearch) }
         />
       </SearchBanner>
     )
@@ -44,14 +45,8 @@ class Search extends Component {
 }
 
 const ALL_KNIVES_SEARCH_QUERY = gql`
-  query AllKnivesSearchQuery($searchText: String!) {
-    items(filter: {
-      OR: [{
-        name_contains: $searchText
-      }, {
-        desc_contains: $searchText
-      }]
-    }) {
+  query AllKnivesSearchQuery($searchText: String) {
+    items(name:$searchText) {
       maker {
         profilePhoto
         storeName
