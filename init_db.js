@@ -81,6 +81,7 @@ const sync_database = async function() {
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
+      storeName: 'Super Knife Store'
 
     },
     {
@@ -89,9 +90,10 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      location: 'Utah',
+      location: 'Texas',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
+      storeName: 'Glitter Rainbow Unicorn Knives'
     },
     {
       UserId: 6,
@@ -102,6 +104,7 @@ const sync_database = async function() {
       location: 'Utah',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
+      storeName: 'Bedazzled Beauties'
     },
     {
       UserId: 7,
@@ -109,9 +112,10 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      location: 'Utah',
+      location: 'Arkansas',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
+      storeName: 'Knives Knives Knives!!!'
     },
     {
       UserId: 8,
@@ -119,9 +123,10 @@ const sync_database = async function() {
       biography: "Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.",
       logo: 'https://cdn.dribbble.com/users/1960/screenshots/3009825/chef-knife_1x.jpg',
       coverPhoto: 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-landing-following.jpg',
-      location: 'Utah',
+      location: 'California',
       socialLinks: {"facebook": "facebook-link.com"},
       FAQs: {"question": "answer"},
+      storeName: 'Sick Knife Store'
     },
   ])
 
