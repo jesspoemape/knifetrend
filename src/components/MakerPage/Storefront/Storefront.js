@@ -16,7 +16,7 @@ const Container = styled.section`
     min-height: 200px;
     background: gray;
     width: 100vw;
-    margin-left: -38px;
+    margin-left: -32px;
     ${props => props.theme.media.phone}{
         margin-top: 80px;
     }

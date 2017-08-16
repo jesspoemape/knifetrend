@@ -46,14 +46,14 @@ const Container = styled.section`
 const Title = styled.h2`
     ${props => props.theme.mainFont({})};
     color: #989898;
-    font-size: 18pt;
+    font-size: 15pt;
     font-weight: 400;
     margin-top: 25px;
 `
 const Desc = styled.h1`
     ${props => props.theme.mainFont({})};
     color: #e0e0e0;
-    font-size: 22pt;
+    font-size: 18pt;
     font-weight: 400;
     margin-top: 3px;
 `
@@ -65,9 +65,9 @@ const Images = styled.div`
 `
 const ImgBubble = styled.img`
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 0px 8px;
+    width: 35px;
+    height: 35px;
+    margin: 0px 6px;
 `
 
 const DotDivider = styled.div`
