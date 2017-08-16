@@ -4,10 +4,14 @@ const graphqlHTTP = require('express-graphql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
+const multer = require('multer');
+
 
 const passport = require('./auth');
 const { addDatabase, addViewer } = require('./middleware');
 const { schema } = require('./graphql/schema');
+const { handleFileUpload } = require('./services/upload');
+const upload = multer();
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -33,6 +37,8 @@ app.use('/graphql', addViewer, graphqlHTTP({
   schema: schema,
   graphiql: true
 }));
+
+app.use('/upload', upload.single('image'), handleFileUpload)
 
 app.get('/auth', passport.authenticate('auth0'));
 

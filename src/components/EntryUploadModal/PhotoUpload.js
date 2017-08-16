@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import axios from 'axios'
+import dataURLtoBlob from 'dataurl-to-blob';
 
 import PhotoCropModal from './PhotoCropModal'
 
@@ -8,96 +10,116 @@ class PhotoUpload extends Component{
         super(props)
 
         this.state = {
-            imgUrl: ' ',
-            fileReaderResult: null,
-            width: 40,
-            aspect: 1/1,
-            x: 0,
-            y: 0,
-            modalIsOpen: false
+            uploadedFile: null,
+            uploadedFileDataURL: null,
+            croppedImageFile: null,
+            croppedImageDataURL: null,
+            croppedImageURL: '',
+            modalIsOpen: false,
         }
 
         this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.cropImage = this.cropImage.bind(this);
+        this.createCroppedImageFile = this.createCroppedImageFile.bind(this);
+        this.sendFile = this.sendFile.bind(this);
     }
 
+    // this event runs only when a file is first uploaded to the input element
     handleFileUpload(event) {
-        let file = event.target.files[0] 
-        let reader = new FileReader() 
-
-        reader.onloadend = () => {
-          this.setState({
-            fileReaderResult: reader.result,
-            modalIsOpen: true
-          })
-        }
-        reader.readAsDataURL(file)
-
-      }
-
-cropImage(crop) {
-    const {fileReaderResult} = this.state;
-    const {onFinishUpload, id} = this.props;
-
-    let image = new Image();
-    image.onload = () => {
-        var imageWidth = image.naturalWidth;
-		var imageHeight = image.naturalHeight;
-
-		var cropX = (crop.x / 100) * imageWidth;
-		var cropY = (crop.y / 100) * imageHeight;
-
-		var cropWidth = (crop.width / 100) * imageWidth;
-		var cropHeight = (crop.height / 100) * imageHeight;
-
-		var canvas = document.createElement('canvas');
-		canvas.width = cropWidth;
-		canvas.height = cropHeight;
-		var ctx = canvas.getContext('2d');
-
-		ctx.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-
-        // let imageSrc = canvas.toDataURL('image/jpeg')
-
+      // get file off of input element
+      const file = event.target.files[0]
+      // create file reader object
+      const reader = new FileReader()
+      // configure reader with the logic that runs after it has loaded a file
+      reader.onloadend = () => {
         this.setState({
-            width: cropWidth,
-            x: cropX,
-            y: cropY,
-            modalIsOpen: false,
-            imgUrl: canvas.toDataURL('image/jpeg')
+          uploadedFile: file,
+          uploadedFileDataURL: reader.result,
+          modalIsOpen: true
         })
-        const { imgUrl, width, aspect, x, y} = this.state;
-        onFinishUpload({
-            x,
-            y,
-            url: imgUrl,
-            aspect,
-            width,
-            height: width
-        }, id)
+      }
+      // read the file - when this finishes it will run the logic defined above
+      reader.readAsDataURL(file);
     }
 
-    image.src = fileReaderResult;
-}
+    // gets called by PhotoCropModal component when user clicks done button
+    createCroppedImageFile(cropSettings) {
+      let { uploadedFile, uploadedFileDataURL } = this.state
+      // const reader = new FileReader()
+      // this is passed to the canvas element during image drawing
+      let canvasImage = new Image()
+      // create canvas element
+      let canvas = document.createElement('canvas');
+      // configure canvas image with the logic to run when the image is loading it's src
+      canvasImage.onload = () => {
+        // destructure crop settings passed to createCroppedImageFile method
+        let { x, y, width, height } = cropSettings
+        // Calculate crop dimmensions
+        let imageWidth = canvasImage.naturalWidth;
+        let imageHeight = canvasImage.naturalHeight;
+        let cropX = (x / 100) * imageWidth;
+        let cropY = (y / 100) * imageHeight;
+        let cropWidth = (width / 100) * imageWidth;
+        let cropHeight = (height / 100) * imageHeight;
+        // set canvas settings
+        canvas.width = cropWidth;
+        canvas.height = cropHeight;
+        let ctx = canvas.getContext('2d');
+        // draw cropped image to canvas object
+        ctx.drawImage(
+          canvasImage, cropX, cropY, cropWidth,
+          cropHeight, 0, 0, cropWidth, cropHeight
+        )
+      }
+      // set the source for canvas image
+      canvasImage.src = uploadedFileDataURL
+      // create function to be used as callback when we call canvas.toBlob()
+      const convertAndSendFile = () => {
+        // canvas to dataURL
+        const croppedImageDataURL = canvas.toDataURL('image/jpeg')
+        // convert dataURL to blob
+        const blob = dataURLtoBlob(croppedImageDataURL)
+        // create new file object from blob
+        const croppedImageFile = new File([blob], uploadedFile.name, {type:'image/jpeg'})
+        this.setState({
+          croppedImageFile: croppedImageFile,
+          croppedImageDataURL: croppedImageDataURL,
+          modalIsOpen: false
+        })
+        // send the server to be uploaded on s3
+        this.sendFile(croppedImageFile)
+      }
+      // create blob - this will trigger the above callback and create a new file
+      canvas.toBlob(convertAndSendFile, 'image/jpeg')
+    }
 
+    sendFile(file) {
+      let data = new FormData()
+      data.append('image', file)
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, data)
+        .then(response => {
+          this.setState({
+            croppedImageURL: response.data.imgUrl
+          })
+        })
+    }
 
     render() {
-        const{ imgUrl, fileReaderResult } = this.state;
+        const{ uploadedFileDataURL, croppedImageDataURL, croppedImageURL, modalIsOpen } = this.state;
         return (
-            <ImgThumbnail imgUrl={imgUrl}>
-                <ImgInput   
+            <ImgThumbnail imgUrl={croppedImageURL || croppedImageDataURL}>
+                <ImgInput
                     type='file'
                     onChange={this.handleFileUpload}
                 />
-                <PhotoCropModal 
-                    cropImage={this.cropImage} 
-                    currentImage={fileReaderResult}  
-                    modalIsOpen={this.state.modalIsOpen}
+                <PhotoCropModal
+                    createCroppedImageFile={this.createCroppedImageFile}
+                    uploadedFileDataURL={uploadedFileDataURL}
+                    modalIsOpen={modalIsOpen}
                 />
             </ImgThumbnail>
-        );
+        )
     }
-};
+}
 
 export default PhotoUpload;
 

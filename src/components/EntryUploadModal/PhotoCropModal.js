@@ -12,17 +12,26 @@ class PhotoCropModal extends Component {
         super(props);
 
         this.state={
-            crop: {
+            reactCropSettings: {
                 x: 0,
                 y:0,
                 width: 40,
                 aspect: 1/1
             }
         }
+
+        this.recordReactCropSettings = this.recordReactCropSettings.bind(this);
     }
+
+    recordReactCropSettings(newCropSettings) {
+      this.setState({
+        reactCropSettings: newCropSettings
+      })
+    }
+
     render() {
-        const {crop} = this.state
-        const {modalIsOpen, currentImage, cropImage} = this.props
+        const {reactCropSettings} = this.state
+        const {modalIsOpen, uploadedFileDataURL, createCroppedImageFile} = this.props
 
         const modalStyle = {
             overlay: {backgroundColor: 'rgba(10, 10, 10, 0.60)'},
@@ -31,27 +40,25 @@ class PhotoCropModal extends Component {
 
         return (
             <Modal
-                contentLabel='Photo Crop Modal'
-                isOpen={modalIsOpen && !!currentImage}
-                style={modalStyle}
+              contentLabel='Photo Crop Modal'
+              isOpen={modalIsOpen && !!uploadedFileDataURL}
+              style={modalStyle}
             >
                 {
-                currentImage ? 
+                uploadedFileDataURL ?
                     <ReactCrop
-                        onComplete={crop => {
-                            this.setState({crop})
-                        }}
-                        crop={crop}
-                        src={currentImage}
+                        onComplete={this.recordReactCropSettings}
+                        crop={reactCropSettings}
+                        src={uploadedFileDataURL}
                     />
-                    : 
+                    :
                     null
                 }
-                <DoneButton onClick={() => cropImage(crop)}>
+                <DoneButton onClick={() => createCroppedImageFile(reactCropSettings)}>
                     Done
                 </DoneButton>
             </Modal>
-        );
+        )
     }
 }
 
