@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo';
+
+import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
+import withViewer from 'kt-hocs/withViewer';
 
 import Header from './Header';
 import ItemContainer from './ItemContainer/ItemContainer';
@@ -8,11 +12,10 @@ import Checkout from './Checkout';
 import Subtotal from './Subtotal';
 
 
-class CartContainer extends Component {
-    render() {
-        return (
+const CartContainer = ({data:{viewer}}) => {
+    return (
             <Container>
-                <Header />
+                <Header totalItemQuantity={viewer.shoppingCart.totalItemQuantity} />
                 <Divider />
                 <ItemContainer />
                 <AddNote />
@@ -20,10 +23,23 @@ class CartContainer extends Component {
                 <Checkout />
             </Container>
         );
-    }
 }
+        
+const ShoppingCartData = gql`
+    query {
+        viewer {
+            id
+            name
+            avatar
+            shoppingCart {
+                totalItemQuantity
+            }
+        }
+    }
+  
+`
 
-export default CartContainer;
+export default graphqlWithLoading(ShoppingCartData)(CartContainer) ;
 
 const Container = styled.div`
     width: 100%;
