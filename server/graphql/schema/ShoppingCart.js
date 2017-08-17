@@ -2,7 +2,6 @@ const typeDef = `
   type ShoppingCart {
     id: Int!
     user: User
-    itemCountInCart: Int
     lineItems: [ShoppingCartLineItem]
   }
 `
@@ -12,8 +11,7 @@ const resolvers = {
   },
   lineItems(shoppingCart, args, context) {
     return shoppingCart.getItems();
-  },
-  itemCountInCart()
+  }
 }
 
 module.exports = {

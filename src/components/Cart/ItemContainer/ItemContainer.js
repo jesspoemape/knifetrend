@@ -9,6 +9,7 @@ const ItemContainer = () => {
             <Header>Item Summary</Header>
             <Item />
             <Item />
+            <Item />
         </Container>
     );
 };

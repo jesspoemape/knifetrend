@@ -5,7 +5,7 @@ const Subtotal = () => {
     return (
         <Container>
             <Sub>Subtotal:</Sub>
-            <Sub>771.87</Sub>
+            <Sub>$771.87</Sub>
         </Container>
     );
 };
