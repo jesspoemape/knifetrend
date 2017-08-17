@@ -1,18 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo'
 
 import Item from './Item';
 
-const ItemContainer = () => {
+const ItemContainer = ({cart}) => {
+    const shoppingCartLineItems = cart.lineItems.map(lineItem => {
+        return <Item key={lineItem.id} {...lineItem} />
+    })
     return (
         <Container>
             <Header>Item Summary</Header>
-            <Item />
-            <Item />
-            <Item />
+            { shoppingCartLineItems }
         </Container>
     );
 };
+
+ItemContainer.fragment = gql`
+    fragment LineItemContainer on ShoppingCart {
+        lineItems {
+            ...LineItem
+        }
+    }
+    ${Item.fragment}
+`
 
 export default ItemContainer;
 

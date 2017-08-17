@@ -11,12 +11,12 @@ import Checkout from './Checkout';
 import Subtotal from './Subtotal';
 
 
-const CartContainer = ({data:{viewer}}) => {
+const CartContainer = ({data}) => {
     return (
             <Container>
-                <Header totalItemQuantity={viewer.shoppingCart.totalItemQuantity} />
+                <Header totalItemQuantity={data.viewer.shoppingCart.totalItemQuantity} />
                 <Divider />
-                <ItemContainer />
+                <ItemContainer cart={data.viewer.shoppingCart} />
                 <AddNote />
                 <Subtotal />
                 <Checkout />
@@ -32,9 +32,11 @@ const ShoppingCartData = gql`
             avatar
             shoppingCart {
                 totalItemQuantity
+                ...LineItemContainer
             }
         }
     }
+    ${ItemContainer.fragment}
   
 `
 

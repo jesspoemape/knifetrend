@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
+import { gql } from 'react-apollo';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 
+import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
+
 import Exit from './../../../assets/exit.svg';
 
-class Quantity extends Component {
-    render() {
+const Quantity = ({quantity}) => {
         return (
             <Container>
-                <QuantityInput/>
+                <QuantityInput value={quantity} />
                 <ExitButton path={Exit}/>
             </Container>
         );
     }
-}
+
 
 export default Quantity;
 
