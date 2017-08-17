@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
-import withViewer from 'kt-hocs/withViewer';
 
 import Header from './Header';
 import ItemContainer from './ItemContainer/ItemContainer';
