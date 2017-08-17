@@ -1,28 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo'
 
 import Quantity from './Quantity';
 
-const Item = () => {
+const Item = ({item, quantity}) => {
     return (
         <MainContainer>
             <LeftContainer>
                 <Image />
                 <DetailContainer>
-                    <Name>6" Folding Bushcraft</Name>
-                    <Totals>$299.00</Totals>
+                    <Name>{item.name}</Name>
+                    <Totals>${item.price}</Totals>
                     <MinimalText>+ $12.87 Shipping</MinimalText>
                     <Divider />
                     <MinimalText>Total</MinimalText>
-                    <Totals>$311.87</Totals>
+                    <Totals>${item.price * quantity}</Totals>
                 </DetailContainer>
             </LeftContainer>
             <RightContainer>
-                <Quantity/>
+                <Quantity quantity={ quantity }/>
             </RightContainer>
         </MainContainer>
     );
 };
+
+Item.fragment = gql`
+    fragment LineItem on ShoppingCartLineItem {
+        item {
+            name
+            price
+        }
+        quantity
+    }
+`
 
 export default Item;
 

@@ -15,6 +15,14 @@ const sync_database = async function() {
       isAdmin: true
     },
     {
+      name: 'Ashlyn Mitros',
+      username: 'ashlyn',
+      providerAvatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
+      auth_id: '5991d5a6d43c5e5ff0d71eee',
+      auth_provider: 'instagram',
+      isAdmin: true
+    },
+    {
       name: 'Mitch Foster',
       username: 'mitchfoster3@gmail.com',
       providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
@@ -588,6 +596,9 @@ const sync_database = async function() {
     {
       UserId: 3
     },
+    {
+
+    }
   ])
 
   await db.ShoppingCartLineItem.bulkCreate([

@@ -13,7 +13,6 @@ const Login = ({ viewer }) => {
   const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
 
   if(viewer) {
-    console.log('VIEWER',viewer);
     return (
       <MenuList>
         <ProfileLink to="/profile">
