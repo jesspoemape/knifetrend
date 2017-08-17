@@ -1,29 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Quantity from './Quantity';
 
 const Item = () => {
     return (
-        <Container>
-            <Image />
-            <DetailContainer>
-                <Name>6" Folding Bushcraft</Name>
-                <Totals>$299.00</Totals>
-                <MinimalText>+ $12.87 Shipping</MinimalText>
-                <Divider />
-                <MinimalText>Total</MinimalText>
-                <Totals>$311.87</Totals>
-            </DetailContainer>
-            
-        </Container>
+        <MainContainer>
+            <LeftContainer>
+                <Image />
+                <DetailContainer>
+                    <Name>6" Folding Bushcraft</Name>
+                    <Totals>$299.00</Totals>
+                    <MinimalText>+ $12.87 Shipping</MinimalText>
+                    <Divider />
+                    <MinimalText>Total</MinimalText>
+                    <Totals>$311.87</Totals>
+                </DetailContainer>
+            </LeftContainer>
+            <RightContainer>
+                <Quantity/>
+            </RightContainer>
+        </MainContainer>
     );
 };
 
 export default Item;
 
-const Container = styled.div`
+const MainContainer = styled.section`
     width: 100%;
+    display: flex;
+    justify-content: space-between;
     border-top: 1px solid ${props => props.theme.secondary};
+`
+const LeftContainer = styled.div`
+    width: 50%;
     padding: 40px 0;
     display: flex;
 `
@@ -55,4 +65,9 @@ const Divider = styled.div`
     width: 100px;
     margin: 8px 0;
     border-bottom: 1px solid ${props => props.theme.secondary};
+`
+const RightContainer = styled.section`
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
 `
