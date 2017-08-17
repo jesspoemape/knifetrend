@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.TEXT,
     socialLinks: DataTypes.JSON,
     FAQs: DataTypes.JSON,
-    storeName: DataTypes.STRING(50)
+    storeName: DataTypes.TEXT
     // billing/ payment info
   })
 

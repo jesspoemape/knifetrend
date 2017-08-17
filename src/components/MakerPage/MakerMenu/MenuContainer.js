@@ -46,11 +46,10 @@ const Container = styled.aside`
     width: 100%;
     height: 100%;
     ${props => props.theme.media.tablet} {
-        width: 250px;
         margin-top: 0;
     }
-    ${props => props.theme.media.xl} {
-        width: 300px;
+    ${props => props.theme.media.desktop} {
+        width: 225px;
     }
 `
 const MobileMenuButton = styled(ReactSVG)`

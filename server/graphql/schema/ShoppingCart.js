@@ -3,6 +3,7 @@ const typeDef = `
     id: Int!
     user: User
     lineItems: [ShoppingCartLineItem]
+    totalItemQuantity: Int
   }
 `
 const resolvers = {
@@ -11,6 +12,9 @@ const resolvers = {
   },
   lineItems(shoppingCart, args, context) {
     return shoppingCart.getItems();
+  },
+  totalItemQuantity(shoppingCart, args, context) {
+    return shoppingCart.getQtyInCart();
   }
 }
 

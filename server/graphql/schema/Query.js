@@ -8,8 +8,8 @@ const typeDef = `
     entries: [Entry]
     users: [User]
     viewer: User
-    makers: [Maker]
-    items: [Item]
+    makers(storeName: String): [Maker]
+    items(name: String, makerId: Int): [Item]
   }
 `
 const resolvers = {
@@ -32,10 +32,19 @@ const resolvers = {
     return findAll('User', args);
   },
   makers(obj, args, context) {
-    return findAll('Maker', args);
+    if (args.storeName) {
+      return context.db.Maker.findAll({ where: { storeName: { $iLike: `%${args.storeName}%`} } })
+    }
+    return findAll('Maker');
   },
   items(obj, args, context) {
-    return findAll('Item', args);
+    if (args.makerId) {
+      return context.db.Item.findAll({ 
+        where: {  $or: [{ name: { $iLike: `%${args.name}%`} }, { desc: { $iLike: `%${args.name}%`} } ], MakerId: args.makerId } })
+    } else if (args.name) {
+      return context.db.Item.findAll({ where: { $or: [{ name: { $iLike: `%${args.name}%`} }, { desc: { $iLike: `%${args.name}%`} } ] }})
+    }
+    return findAll('Item');
   }
 }
 
