@@ -1,20 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import {withRouter} from 'react-router';
 
 import withViewer from 'kt-hocs/withViewer'
 
 import profile from './../../assets/profile.svg';
+import cart from './../../assets/cart.svg';
 
 const Login = ({ viewer }) => {
   const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
 
   if(viewer) {
+    console.log('VIEWER',viewer);
     return (
-      <ProfileLink to="/profile">
-        <ProfileImg src={ viewer.avatar } />
-      </ProfileLink>
+      <MenuList>
+        <ProfileLink to="/profile">
+          <ProfileImg src={ viewer.avatar } />
+          <Username>{viewer.name}</Username>
+        </ProfileLink>
+        <Link to='/cart'><ShoppingCart path={cart} /></Link>
+      </MenuList>
+      
     )
   } else {
     return (
@@ -29,12 +37,12 @@ const Login = ({ viewer }) => {
   }
 }
 
-export default withViewer(Login)
+export default withRouter(withViewer(Login));
 
 const ProfileImg = styled.img`
   border-radius: 50%;
-  width: 50px;
-  height: auto;
+  width: 22px;
+  height: 22px;
 `
 
 const MenuList = styled.div`
@@ -81,4 +89,28 @@ const ProfileIcon = styled(ReactSVG)`
     stroke: ${({theme}) => theme.main};
     fill: ${({theme}) => theme.main};
   }
+`
+const ShoppingCart = styled(ReactSVG)`
+  stroke: white;
+  fill: white;
+  padding-left: 32px;
+  width: 18px;
+  &:hover {
+    background: #B20E0D;
+    color: white;
+  }
+`
+const Username = styled.h4`
+  ${props => props.theme.mainFont({})};
+  color: white;
+  padding-left: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: none;
+  ${props => props.theme.media.xl} {
+    display: block;
+  }
+  
+
 `
