@@ -42,8 +42,8 @@ class MenuContainer extends Component {
 
 export default MenuContainer;
 
-const Container = styled.aside`
-    width: 100%;
+const Container = styled.section`
+    width: 40px;
     height: 100%;
     ${props => props.theme.media.tablet} {
         margin-top: 0;

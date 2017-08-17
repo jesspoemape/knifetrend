@@ -31,4 +31,7 @@ export default props => (
 const Container = styled.section`
   display: flex;
   background: #F5F5F5;
+  @media(max-width: 949px){
+    flex-direction: column;
+  }
 `
