@@ -41,6 +41,13 @@ module.exports = (sequelize, DataTypes) => {
     await order.process(shoppingCartLineItems);
     return order;
   }
+
+  ShoppingCart.prototype.getQtyInCart = async function() {
+    const lineItems = await this.getItems();
+    return lineItems.reduce((acc, lineItem) => {
+      return acc + lineItem.quantity
+    }, 0)
+  }
   
   return ShoppingCart;
 }
