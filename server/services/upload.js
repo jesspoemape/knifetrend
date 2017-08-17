@@ -7,9 +7,9 @@ module.exports = {
     const s3 = new AWS.S3()
 
     const Bucket = process.env.AWS_S3_BUCKET
-    const Key = `${Date.now()}-${req.file.originalname}`
+    const Key = req.body.key || `${Date.now()}-${req.file.originalname}`
     const { buffer, mimetype } = req.file
-    console.log(mimetype)
+
     const params = {
       Bucket,
       Key,
@@ -23,7 +23,10 @@ module.exports = {
       s3.putObject(params, (putObjErr, putObjData) => {
         // construct the url for the newly uploaded object
         const objectUrl = `https://s3-${LocationConstraint}.amazonaws.com/${process.env.AWS_S3_BUCKET}/${Key}`
-        res.status(200).json({'imgUrl': encodeURI(objectUrl)});
+        res.status(200).json({
+          'url': encodeURI(objectUrl),
+          'key': Key
+        });
       })
     })
   }

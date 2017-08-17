@@ -29,7 +29,8 @@ class CompetitionPage extends Component {
     const {viewer} = this.props;
     if (!viewer) {
       // redirects to auth0 login page
-      window.location.href = authLink;
+      // window.location.href = authLink;
+      this.setState({ modalOpen:true })
     }
     else {
       this.setState({ modalOpen:true })
@@ -47,14 +48,14 @@ class CompetitionPage extends Component {
           <Header imgUrl={ url } title={ competition.name } />
           <CompetitionDetails competition={ competition } openModal={ this.openModal }/>
           <EntriesContainer competition={ competition } />
-          <EntryUploadModal 
+          <EntryUploadModal
             isOpen={this.state.modalOpen}
             onRequestClose={this.closeModal}
           />
         </div>
       )
   }
-} 
+}
 
 const CompetitionData = gql`
   query($id: Int!) {

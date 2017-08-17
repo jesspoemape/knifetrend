@@ -26,6 +26,7 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.6",
     "react-dom": "^15.6.1",
+    "react-file-reader": "^1.1.1",
     "react-image-crop": "^2.0.8",
     "react-media": "^1.6.1",
     "react-modal": "^2.2.4",
