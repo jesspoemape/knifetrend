@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Item from './Item';
+
 const ItemContainer = () => {
     return (
         <Container>
             <Header>Item Summary</Header>
+            <Item />
+            <Item />
         </Container>
     );
 };
@@ -19,4 +23,5 @@ const Header = styled.h3`
     font-size: 42px;
     margin: 40px 0;   
 `
+
 
