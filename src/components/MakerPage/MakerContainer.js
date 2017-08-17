@@ -14,7 +14,6 @@ const MakerContainer = () => {
 export default MakerContainer;
 
 const Container = styled.section`
-    background: #f5f5f5;
     width: 40px;
     ${props => props.theme.media.tablet} {
         width: initial;

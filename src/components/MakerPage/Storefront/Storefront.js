@@ -20,25 +20,28 @@ const Storefront = () => {
 export default Storefront;
 
 const Container = styled.section`
-    margin-top: 60px;
+    margin-top: 30px;
     min-height: 200px;
-    background: #f5f5f5;
-    width: 100vw;
     ${props => props.theme.media.phone}{
-        margin-top: 80px;
-        margin-left: 60px;
+        margin-top: 60px;
     }
     ${props => props.theme.media.tablet}{
-        margin-top: 100px;
+        // margin-top: 100px;
     }
 `
 const SearchAndFilter = styled.div`
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     ${props => props.theme.media.phone}{
-        margin-left: 15vw;
+
+    }
+    ${props => props.theme.media.tablet}{
+        flex-direction: row;
     }
     ${props => props.theme.media.desktop}{
-        margin-left: 0;
+        margin-left: 30px;
     }
 `
 

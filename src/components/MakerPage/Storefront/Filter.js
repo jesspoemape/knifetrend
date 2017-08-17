@@ -58,11 +58,14 @@ class Filter extends Component {
 }
 
 const Container = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 200px;
+  margin-top: 5px;
+  ${props => props.theme.media.tablet}{
+    margin-top: 0px;
+}
 `
 const Button = styled(MinimalButton)`
   border-color: #8D8D8D;
