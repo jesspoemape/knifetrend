@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg'
 
-import PhotoUpload from './ImageUploader';
+import PhotoUpload from 'kt-components/ImageUploader';
 import MinimalButton from 'kt-components/MinimalButton';
 
 import upload from './../../assets/upload.svg'
