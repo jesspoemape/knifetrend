@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'
+import ReactSVG from 'react-svg'
+import ReactFileReader from 'react-file-reader';
 import dataURLtoBlob from 'dataurl-to-blob';
 
 import PhotoCropModal from './PhotoCropModal'
+import plus from './../../assets/plus.svg'
 
 class PhotoUpload extends Component{
     constructor (props) {
@@ -21,24 +24,20 @@ class PhotoUpload extends Component{
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.createCroppedImageFile = this.createCroppedImageFile.bind(this);
         this.sendFile = this.sendFile.bind(this);
+        this.openCropper = this.openCropper.bind(this);
     }
-
+    openCropper() {
+      this.setState({
+        modalIsOpen: true
+      })
+    }
     // this event runs only when a file is first uploaded to the input element
-    handleFileUpload(event) {
-      // get file off of input element
-      const file = event.target.files[0]
-      // create file reader object
-      const reader = new FileReader()
-      // configure reader with the logic that runs after it has loaded a file
-      reader.onloadend = () => {
-        this.setState({
-          uploadedFile: file,
-          uploadedFileDataURL: reader.result,
-          modalIsOpen: true
-        })
-      }
-      // read the file - when this finishes it will run the logic defined above
-      reader.readAsDataURL(file);
+    handleFileUpload(file) {
+      this.setState({
+        uploadedFile: file.fileList,
+        uploadedFileDataURL: file.base64,
+        modalIsOpen: true
+      })
     }
 
     // gets called by PhotoCropModal component when user clicks done button
@@ -105,39 +104,46 @@ class PhotoUpload extends Component{
 
     render() {
         const{ uploadedFileDataURL, croppedImageDataURL, croppedImageURL, modalIsOpen } = this.state;
+        const { children } = this.props;
         return (
-            <ImgThumbnail imgUrl={croppedImageURL || croppedImageDataURL}>
-                <ImgInput
-                    type='file'
-                    onChange={this.handleFileUpload}
-                />
+            <ImagePreview imgUrl={croppedImageURL || croppedImageDataURL} onClick={ this.openCropper }>
+              { !croppedImageURL ?
+                <ReactFileReader base64={true} handleFiles={this.handleFileUpload}>
+                  <PlusIcon path={plus} />
+                </ReactFileReader>
+                :
+                ''
+              }
+
                 <PhotoCropModal
                     createCroppedImageFile={this.createCroppedImageFile}
                     uploadedFileDataURL={uploadedFileDataURL}
                     modalIsOpen={modalIsOpen}
                 />
-            </ImgThumbnail>
+            </ImagePreview>
         )
     }
 }
 
 export default PhotoUpload;
 
-const ImgThumbnail = styled.div`
-    background: url(${props => props.imgUrl});
-    background-size: contain;
-    border: 3px solid #d9d9d9;
-    height: 90px;
-    width: 90px;
-    border-radius: 5px;
-    margin: 0 10px;
-    &:hover{
-        background: ${props => props.theme.main};
-        border-color: ${props => props.theme.main};
-    }
+const ImagePreview = styled.div`
+  background: url(${props => props.imgUrl});
+  background-size: contain;
+  border: 3px solid #d9d9d9;
+  height: 90px;
+  width: 90px;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
 `
-const ImgInput = styled.input`
-    opacity: 0;
-    height: 90px;
-    width: 90px;
+
+const PlusIcon = styled(ReactSVG)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  stroke: black;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 `

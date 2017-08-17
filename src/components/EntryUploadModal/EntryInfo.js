@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import ReactSVG from 'react-svg'
 
-import PhotoUpload from './PhotoUpload'
+import PhotoUpload from 'kt-components/ImageUploader';
 import MinimalButton from 'kt-components/MinimalButton';
 
+import upload from './../../assets/upload.svg'
+
 class EntryInfo extends Component {
-    // photo object {url, x, y, height, width, aspect}
-    // secondary photos {url, x, y, height, width, aspect, key}
+
     constructor() {
         super();
         this.state={
@@ -17,58 +19,59 @@ class EntryInfo extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
-        this.onFinishUpload = this.onFinishUpload.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
         this.submitEntry = this.submitEntry.bind(this);
-
     }
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    onFinishUpload(photoObj, id) {
-        if (id === 1) {
-            this.setState({
-                primaryPhoto: photoObj
-            })
+    handleImageChange({ previousUrl, currentUrl, id }) {
+      const { secondaryPhotos } = this.state
+
+      if (id === 1) {
+        this.setState({ primaryPhoto: currentUrl })
+      } else {
+        let otherImages = [...secondaryPhotos]
+
+        const index = otherImages.indexOf(previousUrl)
+
+        if(index === -1) {
+          otherImages.push(currentUrl)
+        } else {
+          otherImages.splice(index, 1, currentUrl)
         }
-        else {
-            let secondaryArr = [...this.state.secondaryPhotos].filter(item => {
-                return item.id !== id
-            });
-            photoObj.id = id;
-            secondaryArr.push(photoObj);
-            this.setState({
-                secondaryPhotos: secondaryArr
-            })
-        } 
-        console.log(this.state)
+
+        this.setState({ secondaryPhotos: otherImages })
+      }
     }
+
     submitEntry() {
-        
+      console.log(this.state)
     }
 
     render() {
     return (
         <div>
             <ImgContainer>
-                <PhotoUpload id={1} onFinishUpload={this.onFinishUpload}/>
-                <PhotoUpload id={2} onFinishUpload={this.onFinishUpload}/>
-                <PhotoUpload id={3} onFinishUpload={this.onFinishUpload}/>
-                <PhotoUpload id={4} onFinishUpload={this.onFinishUpload}/>
-                <PhotoUpload id={5} onFinishUpload={this.onFinishUpload}/>
-            </ImgContainer>           
+                <PhotoUpload id={1} addImageButton={AddImageButton} onChange={this.handleImageChange}/>
+                <PhotoUpload id={2} onChange={this.handleImageChange}/>
+                <PhotoUpload id={3} onChange={this.handleImageChange}/>
+                <PhotoUpload id={4} onChange={this.handleImageChange}/>
+                <PhotoUpload id={5} onChange={this.handleImageChange}/>
+            </ImgContainer>
             <ImgDescription>(cover photo)</ImgDescription>
 
             <Container>
-                <NameInput 
+                <NameInput
                     name="name"
                     onChange={this.handleChange}
-                    placeholder='Knife Name' 
+                    placeholder='Knife Name'
                 />
-                <DescriptionInput 
+                <DescriptionInput
                     name="description"
-                    placeholder='Write Description' 
+                    placeholder='Write Description'
                     onChange={this.handleChange}
                 />
             </Container>
@@ -131,3 +134,46 @@ const SubmitButton = styled(MinimalButton)`
     border-radius: 30px;
     border-style: none;
 `
+
+
+const AddImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  margin: 10px;
+  cursor: pointer;
+  border: 3px solid #d9d9d9;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 10pt;
+  font-weight: 700;
+  color: #d9d9d9;
+  &:hover {
+    background-color: ${props => props.theme.main};
+    border-color: ${props => props.theme.main};
+    color: white;
+    & svg {
+      stroke: white;
+    }
+  }
+`
+const AddButtonIcon = styled(ReactSVG)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  stroke: #d9d9d9;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+  cursor: pointer;
+`
+const AddImageButton = props => (
+  <AddImageContainer>
+    <AddButtonIcon path={upload} />
+    Upload Photos
+  </AddImageContainer>
+)

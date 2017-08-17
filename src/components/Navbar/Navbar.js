@@ -50,7 +50,6 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  z-index: 10;
   ${props => props.theme.media.tablet} {
     height: 70px;
   }
