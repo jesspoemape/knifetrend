@@ -1,26 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
-const ItemTile = ({maker: {profilePhoto, storeName}, primaryPhoto, name, price}) => {
-    return (
-        <div>
-            <Tile>
-                <Header>
-                    <ProfileImage src={profilePhoto} />
-                    {storeName}
-                </Header>
-                <KnifeImage url={primaryPhoto}/>
-                <Name>{name}</Name>
-                <Price>${price}</Price>
-            </Tile>
-        </div>
-    );
-};
+const ItemTile = ({maker: {profilePhoto, storeName, id}, primaryPhoto, name, price}) => {
+  return (
+    <Link to={`/storefront/${id}`}>
+      <Tile>
+        <Header>
+            <ProfileImage src={profilePhoto} />
+            {storeName}
+        </Header>
+        <KnifeImage url={primaryPhoto}/>
+        <Name>{name}</Name>
+        <Price>${price}</Price>
+      </Tile>
+    </Link>
+  )
+}
 
 ItemTile.fragment = gql`
-  fragment ItemTile on Item {
+  fragment FeaturedKnife on Item {
     maker {
+      id
       profilePhoto
       storeName
     }

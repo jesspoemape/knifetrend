@@ -1,44 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
 import Divider from 'kt-components/Divider';
 
-const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
+const MakerTile = ({ id, coverPhoto, profilePhoto, storeName, location, items }) => {
 
-    const itemImages = [];
-    const itemPlacholder = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knifePlaceholder.png';
-    for(let i = 0; i < 3; i++) {
-      let image = items[i] ? items[i].primaryPhoto : itemPlacholder;
-      itemImages.push(image);
-    }
+  const itemImages = [];
+  const itemPlacholder = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knifePlaceholder.png';
+  for(let i = 0; i < 3; i++) {
+    let image = items[i] ? items[i].primaryPhoto : itemPlacholder;
+    itemImages.push(image);
+  }
 
-    return (
-        <Tile>
-            <CoverPhoto url={coverPhoto}/>
-            <ProfilePhoto src={profilePhoto} />
-            <StoreName>{storeName}</StoreName>
-            <Location>{location}</Location>
-            <TileDivider/>
-            <KnivesContainer>
-                { itemImages.map(image => <Knife src={image} alt="knife" />) }
-            </KnivesContainer>
-            <Footer>View Storefront</Footer>
-        </Tile>
-    )
+  return (
+    <Tile>
+      <CoverPhoto url={coverPhoto}/>
+      <ProfilePhoto src={profilePhoto} />
+      <StoreName>{storeName}</StoreName>
+      <Location>{location}</Location>
+      <TileDivider/>
+      <KnivesContainer>
+          { itemImages.map((image, i) => <Knife key={i} src={image} alt="knife" />) }
+      </KnivesContainer>
+      <Footer to={`/storefront/${id}`}>View Storefront</Footer>
+    </Tile>
+  )
 }
 
 MakerTile.fragment = gql`
-    fragment MakerTile on Maker {
-        id
-        coverPhoto
-        profilePhoto
-        storeName
-        location
-        items(limit:3) {
-            primaryPhoto
-        }
+  fragment MakerTile on Maker {
+    id
+    coverPhoto
+    profilePhoto
+    storeName
+    location
+    items(limit:3) {
+      id
+      primaryPhoto
     }
+  }
 `
 
 export default MakerTile;
@@ -94,7 +96,7 @@ const TileDivider = styled(Divider)`
     background: #b5b5b5;
 `
 
-const Footer = styled.footer`
+const Footer = styled(Link)`
     ${props => props.theme.mainFont({})}
     width: 100%;
     height: 60px;

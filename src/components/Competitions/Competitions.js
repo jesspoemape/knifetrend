@@ -5,8 +5,8 @@ import Home from './Home/Home';
 import CompetitionPage from './CompetitionPage/CompetitionPage';
 
 export default props => (
-    <Switch>
-      <Route exact path="/competitions" component={ Home } />
-      <Route path="/competitions/:id" component={ CompetitionPage } />
-    </Switch>
+  <Switch>
+    <Route exact path="/competitions" component={ Home } />
+    <Route path="/competitions/:id" component={ CompetitionPage } />
+  </Switch>
 )
