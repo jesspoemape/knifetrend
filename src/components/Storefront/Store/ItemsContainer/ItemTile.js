@@ -2,25 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
 
-const URL = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg'
+const ItemTile = ({primaryPhoto, name, price}) => {
+  return (
+    <Tile>
+      <KnifeImage url={primaryPhoto}/>
+      <Name>{ name }</Name>
+      <Price>${ price }</Price>
+    </Tile>
+  )
+}
 
-const ItemThumbnails = ({primaryPhoto, name, price}) => {
-    return (
-        <div>
-            <Tile>
-                <KnifeImage url={URL}/>
-                <Name>Sure Slice</Name>
-                <Price>$229.99</Price>
-            </Tile>
-        </div>
-    );
-};
-
-ItemThumbnails.fragment = gql`
-  fragment ItemThumbnails on Item {
-    maker {
-        id
-    }
+ItemTile.fragment = gql`
+  fragment ItemTile on Item {
     id
     primaryPhoto
     name
@@ -28,20 +21,19 @@ ItemThumbnails.fragment = gql`
   }
 `
 
-export default ItemThumbnails;
+export default ItemTile;
 
 const Tile = styled.div`
-    height: 294px;
-    width: 232px;
-    background: gray;
-    margin: 5px 5px;
+    margin: 20px;
+    background: white;
+    box-shadow: ${props => props.theme.shadow}
 `
 const KnifeImage = styled.div`
     background: url(${props => props.url});
     background-size: cover;
     background-position: center;
-    height: 232px;
-    width: 100%;
+    height: 250px;
+    width: 250px;
 `
 const Name = styled.p`
     padding: 14px 10px 0px 10px;

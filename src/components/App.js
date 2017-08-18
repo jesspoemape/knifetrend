@@ -7,13 +7,12 @@ import Footer from './Footer/Footer';
 import Home from './Home/Home';
 import Competitions from './Competitions/Competitions';
 import Shop from './Shop/Shop';
-import Storefront from './Storefront/MakerPage';
+import Storefront from './Storefront/Storefront';
 import ShoppingCart from './ShoppingCart/ShoppingCart';
 
 const App = props => (
   <div>
-    { /* Navbar put in route in order to provide it with the Router navgition props */ }
-    <Route path="/" component={ Navbar } />
+    <Navbar />
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route path="/competitions" component={ Competitions } />

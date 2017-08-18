@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
 import Divider from 'kt-components/Divider';
 
-const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
+const MakerTile = ({ id, coverPhoto, profilePhoto, storeName, location, items }) => {
 
   const itemImages = [];
   const itemPlacholder = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/knifePlaceholder.png';
@@ -23,7 +24,7 @@ const MakerTile = ({coverPhoto, profilePhoto, storeName, location, items }) => {
       <KnivesContainer>
           { itemImages.map((image, i) => <Knife key={i} src={image} alt="knife" />) }
       </KnivesContainer>
-      <Footer>View Storefront</Footer>
+      <Footer to={`/storefront/${id}`}>View Storefront</Footer>
     </Tile>
   )
 }
@@ -95,7 +96,7 @@ const TileDivider = styled(Divider)`
     background: #b5b5b5;
 `
 
-const Footer = styled.footer`
+const Footer = styled(Link)`
     ${props => props.theme.mainFont({})}
     width: 100%;
     height: 60px;

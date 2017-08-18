@@ -1,50 +1,65 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import ReactSVG from 'react-svg';
 
-const MobileNav = ({toggleDisplay}) => {
+import chevronDown from '../../../assets/chevron-down.svg';
+
+const MobileNav = ({toggleDisplay, displayNav, match}) => {
+  const { makerId } = match.params
   return (
-    <Container>
-      <MenuLink onClick={toggleDisplay} exact={true} to="/storefront/2">Storefront</MenuLink>
-      <Divider/>
-      <MenuLink onClick={toggleDisplay} to="/storefront/2/about">About The Shop</MenuLink>
-      <Divider/>
-      <MenuLink onClick={toggleDisplay} to="/storefront/2/entries">Competition Entries</MenuLink>
-    </Container>
+    <div>
+      <MobileMenuButton
+        path={chevronDown}
+        callback={ (svg) => svg.addEventListener("click", toggleDisplay) }
+      />
+      {displayNav?
+      <MenuList>
+        <MenuLink onClick={toggleDisplay} exact={true} to={`/storefront/${makerId}`}>Storefront</MenuLink>
+        <MenuLink onClick={toggleDisplay} to={`/storefront/${makerId}/about`}>About The Shop</MenuLink>
+        <MenuLink onClick={toggleDisplay} to={`/storefront/${makerId}/entries`}>Competition Entries</MenuLink>
+      </MenuList>
+      : null}
+    </div>
   )
 }
 
-export default MobileNav;
+export default withRouter(MobileNav);
 
-const Container = styled.section `
-    position: absolute;
-    height: 150px;
-    width: 100%;
-    top: 320px;
-    background: #e0e0e0;
-    color: #606060;
-    display: flex;
-    flex-direction: column;
-    ${props => props.theme.media.phone}{
-        top: 340px;
-    }
-    ${props => props.theme.media.tablet}{
-        top: 415px;
-    }
-    ${props => props.theme.media.desktop}{
-        display: none;
-    }
+const MobileMenuButton = styled(ReactSVG)`
+  stroke: #606060;
+  margin: 10px;
+  cursor: pointer;
 `
-const MenuLink = styled(Link)`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
+const MenuList = styled.nav`
+  position: absolute;
+  right: 0;
+  width: 200px;
+  background: #e0e0e0;
+  color: #606060;
+  display: flex;
+  flex-direction: column;
+  box-shadow: ${props => props.theme.shadow}
 `
-const Divider = styled.div `
-    background: #f5f5f5;
-    height: 2px;
-    width: 100%;
+const MenuLink = styled(NavLink).attrs({
+  activeClassName: 'navLinkActive'
+  })`
+  ${props => props.theme.mainFont({})};
+  color: #606060;
+  font-size: 12pt;
+  font-weight: 600;
+  background: #e0e0e0;
+  border-right: 5px solid #404040;
+  border-bottom: .5px solid #ababab;
+  text-transform: uppercase;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.navLinkActive {
+      border-right: 5px solid ${props => props.theme.main};
+      background: #f5f5f5;
+  }
 `

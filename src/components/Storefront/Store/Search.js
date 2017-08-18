@@ -26,17 +26,17 @@ class Search extends Component {
   render() {
     const { searchText } = this.state
     return (
-        <Container>
-          <SearchBar
-          placeholder='Search Store'
-          onChange={this.handleChange}
-          value={searchText}
-          />
-          <SearchIcon 
-          path={search} 
-          callback={ (svg) => svg.addEventListener("click", this._executeSearch) }
-          />
-        </Container>
+      <Container>
+        <SearchBar
+        placeholder='Search Store'
+        onChange={this.handleChange}
+        value={searchText}
+        />
+        <SearchIcon
+        path={search}
+        callback={ (svg) => svg.addEventListener("click", this._executeSearch) }
+        />
+      </Container>
     )
   }
 }
@@ -63,23 +63,26 @@ const Container = styled.section`
   display: flex;
 `
 const SearchBar = styled.input`
-  height: 30px;
-  width: 30vw;
+  height: 40px;
   border: solid #95989A 1px;
-  border-radius: 15px 0 0 15px;
+  border-radius: 10px 0 0 10px;
   padding-left: 20px;
   font-size: 15pt;
-  color: #959595
+  color: #959595;
+  min-width: 300px;
+  max-width: 550px;
+  width: 100%;
 `
 const SearchIcon = styled(ReactSVG)`
   stroke: white;
   background: ${props => props.theme.secondary };
-  height: 30px;
-  border-radius: 0 15px 15px 0;
+  height: 40px;
+  border-radius: 0 10px 10px 0;
   padding: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   &:hover{
     background: #292525;
   }

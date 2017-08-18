@@ -8,41 +8,39 @@ import KnifeTrend from './../../../assets/KnifeTrendSocial.png';
 
 const link = "#"
 const MakerDetails = () => {
-    return (
-        <Container>
-            <Title>Follow</Title>
-            <Images>
-                <a target="_blank"href={link}><ImgBubble src={KnifeTrend} alt='KnifeTrend Social'/></a>
-                <a target="_blank"href={link}><ImgBubble src={Instagram} alt='Instagram Social'/></a>
-                <a target="_blank"href={link}><ImgBubble src={Facebook} alt='Facebook Social'/></a>
-                <a target="_blank"href={link}><ImgBubble src={Twitter} alt='Twitter Social'/></a>
-            </Images>
-            <DotDivider><Dot/><Dot/><Dot/></DotDivider>
-            <Title>Member Since</Title>
-            <Desc>August 10th, 2017</Desc>
-            <DotDivider><Dot/><Dot/><Dot/></DotDivider>
-            <Title>Knives Sold</Title>
-            <Desc>289</Desc>
-            <DotDivider><Dot/><Dot/><Dot/></DotDivider>
-            <Title>Competitions Entered</Title>
-            <Desc>678</Desc>
-        </Container>
-    );
+  return (
+    <Container>
+      <Title>Follow</Title>
+      <Images>
+        <a target="_blank"href={link}><ImgBubble src={KnifeTrend} alt='KnifeTrend Social'/></a>
+        <a target="_blank"href={link}><ImgBubble src={Instagram} alt='Instagram Social'/></a>
+        <a target="_blank"href={link}><ImgBubble src={Facebook} alt='Facebook Social'/></a>
+        <a target="_blank"href={link}><ImgBubble src={Twitter} alt='Twitter Social'/></a>
+      </Images>
+      <DotDivider><Dot/><Dot/><Dot/></DotDivider>
+      <Title>Member Since</Title>
+      <Desc>August 10th, 2017</Desc>
+      <DotDivider><Dot/><Dot/><Dot/></DotDivider>
+      <Title>Knives Sold</Title>
+      <Desc>289</Desc>
+      <DotDivider><Dot/><Dot/><Dot/></DotDivider>
+      <Title>Competitions Entered</Title>
+      <Desc>678</Desc>
+    </Container>
+  );
 };
 
 export default MakerDetails;
 
 const Container = styled.section`
-    width: 100%;
-    height: 100vh;
     background: #404040;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 25px;
     box-shadow: inset 0px -11px 38px -16px black;
+    flex: 1;
 `
-
 const Title = styled.h2`
     ${props => props.theme.mainFont({})};
     color: #989898;

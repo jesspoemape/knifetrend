@@ -20,7 +20,7 @@ const FeaturedKnivesCarousel = ({data}) => {
 const ItemsQuery = gql`
   query {
     items{
-      ...ItemTile
+      ...FeaturedKnife
     }
 }
 ${ItemTile.fragment}

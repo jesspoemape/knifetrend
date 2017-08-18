@@ -1,29 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
-const Nav = () => {
+import MakerDetails from './MakerDetails';
+
+const Nav = ({ match }) => {
+  const { makerId } = match.params
   return (
     <Container>
-      <MakerLink exact={true} to='/storefront/2'>Storefront</MakerLink>
-      <Divider/>
-      <MakerLink to='/storefront/2/about'>About the Shop</MakerLink>
-      <Divider/>
-      <MakerLink to='/storefront/2/entries'>Competition Entries</MakerLink>
-      <Divider/>
+      <MakerLink exact={true} to={`/storefront/${makerId}`}>Storefront</MakerLink>
+      <MakerLink to={`/storefront/${makerId}/about`}>About the Shop</MakerLink>
+      <MakerLink to={`/storefront/${makerId}/entries`}>Competition Entries</MakerLink>
+      <MakerDetails />
     </Container>
   )
 }
 
-export default Nav;
+export default withRouter(Nav);
 
-const Container = styled.section`
+const Container = styled.nav`
+display: flex;
   flex-direction: column;
-  justify-content: center;
-  display: none;
-  ${props => props.theme.media.desktop} {
-    display: flex;
-  }
+  justify-content: space-between;
+  flex: 1;
+  width: 225px;
 `
 const MakerLink = styled(NavLink).attrs({
   activeClassName: 'navLinkActive'
@@ -34,6 +35,7 @@ const MakerLink = styled(NavLink).attrs({
   font-weight: 600;
   background: #e0e0e0;
   border-left: 5px solid #404040;
+  border-bottom: .5px solid #ababab;
   text-transform: uppercase;
   height: 85px;
   width: 100%;
@@ -41,12 +43,8 @@ const MakerLink = styled(NavLink).attrs({
   justify-content: center;
   align-items: center;
   &.navLinkActive {
-      border-left: 5px solid ${props => props.theme.main};
-      background: #f5f5f5;
+    border-left: 5px solid ${props => props.theme.main};
+    background: #f5f5f5;
+    height: 100px;
   }
-`
-const Divider = styled.div`
-  background: #f5f5f5;
-  height: 2px;
-  width: 100%;
 `

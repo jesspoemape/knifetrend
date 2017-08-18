@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import ReactSVG from 'react-svg';
 import styled from 'styled-components';
 
@@ -43,6 +44,8 @@ class Navbar extends Component {
   }
 }
 
+export default withRouter(Navbar)
+
 const Nav = styled.nav`
   background: ${props => props.theme.main};
   height: 60px;
@@ -78,5 +81,3 @@ const MobileMenuButton = styled(ReactSVG)`
     display: none;
   }
 `
-
-export default Navbar

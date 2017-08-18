@@ -1,55 +1,61 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import ImageBanner from 'kt-components/ImageBanner';
-
-const imgUrl = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/Shop/Marketplace+Header.jpg';
-const profileUrl = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/ProfilePic.png'
-
-const Header = () => {
+const Header = ({ storeName, coverPhoto, profilePhoto }) => {
   return (
-    <CoverPhoto url={ imgUrl }>
-      <StoreName>
-        Isabell Custom Knives
-      </StoreName>
-      <ProfilePic src={profileUrl} alt='Profile Picture'/>
-    </CoverPhoto>
+    <Container>
+      <CoverPhoto url={ coverPhoto }>
+        <StoreName>
+          { storeName }
+        </StoreName>
+      </CoverPhoto>
+      <ProfilePic src={ profilePhoto } alt='Profile Picture'/>
+    </Container>
   )
 }
 
 export default Header;
 
-const CoverPhoto = styled(ImageBanner)`
+const mobileProfileSize = 150;
+const desktopProfileSize = 200;
+
+const Container = styled.header`
+  display: flex;
+  justify-content: flex-end;
   flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+`
+const CoverPhoto = styled.div`
+  background: url('${props => props.url}') no-repeat center center ;
+  background-size: auto;
+  width: 100%;
   height: 200px;
-  justify-content: flex-start;
-  ${props => props.theme.media.tablet}{
-      height: 250px;
-      background-size: cover;
+  ${props => props.theme.media.tablet} {
+    background-size: cover;
+    height: 250px;
   }
 `
 const StoreName = styled.h1`
   ${props => props.theme.secondaryFont({})};
-  font-size: 20pt;
+  font-size: 28pt;
+  letter-spacing: 1pt;
   color: white;
-  letter-spacing: 1.5pt;
-  margin-top: 60px;
   text-align: center;
-  ${props => props.theme.media.phone}{
-      font-size: 40pt;
-      font-size: 35pt;
+  margin-top: 70px;
+  ${props => props.theme.media.tablet}{
+    font-size: 36pt;
   }
 `
 const ProfilePic = styled.img`
+  border: #f5f5f5 4px solid;
   border-radius: 50%;
-  margin: 0 auto;
-  margin-top: 20px;
-  width: 150px;
-  height: 150px;
-  border: white 4px solid;
+  width: ${mobileProfileSize}px;
+  height: ${mobileProfileSize}px;
+  margin-top: -${mobileProfileSize/2}px;
   ${props => props.theme.media.tablet}{
-      margin-top: 30px;
-      width: 200px;
-      height: 200px;
+    width: ${desktopProfileSize}px;
+    height: ${desktopProfileSize}px;
+    margin-top: -${desktopProfileSize/2}px;
   }
 `

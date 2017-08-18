@@ -61,10 +61,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  margin-top: 5px;
+  margin: 15px 0 0 0;
   ${props => props.theme.media.tablet}{
-    margin-top: 0px;
+    margin: 0 0 0 30px;
 }
 `
 const Button = styled(MinimalButton)`

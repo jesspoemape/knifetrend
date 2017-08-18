@@ -7,7 +7,7 @@ const About = () => {
   return (
     <Container>
       <Header>
-        Take a look into my sho
+        Take a look into my shop
       </Header>
       <GrayDivider/>
       <Paragraph>
@@ -29,8 +29,7 @@ export default About;
 
 const Container = styled.section`
     max-width: 1000px;
-    background-color: #f5f5f5;
-    margin: 132px 50px 50px 50px;
+    margin: 15px;
 `
 
 const Header = styled.h1`
