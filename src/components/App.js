@@ -6,12 +6,9 @@ import Footer from './Footer/Footer';
 
 import Home from './Home/Home';
 import Competitions from './Competitions/Competitions';
-import Profile from './Profile/Profile';
-import SignUp from './SignUp/SignUp';
-import Admin from './Admin/Admin';
 import Shop from './Shop/Shop';
-import MakerPage from './MakerPage/MakerPage';
-import CartContainer from './Cart/CartContainer';
+import Storefront from './Storefront/MakerPage';
+import ShoppingCart from './ShoppingCart/ShoppingCart';
 
 const App = props => (
   <div>
@@ -20,12 +17,9 @@ const App = props => (
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route path="/competitions" component={ Competitions } />
-      <Route path="/profile" component={ Profile } />
-      <Route path="/sign-up" component={ SignUp } />
-      <Route path="/admin" component={ Admin } />
       <Route path="/shop" component={ Shop } />
-      <Route path="/makers" component={ MakerPage } />
-      <Route path="/cart" component={ CartContainer } />
+      <Route path="/storefront/:makerId" component={ Storefront } />
+      <Route path="/cart" component={ ShoppingCart } />
     </Switch>
     <Footer />
   </div>

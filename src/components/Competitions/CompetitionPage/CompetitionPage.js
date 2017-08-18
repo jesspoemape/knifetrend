@@ -7,10 +7,9 @@ import withViewer from 'kt-hocs/withViewer';
 import Header from './../Header';
 import CompetitionDetails from './CompetitionDetails';
 import EntriesContainer from './EntriesContainer';
-import EntryUploadModal from '../../EntryUploadModal/EntryUploadModal';
+import EntryUploadModal from './../NewEntryForm/EntryUploadModal';
 
 const url = "https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-competitions-entries-header.jpg";
-
 
 class CompetitionPage extends Component {
   constructor(props) {
@@ -29,7 +28,7 @@ class CompetitionPage extends Component {
     const {viewer} = this.props;
     if (!viewer) {
       // redirects to auth0 login page
-      // window.location.href = authLink;
+      window.location.href = authLink;
       this.setState({ modalOpen:true })
     }
     else {
@@ -42,18 +41,18 @@ class CompetitionPage extends Component {
   }
 
   render() {
-      const { data: { competition }, match, viewer } = this.props
-      return (
-        <div>
-          <Header imgUrl={ url } title={ competition.name } />
-          <CompetitionDetails competition={ competition } openModal={ this.openModal }/>
-          <EntriesContainer competition={ competition } />
-          <EntryUploadModal
-            isOpen={this.state.modalOpen}
-            onRequestClose={this.closeModal}
-          />
-        </div>
-      )
+    const { data: { competition } } = this.props
+    return (
+      <div>
+        <Header imgUrl={ url } title={ competition.name } />
+        <CompetitionDetails competition={ competition } openModal={ this.openModal }/>
+        <EntriesContainer competition={ competition } />
+        <EntryUploadModal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.closeModal}
+        />
+      </div>
+    )
   }
 }
 
@@ -71,7 +70,6 @@ const CompetitionData = gql`
   }
   ${EntriesContainer.fragment}
 `
-
 export default withViewer(graphqlWithLoading(CompetitionData,{
   options: props => ({
     variables:{ id: props.match.params.id }

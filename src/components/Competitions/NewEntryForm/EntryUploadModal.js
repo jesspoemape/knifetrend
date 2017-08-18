@@ -3,34 +3,34 @@ import styled from 'styled-components';
 import ReactModal from 'react-modal';
 import ReactSVG from 'react-svg';
 
-import exit from './../../assets/exit.svg';
-
-import EntryInfo from './EntryInfo';
 import Divider from 'kt-components/Divider';
+
+import exit from './../../../assets/exit.svg';
+import EntryInfo from './EntryInfo';
 
 const imgURL = 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-talladega-nights-the-ballad-of-ricky-bobby-will-ferrell.jpg';
 
 const EntryUploadModal = ({ isOpen, onRequestClose }) => {
-    return (
-        <ReactModal
-            contentLabel='modal-label'
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-        >
-            <Container>
-                <Header>
-                    <ProfileImage src={imgURL}/>
-                    <UserName>Isabel custom</UserName>
-                    <Exit callback={ svg => svg.addEventListener("click", onRequestClose) } path={exit} />
-                </Header>
-                <Title>EDC folding</Title>
-                <Description>Upload up to 5 photos for each entry. Be sure you take nice, well-lit photos of your knife so your design can shine!</Description>
-                <GrayDivider/> 
-                <EntryInfo />
-            </Container>
-        </ReactModal>
-    );
-};
+  return (
+    <ReactModal
+        contentLabel='modal-label'
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+    >
+      <Container>
+        <Header>
+          <ProfileImage src={imgURL}/>
+          <UserName>Isabel custom</UserName>
+          <Exit callback={ svg => svg.addEventListener("click", onRequestClose) } path={exit} />
+        </Header>
+        <Title>EDC folding</Title>
+        <Description>Upload up to 5 photos for each entry. Be sure you take nice, well-lit photos of your knife so your design can shine!</Description>
+        <GrayDivider/>
+        <EntryInfo />
+      </Container>
+    </ReactModal>
+  )
+}
 
 export default EntryUploadModal;
 

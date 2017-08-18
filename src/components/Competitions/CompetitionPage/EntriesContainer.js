@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import EntryModal from './Modal/EntryModal';
 import EntryTile from './EntryTile';
 
-
 class EntriesContainer extends Component {
   constructor(props) {
     super(props)
@@ -30,25 +29,22 @@ class EntriesContainer extends Component {
 
   render() {
     const { competition, mutate } = this.props
-    const { modalOpen, modalEntryIndex, entryUploadModalOpen } = this.state
+    const { modalOpen, modalEntryIndex } = this.state
 
     const entryTiles = competition.entries ? competition.entries.map(entry => {
       return (
         <EntryTile key={entry.id} sendVote={ mutate } showModal={ this.openModal } {...entry} />
       )
     }) : ''
-
     return (
       <Container>
         { entryTiles }
-
             <EntryModal
               entry={competition.entries[modalEntryIndex]}
               close={this.closeModal}
               sendVote={mutate}
               isOpen={modalOpen}
             />
-
       </Container>
     )
   }

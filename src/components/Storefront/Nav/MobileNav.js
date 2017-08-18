@@ -1,25 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import ReactSVG from 'react-svg';
 
+const MobileNav = ({toggleDisplay}) => {
+  return (
+    <Container>
+      <MenuLink onClick={toggleDisplay} exact={true} to="/storefront/2">Storefront</MenuLink>
+      <Divider/>
+      <MenuLink onClick={toggleDisplay} to="/storefront/2/about">About The Shop</MenuLink>
+      <Divider/>
+      <MenuLink onClick={toggleDisplay} to="/storefront/2/entries">Competition Entries</MenuLink>
+    </Container>
+  )
+}
 
+export default MobileNav;
 
-const MobileMenu = ({toggleDisplay}) => {
-    return (
-        <Container>
-            <MenuLink onClick={ toggleDisplay } exact={true} to="/makers">storefront</MenuLink>
-            <Divider/>
-            <MenuLink onClick={ toggleDisplay } to="/makers/about">about the shop</MenuLink>
-            <Divider/>
-            <MenuLink onClick={ toggleDisplay } to="/makers/competition">competition</MenuLink>
-        </Container>
-    );
-};
-
-export default MobileMenu;
-
-const Container = styled.section`
+const Container = styled.section `
     position: absolute;
     height: 150px;
     width: 100%;
@@ -46,7 +43,7 @@ const MenuLink = styled(Link)`
     align-items: center;
     text-transform: uppercase;
 `
-const Divider = styled.div`
+const Divider = styled.div `
     background: #f5f5f5;
     height: 2px;
     width: 100%;

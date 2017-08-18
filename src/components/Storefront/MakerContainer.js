@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import MenuContainer from './MakerMenu/MenuContainer';
+import MenuContainer from './Nav/MenuContainer';
 
 const MakerContainer = () => {
     return (

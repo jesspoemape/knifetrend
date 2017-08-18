@@ -5,7 +5,7 @@ import ReactSVG from 'react-svg'
 import PhotoUpload from 'kt-components/ImageUploader';
 import MinimalButton from 'kt-components/MinimalButton';
 
-import upload from './../../assets/upload.svg'
+import upload from './../../../assets/upload.svg'
 
 class EntryInfo extends Component {
 
@@ -134,8 +134,6 @@ const SubmitButton = styled(MinimalButton)`
     border-radius: 30px;
     border-style: none;
 `
-
-
 const AddImageContainer = styled.div`
   display: flex;
   align-items: center;

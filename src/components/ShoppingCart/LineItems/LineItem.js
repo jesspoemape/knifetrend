@@ -5,34 +5,34 @@ import { gql } from 'react-apollo'
 import Quantity from './Quantity';
 
 const Item = ({item, quantity}) => {
-    return (
-        <MainContainer>
-            <LeftContainer>
-                <Image />
-                <DetailContainer>
-                    <Name>{item.name}</Name>
-                    <Totals>${item.price}</Totals>
-                    <MinimalText>+ $12.87 Shipping</MinimalText>
-                    <Divider />
-                    <MinimalText>Total</MinimalText>
-                    <Totals>${item.price * quantity}</Totals>
-                </DetailContainer>
-            </LeftContainer>
-            <RightContainer>
-                <Quantity quantity={ quantity }/>
-            </RightContainer>
-        </MainContainer>
-    );
-};
+  return (
+    <MainContainer>
+      <LeftContainer>
+        <Image />
+        <DetailContainer>
+          <Name>{item.name}</Name>
+          <Totals>${item.price}</Totals>
+          <MinimalText>+ $12.87 Shipping</MinimalText>
+          <Divider />
+          <MinimalText>Total</MinimalText>
+          <Totals>${item.price * quantity}</Totals>
+        </DetailContainer>
+      </LeftContainer>
+      <RightContainer>
+        <Quantity quantity={ quantity }/>
+      </RightContainer>
+    </MainContainer>
+  )
+}
 
 Item.fragment = gql`
-    fragment LineItem on ShoppingCartLineItem {
-        item {
-            name
-            price
-        }
-        quantity
+  fragment LineItem on ShoppingCartLineItem {
+    quantity
+    item {
+        name
+        price
     }
+  }
 `
 
 export default Item;

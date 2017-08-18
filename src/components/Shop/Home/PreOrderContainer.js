@@ -9,26 +9,25 @@ import RightArrow from './../../../assets/chevron-right.svg'
 const imageURL = 'https://s3-us-west-2.amazonaws.com/knifetrend-assets/pre-order-knife.png'
 
 const PreOrderContainer = () => {
-    return (
-        <Section>
-            <Header>
-                Pre-Order Production Run Knives!
-                <PreOrderButton>
-                    Shop All Pre Order Knives
-                    <Arrow path={RightArrow} />
+  return (
+    <Section>
+      <Header>
+        Pre-Order Production Run Knives!
+        <PreOrderButton>
+            Shop All Pre Order Knives
+            <Arrow path={RightArrow} />
 
-                </PreOrderButton>
-            </Header>
-            <Knife url={ imageURL }/>
-        </Section>
-    )
+        </PreOrderButton>
+      </Header>
+      <Knife url={ imageURL }/>
+    </Section>
+  )
 }
 
 export default PreOrderContainer;
 
 const Section = styled.div`
 `
-
 const Header = styled.header`
     ${props => props.theme.secondaryFont({})};
     height: 100px;

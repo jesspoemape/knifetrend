@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import Media from 'react-media';
 
-
 import chevronDown from '../../../assets/chevron-down.svg';
 
-import MakerNavbar from './MakerNavbar';
+import MakerNavbar from './Nav';
+import MobileMenu from './MobileNav';
 import MakerDetails from './MakerDetails';
-import MobileMenu from './MobileMenu';
 
 class MenuContainer extends Component {
     constructor(props) {

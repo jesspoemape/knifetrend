@@ -5,21 +5,20 @@ import Media from 'react-media';
 
 import MakerContainer from './MakerContainer'
 import Storefront from './Storefront/Storefront'
-import Competition from './Competition/Competition'
-import Cover from './Cover'
-import MakerDetails from './MakerMenu/MakerDetails'
-import AboutTheShop from './AboutTheShop/AboutTheShop'
-
+import Entries from './Entries/Entries'
+import Header from './Header'
+import MakerDetails from './Nav/MakerDetails'
+import About from './About/About'
 
 export default props => (
   <div>
-    <Cover/>
+    <Header/>
     <Container>
-      <Route path='/makers' component = { MakerContainer }/>
+      <Route path='/storefront/:makerId' component = { MakerContainer }/>
       <Switch>
-        <Route exact path="/makers/" component={ Storefront } />
-        <Route path="/makers/competition" component={ Competition } />
-        <Route path="/makers/about" component={ AboutTheShop } />
+        <Route exact path="/storefront/:makerId" component={ Storefront } />
+        <Route path="/storefront/:makerId/entries" component={ Entries } />
+        <Route path="/storefront/:makerId/about" component={ About } />
       </Switch>
     </Container>
     <Media query="(max-width: 949px)" render={()=>(
