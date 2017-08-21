@@ -176,13 +176,13 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
-      UserId: 2
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg",
-      UserId: 3
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -194,7 +194,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-11.jpg",
-      UserId: 1
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -212,7 +212,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      UserId: 1
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -232,7 +232,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      UserId: 1
+      UserId: 6
     }
   ])
 

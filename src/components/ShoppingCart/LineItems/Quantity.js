@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
+import SVG from 'kt-components/SVG';
 import {gql, graphql, compose} from 'react-apollo';
 
 import Exit from './../../../assets/exit.svg';
@@ -49,7 +49,7 @@ class Quantity extends Component {
       <QuantityInput onChange={this.handleChange} onBlur={this.handleUpdate} value={quantity}/>
       <RemoveButton 
         path={Exit}
-        callback={ (svg) => svg.addEventListener("click", this.handleRemove) }
+        onClick={this.handleRemove}
         />
     </Container>
     );
@@ -68,6 +68,7 @@ const removeFromCart = gql`
   mutation ($itemId: Int!) {
   removeFromCart(ItemId: $itemId) {
     id
+    totalItemQuantity
     shoppingCart {
       id
       lineItems {
@@ -114,7 +115,7 @@ const QuantityInput = styled.input `
       font-size: 24px;
     }
 `
-const RemoveButton = styled(ReactSVG)`
+const RemoveButton = styled(SVG)`
   stroke: ${props => props.theme.main};
   height: 30px;
   width: 30px;
