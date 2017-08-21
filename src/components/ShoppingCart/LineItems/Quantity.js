@@ -104,14 +104,14 @@ const QuantityInput = styled.input `
   text-align: center;
   font-size: 18px;
   font-weight: 400;
+  ${props => props.theme.media.tablet} {
+      height: 35px;
+      width: 50px;
+      font-size: 24px;
+    }
   ${props => props.theme.media.desktop} {
       height: 40px;
       width: 60px;
-      font-size: 24px;
-    }
-    ${props => props.theme.media.tablet} {
-      height: 35px;
-      width: 50px;
       font-size: 24px;
     }
 `
@@ -120,12 +120,12 @@ const RemoveButton = styled(SVG)`
   height: 30px;
   width: 30px;
   stroke-linecap: square;
+   ${props => props.theme.media.tablet} {
+      height: 40px;
+      width: 40px;
+    }
   ${props => props.theme.media.desktop} {
       height: 50px;
       width: 50px;
-    }
-    ${props => props.theme.media.tablet} {
-      height: 40px;
-      width: 40px;
     }
 `

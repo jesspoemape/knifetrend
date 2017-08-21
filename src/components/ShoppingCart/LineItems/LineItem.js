@@ -55,23 +55,27 @@ const MainContainer = styled.section`
 `
 const LeftContainer = styled.div`
     width: 80%;
-    padding: 40px 0;
+    padding: 15px 0;
     display: flex;
     align-items: center;
+    ${props => props.theme.media.tablet} {
+      padding: 30px 0;
+    }
     ${props => props.theme.media.desktop} {
       width: 50%;
+      padding: 40px 0;
     }
 `
 const Image = styled.img`
     width: 130px;
     height: 130px;
-    ${props => props.theme.media.desktop} {
-      width: 175px;
-      height: 175px;
-    }
     ${props => props.theme.media.tablet} {
       width: 150px;
       height: 150px;
+    }
+    ${props => props.theme.media.desktop} {
+      width: 175px;
+      height: 175px;
     }
 `
 const DetailContainer = styled.div`
@@ -86,15 +90,18 @@ const DetailContainer = styled.div`
 const Name = styled.h4`
     font-weight: 800;
     text-transform: uppercase;
-    font-size: 
+    font-size: 16px;
+    ${props => props.theme.media.desktop} {
+      font-size: 18px;
+    }
 `
 const Totals = styled.h3`
     color: ${props => props.theme.main};
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
     ${props => props.theme.media.desktop} {
-      font-size: 20px;
+      font-size: 24px;
     }
 `
 const MinimalText = styled.h6`

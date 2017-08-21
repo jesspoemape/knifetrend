@@ -59,11 +59,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
-    ${props => props.theme.media.desktop} {
-      padding: 60px 200px;
-    }
     ${props => props.theme.media.tablet} {
       padding: 40px 100px;
+    }
+    ${props => props.theme.media.desktop} {
+      padding: 60px 200px;
     }
 `
 const Divider = styled.div`

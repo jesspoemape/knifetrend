@@ -27,7 +27,7 @@ const Container = styled.header`
   }
 `
 const Title = styled.h1`
-  ${props => props.theme.secondaryFont({})}
+  ${props => props.theme.secondaryFont({})};
   font-size: 38pt;
   line-height: 45pt;
   color: white;
