@@ -65,13 +65,14 @@ const EntryDetails = styled.div`
 const Section = styled.section`
   display: flex;
   justify-content: space-between;
-  margin: 5px 0 0px;
+  padding-bottom: 10px;
   border-bottom: solid thin #D9D9D9;
 `
 const Name = styled.h2`
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+  align-self: center;
 `
 const Votes = styled.div`
   color: ${props => props.theme.main};

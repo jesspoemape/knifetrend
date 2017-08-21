@@ -2,15 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactModal from 'react-modal';
 import ReactSVG from 'react-svg';
+import {Redirect} from 'react-router-dom';
 
 import Divider from 'kt-components/Divider';
+import withViewer from 'kt-hocs/withViewer';
 
 import exit from './../../../assets/exit.svg';
 import EntryInfo from './EntryInfo';
 
 const imgURL = 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-talladega-nights-the-ballad-of-ricky-bobby-will-ferrell.jpg';
+const authURL = `${process.env.REACT_APP_SERVER_URL}/auth`
 
-const EntryUploadModal = ({ isOpen, onRequestClose }) => {
+const EntryUploadModal = ({ isOpen, onRequestClose, viewer }) => {
+    if(!viewer) return <Redirect href={authURL}/>
   return (
     <ReactModal
         contentLabel='modal-label'
@@ -19,8 +23,8 @@ const EntryUploadModal = ({ isOpen, onRequestClose }) => {
     >
       <Container>
         <Header>
-          <ProfileImage src={imgURL}/>
-          <UserName>Isabel custom</UserName>
+          <ProfileImage src={viewer.avatar}/>
+          <UserName>{viewer.name}</UserName>
           <Exit callback={ svg => svg.addEventListener("click", onRequestClose) } path={exit} />
         </Header>
         <Title>EDC folding</Title>
@@ -32,7 +36,7 @@ const EntryUploadModal = ({ isOpen, onRequestClose }) => {
   )
 }
 
-export default EntryUploadModal;
+export default withViewer(EntryUploadModal);
 
 const Container = styled.section`
     max-width: 600px;
