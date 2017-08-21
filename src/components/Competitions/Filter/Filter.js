@@ -40,18 +40,10 @@ class Filter extends Component {
     const{ showOptions, filter } = this.state;
     return (
       <Container>
-      <Button onClick={ this.toggleFilterCard }>
-        { filter || "Filter" }
-        <SVG path={ showOptions ? chevronUp : chevronDown } />
-      </Button>
-      {
-        showOptions ?
-          <FilterCard>
-            <Option onClick={ this.selectFilter }>Newest</Option>
-            <Option onClick={ this.selectFilter }>Oldest</Option>
-          </FilterCard>
-          : ' '
-      }
+        <Select>
+          <Option onClick={ this.selectFilter }>Newest</Option>
+          <Option onClick={ this.selectFilter }>Oldest</Option>
+        </Select>
     </Container>
     )
   }
@@ -64,7 +56,7 @@ const Container = styled.div`
   justify-content: center;
   width: 200px;
 `
-const Button = styled(MinimalButton)`
+const Select = styled.select`
   border-color: #8D8D8D;
   color: #8D8D8D;
 `

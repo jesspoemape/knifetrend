@@ -19,6 +19,9 @@ const resolvers = {
   designs(user, args, context) {
     return user.getDesigns();
   },
+  entries(user, args, context) {
+    return user.getEntries();
+  },
   orders(user, args, context) {
     return user.getOrders();
   },
