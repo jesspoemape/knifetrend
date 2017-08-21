@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   ShoppingCart.prototype.deleteLineItem = async function(ItemId, viewer){
     const lineItem = await this.getOneLineItem({where: {ItemId}});
     lineItem.destroy();
-    return `The item has been removed from your cart.`
+    return this
   }
 
   ShoppingCart.prototype.emptyCart = async function() {

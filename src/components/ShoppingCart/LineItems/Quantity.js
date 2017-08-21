@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
-import {gql, graphql} from 'react-apollo';
+import {gql, graphql, compose} from 'react-apollo';
 
 import Exit from './../../../assets/exit.svg';
 
@@ -15,20 +15,30 @@ class Quantity extends Component {
 
    this.handleUpdate = this.handleUpdate.bind(this);
    this.handleChange = this.handleChange.bind(this);
+   this.handleRemove = this.handleRemove.bind(this);
   }
 
  handleUpdate() {
-   const {itemId, mutate} = this.props;
-    mutate({
+   const {itemId, updateQuantity} = this.props;
+    updateQuantity({
       variables: {
-        itemId: itemId,
+        itemId,
         newQuantity: this.state.quantity
       }
     })}
 
-    handleChange(e) {
-      this.setState({
-        quantity: e.target.value
+  handleChange(e) {
+    this.setState({
+      quantity: e.target.value
+    })
+    }
+
+  handleRemove() {
+   const {itemId, removeFromCart} = this.props;
+      removeFromCart({
+        variables: {
+          itemId 
+        }
       })
     }
 
@@ -37,7 +47,10 @@ class Quantity extends Component {
     return (
     <Container>
       <QuantityInput onChange={this.handleChange} onBlur={this.handleUpdate} value={quantity}/>
-      <RemoveButton path={Exit}/>
+      <RemoveButton 
+        path={Exit}
+        callback={ (svg) => svg.addEventListener("click", this.handleRemove) }
+        />
     </Container>
     );
   }
@@ -51,8 +64,29 @@ const updateQuantity = gql`
   }
 }
 `
+const removeFromCart = gql`
+  mutation ($itemId: Int!) {
+  removeFromCart(ItemId: $itemId) {
+    id
+    shoppingCart {
+      id
+      lineItems {
+        id
+      }
+    }
+  }
+}
+`
 
-export default graphql(updateQuantity)(Quantity);
+export default compose(
+  graphql(updateQuantity, {
+    name: 'updateQuantity'
+  }),
+  graphql(removeFromCart, {
+    name: 'removeFromCart'
+  })
+)(Quantity);
+
 
 const Container = styled.section `
   display: flex;

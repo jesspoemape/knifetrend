@@ -1,27 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo'
+import numeral from 'numeral';
 
 import Quantity from './Quantity';
 
 const Item = ({item, quantity}) => {
+    const formattedPrice = numeral(item.price).format('$ 0,0[.]00');
+    const formattedTotal = numeral((item.price * quantity)).format('$ 0,0[.]00');
+    const formattedShipping = numeral(12.87).format('$ 0,0[.]00');
+
+
   return (
     <MainContainer>
       <LeftContainer>
         <Image src={item.primaryPhoto}/>
         <DetailContainer>
           <Name>{item.name}</Name>
-          <Totals>${item.price}</Totals>
-          <MinimalText>+ $12.87 Shipping</MinimalText>
+          <Totals>{formattedPrice}</Totals>
+          <MinimalText>+ {formattedShipping}</MinimalText>
           <Divider />
           <MinimalText>Total</MinimalText>
-          <Totals>${item.price * quantity}</Totals>
+          <Totals>{formattedTotal}</Totals>
         </DetailContainer>
       </LeftContainer>
       <RightContainer>
         <Quantity quantity={ quantity } itemId={item.id}/>
       </RightContainer>
     </MainContainer>
+
   )
 }
 

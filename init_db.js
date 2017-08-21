@@ -627,6 +627,27 @@ const sync_database = async function() {
       quantity: 2,
       purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
       removeDate: null,
+      ItemId: 2,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 3,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 1,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
       ItemId: 5,
       ShoppingCartId: 1
     },
