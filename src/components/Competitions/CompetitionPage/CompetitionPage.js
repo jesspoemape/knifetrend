@@ -46,7 +46,7 @@ class CompetitionPage extends Component {
       <div>
         <Header imgUrl={ url } title={ competition.name } />
         <CompetitionDetails competition={ competition } openModal={ this.openModal }/>
-        <EntriesContainer competition={ competition } />
+        <EntriesContainer entries={ competition.entries } />
         <EntryUploadModal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}

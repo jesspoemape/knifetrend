@@ -18,7 +18,7 @@ const resolvers = {
   },
   async comment(obj, args, { viewer, db }) {
     const comment = await db.Comment.createOrUpdate(args.EntryId, args.text, viewer)
-    return await comment.getComment();
+    return await db.Entry.findOne({where:{id:comment.EntryId}})
   },
   async updateCartQuantity(obj, args, { viewer }) {
     if (!viewer) return null;

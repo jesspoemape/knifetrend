@@ -1,32 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
 
-import EntryButtonGroup from './EntryButtonGroup';
+import ButtonGroup from './ButtonGroup';
+import EntryModal from './EntryModal';
 
-const EntryTile = ({ id, design: {name, imgUrl, user}, totalVotes, viewerVote, showModal, sendVote }) => {
-  return (
-    <Tile>
-      <TileHeader>
-        <ProfileImg src={ user.avatar } />
-        <StoreName>{ user.storeName }</StoreName>
-      </TileHeader>
-      <ProductImg src={ imgUrl }  onClick={ () => showModal(id) }/>
-      <TileFooter>
-        <ProductName onClick={ () => showModal(id) }>
-          { name }
-        </ProductName>
-        <Votes>
-          { totalVotes } <p>votes</p>
-        </Votes>
-        <EntryButtonGroup
-          id={id}
-          viewerVote={viewerVote}
-          sendVote={sendVote}
-        />
-    </TileFooter>
-    </Tile>
-  )
+class EntryTile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      modalOpen: false
+    }
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalOpen:true})
+  }
+
+  closeModal() {
+    this.setState({modalOpen:false})
+  }
+  render() {
+    const { modalOpen } = this.state;
+    const { entry:{ id, design: {name, imgUrl, user}, totalVotes, viewerVote, sendVote } } = this.props;
+
+    return (
+      <Tile>
+        <TileHeader>
+          <ProfileImg src={ user.avatar } />
+          <StoreName>{ user.storeName }</StoreName>
+        </TileHeader>
+        <ProductImg src={ imgUrl }  onClick={ this.openModal }/>
+        <TileFooter>
+          <ProductName onClick={ this.openModal }>
+            { name }
+          </ProductName>
+          <Votes>
+            { totalVotes } <p>votes</p>
+          </Votes>
+          <ButtonGroup
+            id={id}
+            viewerVote={viewerVote}
+            sendVote={sendVote}
+          />
+      </TileFooter>
+      <EntryModal
+        entry={this.props.entry}
+        close={this.closeModal}
+        isOpen={modalOpen}
+      />
+      </Tile>
+    )
+  }
 }
 
 EntryTile.fragment = gql`
@@ -56,8 +85,6 @@ EntryTile.fragment = gql`
 
 export default EntryTile;
 
-
-// styled-components
 const Tile = styled.div`
   ${props => props.theme.mainFont({})}
   box-shadow: 0px 3px 6px rgba(0,0,0,.16);
@@ -88,7 +115,6 @@ const ProductImg = styled.img`
   height: 315px;
   cursor: pointer;
 `
-
 const TileFooter = TileHeader.extend`
   justify-content: space-between;
   flex-wrap: wrap;

@@ -16,6 +16,7 @@ const FeaturedKnivesCarousel = ({data}) => {
         </TileWrapper>
     );
 };
+FeaturedKnivesCarousel.displayName = 'FeaturedKnivesCarousel'
 
 const ItemsQuery = gql`
   query {

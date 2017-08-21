@@ -1,4 +1,5 @@
 import React from 'react';
+import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 
@@ -8,10 +9,10 @@ import check from './../../../assets/check.svg';
 import share from './../../../assets/share.svg';
 import tag from './../../../assets/tag.svg';
 
-const EntryButtonGroup = ({ id, viewerVote, sendVote }) => {
+const EntryButtonGroup = ({ id, viewerVote, mutate }) => {
 
   const saveVote = () => {
-    sendVote({
+    mutate({
       variables: {entryId:id}
     })
   }
@@ -27,7 +28,16 @@ const EntryButtonGroup = ({ id, viewerVote, sendVote }) => {
   )
 }
 
-export default EntryButtonGroup;
+const vote = gql`
+  mutation addVote($entryId: Int!) {
+    vote(EntryId: $entryId){
+      id
+      totalVotes
+      viewerVote
+    }
+  }
+`
+export default graphql(vote)(EntryButtonGroup);
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -40,18 +50,14 @@ const Button = MinimalButton.extend`
   color: #606060;
   border-color: #606060;
   font-size: 12px;
-
-  ${props => props.viewerVote ?
+  ${props => props.viewerVote &&
     `color: white;
     background-color: ${props.theme.main};
     border-color: ${props.theme.main};
     svg {
       stroke: white;
     }`
-    :
-    ` `
   }
-
   &:hover {
     color: white;
     background-color: ${props => props.theme.main};

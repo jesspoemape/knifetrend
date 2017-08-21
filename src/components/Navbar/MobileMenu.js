@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ReactSVG from 'react-svg';
 import PropTypes from 'prop-types';
+
+import SVG from 'kt-components/SVG';
 
 import exitIcon from './../../assets/exit.svg';
 
 const MobileMenu =  ({ toggleDisplay }) => {
   return (
     <MenuContainer>
-      <Exit
-        path={ exitIcon }
-        callback={ svg => svg.addEventListener("click", toggleDisplay) }
-      />
+      <Exit path={ exitIcon } onClick={ toggleDisplay } />
       <MenuList>
         <NavLink onClick={ toggleDisplay } to="/">Home</NavLink>
         <NavLink onClick={ toggleDisplay } to="/competitions">Competitions</NavLink>
@@ -39,7 +37,7 @@ const MenuContainer = styled.div`
   width: 100%;
   z-index: 1000;
 `
-const Exit = styled(ReactSVG)`
+const Exit = styled(SVG)`
   text-align: right;
   stroke: white;
   width: 38px;

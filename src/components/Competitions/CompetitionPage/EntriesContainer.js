@@ -1,53 +1,18 @@
-import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
+import React from 'react';
 import styled from 'styled-components';
+import { gql } from 'react-apollo';
 
-import EntryModal from './Modal/EntryModal';
-import EntryTile from './EntryTile';
+import EntryTile from './../../shared/EntryTile';
 
-class EntriesContainer extends Component {
-  constructor(props) {
-    super(props)
+const EntriesContainer = ({ entries , mutate }) => {
 
-    this.state = {
-      modalOpen: false,
-      modalEntryIndex: 0
-    }
+  const entryTiles = entries.map(entry => <EntryTile key={entry.id} entry={entry} /> )
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  openModal(entryId) {
-    const entryIndex = this.props.competition.entries.findIndex(entry => entry.id === entryId)
-    this.setState({modalOpen:true, modalEntryIndex:entryIndex})
-  }
-
-  closeModal() {
-    this.setState({ modalOpen: false })
-  }
-
-  render() {
-    const { competition, mutate } = this.props
-    const { modalOpen, modalEntryIndex } = this.state
-
-    const entryTiles = competition.entries ? competition.entries.map(entry => {
-      return (
-        <EntryTile key={entry.id} sendVote={ mutate } showModal={ this.openModal } {...entry} />
-      )
-    }) : ''
-    return (
-      <Container>
-        { entryTiles }
-            <EntryModal
-              entry={competition.entries[modalEntryIndex]}
-              close={this.closeModal}
-              sendVote={mutate}
-              isOpen={modalOpen}
-            />
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      { entryTiles }
+    </Container>
+  )
 }
 
 EntriesContainer.fragment = gql`
@@ -59,17 +24,7 @@ EntriesContainer.fragment = gql`
   ${EntryTile.fragment}
 `
 
-const vote = gql`
-  mutation addVote($entryId: Int!) {
-    vote(EntryId: $entryId),
-    {
-      ...EntryTile
-    }
-  }
-  ${EntryTile.fragment}
-`
-
-export default graphql(vote)(EntriesContainer)
+export default EntriesContainer
 
 const Container = styled.main`
   display: flex;
