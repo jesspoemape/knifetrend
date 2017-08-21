@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 import SVG from 'kt-components/SVG';
 
-// import exit from './../../../assets/exit.svg';
+import exit from './../../../../assets/exit.svg';
 
 const Header = ({ entry, close }) => {
   return (
     <TileHeader>
       <ProfileImg src={ entry.design.user.avatar } />
       <StoreName>{ entry.design.user.storeName }</StoreName>
-  
+      <Exit path={exit} onClick={close}/>
     </TileHeader>
   )
 }
@@ -22,7 +22,7 @@ const TileHeader = styled.div`
   justify-content: center;
   align-items: center;
   padding: 7px 10px;
-  background: white;
+  background: #F5F5F5;
   ${props => props.theme.media.desktop} {
     margin-bottom: 10px;
   }

@@ -15,6 +15,14 @@ const sync_database = async function() {
       isAdmin: true
     },
     {
+      name: 'Jess Poemape',
+      username: 'jesspoemape@gmail.com',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      auth_id: '5984affc72b7861aa78ed225',
+      auth_provider: 'auth0',
+      isAdmin: false
+    },
+    {
       name: 'Ashlyn Mitros',
       username: 'ashlyn',
       providerAvatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
@@ -27,14 +35,6 @@ const sync_database = async function() {
       username: 'mitchfoster3@gmail.com',
       providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
       auth_id: '5988a86fc164ea2039b3ce39',
-      auth_provider: 'auth0',
-      isAdmin: false
-    },
-    {
-      name: 'Jess Poemape',
-      username: 'jesspoemape@gmail.com',
-      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
-      auth_id: '5984affc72b7861aa78ed225',
       auth_provider: 'auth0',
       isAdmin: false
     },
@@ -176,13 +176,13 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-1.jpg",
-      UserId: 2
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-4.jpg",
-      UserId: 3
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -194,7 +194,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-11.jpg",
-      UserId: 1
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -212,7 +212,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      UserId: 1
+      UserId: 6
     },
     {
       name: '6" Folding Bushcraft',
@@ -232,7 +232,7 @@ const sync_database = async function() {
       name: '6" Folding Bushcraft',
       desc: 'Mollit aliqua eiusmod anim ullamco officia est consectetur ad minim enim. Mollit cupidatat veniam deserunt anim irure occaecat ut tempor duis reprehenderit sunt tempor.',
       primaryPhoto: "https://s3-us-west-2.amazonaws.com/knifetrend-assets/knives/knife-10.jpg",
-      UserId: 1
+      UserId: 6
     }
   ])
 
@@ -621,6 +621,27 @@ const sync_database = async function() {
       purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
       removeDate: null,
       ItemId: 6,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 2,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 3,
+      ShoppingCartId: 2
+    },
+    {
+      quantity: 2,
+      purchaseDate: new Date('May 1, 2017 23:59:59 CST'),
+      removeDate: null,
+      ItemId: 1,
       ShoppingCartId: 2
     },
     {

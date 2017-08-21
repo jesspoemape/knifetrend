@@ -31,6 +31,10 @@ const Container = styled.div`
 `
 const Header = styled.h3`
     ${props => props.theme.secondaryFont({})};
-    font-size: 42px;
-    margin: 40px 0;
+    font-size: 30px;
+    margin: 25px 0;
+    ${props => props.theme.media.desktop} {
+      font-size: 42px;
+      margin: 40px 0;
+    }
 `
