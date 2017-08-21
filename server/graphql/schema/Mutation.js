@@ -6,7 +6,7 @@ const typeDef = `
     comment(EntryId: Int!, text: String!): Entry
     addToCart(ItemId: Int!, quantity: Int!): ShoppingCartLineItem
     updateCartQuantity(ItemId: Int!, newQuantity: Int!): ShoppingCartLineItem
-    removeFromCart(ItemId: Int!): ShoppingCart
+    removeFromCart(ItemId: Int!): User
     emptyCart: ShoppingCart
     confirmCheckout: Order
   }
@@ -30,7 +30,8 @@ const resolvers = {
   },
   async removeFromCart(obj, args, { viewer }) {
     if (!viewer) return null;
-    return await viewer.ShoppingCart.deleteLineItem(args.ItemId, viewer)
+    await viewer.ShoppingCart.deleteLineItem(args.ItemId, viewer)
+    return viewer
   },
   async emptyCart(obj, args, { viewer }) {
     if (!viewer) return null;
