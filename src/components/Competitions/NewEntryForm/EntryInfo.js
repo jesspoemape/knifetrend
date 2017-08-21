@@ -92,7 +92,7 @@ const NameInput = styled.input`
     width: 300px;
     border: 0.5px solid #bfbfbf;
     padding: 10px;
-    font-size: 8px;
+    font-size: 10pt;
     &::placeholder {
         color: #bfbfbf;
     }
@@ -102,7 +102,7 @@ const DescriptionInput = styled.textarea`
     width: 280px;
     border: 0.5px solid #bfbfbf;
     padding: 10px;
-    font-size: 8px;
+    font-size: 10pt;
     height: 80px;
     vertical-align: top;
     resize: none;

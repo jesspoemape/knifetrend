@@ -18,11 +18,12 @@ const CommentBox = styled.div`
   width: 100%;
   overflow: scroll;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 0 10px 0;
   margin: 10px 0;
   border-top: solid thin #D9D9D9;
   border-bottom: solid thin #D9D9D9;
+  padding: 10px 0;
 `
 const Comment = styled.div`
   font-size: 10pt;
