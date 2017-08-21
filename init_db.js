@@ -15,6 +15,14 @@ const sync_database = async function() {
       isAdmin: true
     },
     {
+      name: 'Jess Poemape',
+      username: 'jesspoemape@gmail.com',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
+      auth_id: '5984affc72b7861aa78ed225',
+      auth_provider: 'auth0',
+      isAdmin: false
+    },
+    {
       name: 'Ashlyn Mitros',
       username: 'ashlyn',
       providerAvatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
@@ -27,14 +35,6 @@ const sync_database = async function() {
       username: 'mitchfoster3@gmail.com',
       providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
       auth_id: '5988a86fc164ea2039b3ce39',
-      auth_provider: 'auth0',
-      isAdmin: false
-    },
-    {
-      name: 'Jess Poemape',
-      username: 'jesspoemape@gmail.com',
-      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/11934596_970391889689038_923518484_a.jpg',
-      auth_id: '5984affc72b7861aa78ed225',
       auth_provider: 'auth0',
       isAdmin: false
     },

@@ -1,19 +1,58 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import {gql, graphql} from 'react-apollo';
 
 import Exit from './../../../assets/exit.svg';
 
-const Quantity = ({quantity}) => {
-  return (
+
+class Quantity extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      quantity: this.props.quantity
+    }
+
+   this.handleUpdate = this.handleUpdate.bind(this);
+   this.handleChange = this.handleChange.bind(this);
+  }
+
+ handleUpdate() {
+   const {itemId, mutate} = this.props;
+    mutate({
+      variables: {
+        itemId: itemId,
+        newQuantity: this.state.quantity
+      }
+    })}
+
+    handleChange(e) {
+      this.setState({
+        quantity: e.target.value
+      })
+    }
+
+  render() {
+    const {quantity} = this.state;
+    return (
     <Container>
-      <QuantityInput value={quantity}/>
-      <ExitButton path={Exit}/>
+      <QuantityInput onChange={this.handleChange} onBlur={this.handleUpdate} value={quantity}/>
+      <RemoveButton path={Exit}/>
     </Container>
-  )
+    );
+  }
 }
 
-export default Quantity;
+const updateQuantity = gql`
+  mutation ($itemId: Int!, $newQuantity:Int!) {
+  updateCartQuantity(ItemId: $itemId, newQuantity: $newQuantity) {
+    id
+    quantity
+  }
+}
+`
+
+export default graphql(updateQuantity)(Quantity);
 
 const Container = styled.section `
   display: flex;
@@ -22,18 +61,36 @@ const Container = styled.section `
 `
 const QuantityInput = styled.input `
   ${props => props.theme.mainFont({})};
-  height: 40px;
-  width: 60px;
+  height: 30px;
+  width: 40px;
   border: 1px solid #95989A;
   border-radius: 10px;
   margin-right: 15px;
   text-align: center;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
+  ${props => props.theme.media.desktop} {
+      height: 40px;
+      width: 60px;
+      font-size: 24px;
+    }
+    ${props => props.theme.media.tablet} {
+      height: 35px;
+      width: 50px;
+      font-size: 24px;
+    }
 `
-const ExitButton = styled(ReactSVG)`
+const RemoveButton = styled(ReactSVG)`
   stroke: ${props => props.theme.main};
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   stroke-linecap: square;
+  ${props => props.theme.media.desktop} {
+      height: 50px;
+      width: 50px;
+    }
+    ${props => props.theme.media.tablet} {
+      height: 40px;
+      width: 40px;
+    }
 `

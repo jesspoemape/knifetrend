@@ -8,7 +8,7 @@ const Item = ({item, quantity}) => {
   return (
     <MainContainer>
       <LeftContainer>
-        <Image />
+        <Image src={item.primaryPhoto}/>
         <DetailContainer>
           <Name>{item.name}</Name>
           <Totals>${item.price}</Totals>
@@ -19,7 +19,7 @@ const Item = ({item, quantity}) => {
         </DetailContainer>
       </LeftContainer>
       <RightContainer>
-        <Quantity quantity={ quantity }/>
+        <Quantity quantity={ quantity } itemId={item.id}/>
       </RightContainer>
     </MainContainer>
   )
@@ -27,10 +27,13 @@ const Item = ({item, quantity}) => {
 
 Item.fragment = gql`
   fragment LineItem on ShoppingCartLineItem {
+    id
     quantity
     item {
+        id
         name
         price
+        primaryPhoto
     }
   }
 `
@@ -44,30 +47,48 @@ const MainContainer = styled.section`
     border-top: 1px solid ${props => props.theme.secondary};
 `
 const LeftContainer = styled.div`
-    width: 50%;
+    width: 80%;
     padding: 40px 0;
     display: flex;
+    align-items: center;
+    ${props => props.theme.media.desktop} {
+      width: 50%;
+    }
 `
-const Image = styled.div`
-    background: url('http://via.placeholder.com/175x175') center;
-    width: 175px;
-    height: 175px;
+const Image = styled.img`
+    width: 130px;
+    height: 130px;
+    ${props => props.theme.media.desktop} {
+      width: 175px;
+      height: 175px;
+    }
+    ${props => props.theme.media.tablet} {
+      width: 150px;
+      height: 150px;
+    }
 `
 const DetailContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 30px 25px;
+    padding: 30px 0 30px 20px;
     ${props => props.theme.mainFont({})};
+    ${props => props.theme.media.desktop} {
+      padding: 30px 25px;
+    }
 `
 const Name = styled.h4`
     font-weight: 800;
     text-transform: uppercase;
+    font-size: 
 `
 const Totals = styled.h3`
     color: ${props => props.theme.main};
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 4px;
+    ${props => props.theme.media.desktop} {
+      font-size: 20px;
+    }
 `
 const MinimalText = styled.h6`
     font-size: 14px;
@@ -78,7 +99,10 @@ const Divider = styled.div`
     border-bottom: 1px solid ${props => props.theme.secondary};
 `
 const RightContainer = styled.section`
-    width: 50%;
+    width: 20%;
     display: flex;
     justify-content: flex-end;
+    ${props => props.theme.media.desktop} {
+      width: 50%;
+    }
 `

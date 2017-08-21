@@ -14,11 +14,11 @@ const ShoppingCart = ({data}) => {
   const cart = data.viewer.shoppingCart;
   return (
     <Container>
-      <Header totalItemQuantity={cart.totalItemQuantity} />
+      <Header cart={cart} />
       <Divider />
       <LineItems lineItems={cart.lineItems} />
       <AddNote />
-      <Subtotal />
+      <Subtotal lineItems={cart.lineItems} />
       <Checkout />
     </Container>
   )
@@ -43,10 +43,16 @@ export default graphqlWithLoading(ShoppingCartData)(ShoppingCart) ;
 
 const Container = styled.div`
     width: 100%;
-    padding: 60px 200px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
+    ${props => props.theme.media.desktop} {
+      padding: 60px 200px;
+    }
+    ${props => props.theme.media.tablet} {
+      padding: 40px 100px;
+    }
 `
 const Divider = styled.div`
     width: 130px;
