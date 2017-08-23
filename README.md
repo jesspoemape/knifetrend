@@ -1,12 +1,6 @@
 <img src="http://www.knifetrend.com/wp-content/uploads/2016/12/KTLOGO.png" width="250" align="right">
 # [Knife Trend] (http://www.beta.knifetrend.com)
 
-## Table of Contents
-### Front End
-### Back End
-### Additional Tools
-### Screenshots
-
 ### Introduction
 
 #### About the Project
