@@ -22,7 +22,10 @@ class CommentInput extends Component {
 
   submit() {
     const{ mutate, id } = this.props
+    const { comment } = this.state
 
+    if(!comment) return null;
+    
     mutate({
       variables: {
         id:id,

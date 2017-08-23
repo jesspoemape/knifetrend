@@ -4,7 +4,7 @@ import { gql } from 'react-apollo'
 
 import LineItem from './LineItem';
 
-const LineItemsContainer = ({lineItems}) => {
+const LineItems = ({lineItems}) => {
   return (
     <Container>
       <Header>Item Summary</Header>
@@ -15,8 +15,8 @@ const LineItemsContainer = ({lineItems}) => {
   )
 }
 
-LineItemsContainer.fragment = gql`
-    fragment LineItemContainer on ShoppingCart {
+LineItems.fragment = gql`
+    fragment LineItems on ShoppingCart {
         lineItems {
             ...LineItem
         }
@@ -24,7 +24,7 @@ LineItemsContainer.fragment = gql`
     ${LineItem.fragment}
 `
 
-export default LineItemsContainer;
+export default LineItems;
 
 const Container = styled.div`
     width: 100%;

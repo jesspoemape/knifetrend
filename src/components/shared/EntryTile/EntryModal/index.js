@@ -8,7 +8,7 @@ import ButtonGroup from './../ButtonGroup';
 import Comments from './Comments';
 import CommentInput from './CommentInput';
 
-const EntryModal = ({ entry, sendVote, close, isOpen }) => {
+const EntryModal = ({ entry, close, isOpen }) => {
   return (
     <ReactModal
       contentLabel='modal-label'
@@ -30,7 +30,7 @@ const EntryModal = ({ entry, sendVote, close, isOpen }) => {
             <Name>{ entry.design.name }</Name>
             <Votes>{ entry.totalVotes } <p>votes</p></Votes>
           </Section>
-          <ButtonGroup id={entry.id} viewerVote={entry.viewerVote} sendVote={sendVote} />
+          <ButtonGroup id={entry.id} viewerVote={entry.viewerVote} />
           <Desc>{ entry.design.desc }</Desc>
           <Comments comments={ entry.comments } />
           <CommentInput id={entry.id} />

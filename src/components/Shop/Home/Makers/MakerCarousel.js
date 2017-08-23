@@ -4,8 +4,7 @@ import { gql } from 'react-apollo';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
-// import Carousel from 'kt-components/Carousel'
-import MakerTile from './../../MakerTile';
+import MakerTile from './../../../shared/MakerTile';
 
 const MakerCarousel = ({ data }) => {
     return(

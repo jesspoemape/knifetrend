@@ -37,7 +37,7 @@ class Quantity extends Component {
    const {itemId, removeFromCart} = this.props;
       removeFromCart({
         variables: {
-          itemId 
+          itemId
         }
       })
     }
@@ -47,7 +47,7 @@ class Quantity extends Component {
     return (
     <Container>
       <QuantityInput onChange={this.handleChange} onBlur={this.handleUpdate} value={quantity}/>
-      <RemoveButton 
+      <RemoveButton
         path={Exit}
         onClick={this.handleRemove}
         />
@@ -60,7 +60,14 @@ const updateQuantity = gql`
   mutation ($itemId: Int!, $newQuantity:Int!) {
   updateCartQuantity(ItemId: $itemId, newQuantity: $newQuantity) {
     id
-    quantity
+    shoppingCart {
+      id
+      totalItemQuantity
+      lineItems {
+        id
+        quantity
+      }
+    }
   }
 }
 `
@@ -68,9 +75,9 @@ const removeFromCart = gql`
   mutation ($itemId: Int!) {
   removeFromCart(ItemId: $itemId) {
     id
-    totalItemQuantity
     shoppingCart {
       id
+      totalItemQuantity
       lineItems {
         id
       }

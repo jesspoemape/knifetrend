@@ -90,7 +90,7 @@ const Tile = styled.div`
   box-shadow: 0px 3px 6px rgba(0,0,0,.16);
   background: #FFFFFF;
   margin: 10px;
-  width: 315px;
+  width: 300px;
 `
 const TileHeader = styled.div`
   display: flex;
@@ -111,8 +111,8 @@ const StoreName = styled.h2`
 `
 
 const ProductImg = styled.img`
-  width: 315px;
-  height: 315px;
+  width: 300px;
+  height: 300px;
   cursor: pointer;
 `
 const TileFooter = TileHeader.extend`

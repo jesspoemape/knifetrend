@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
+import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg'
 
-import PhotoUpload from 'kt-components/ImageUploader';
+import ImageInput from 'kt-components/ImageUploader';
 import MinimalButton from 'kt-components/MinimalButton';
 
 import upload from './../../../assets/upload.svg'
 
 class EntryInfo extends Component {
-
     constructor() {
         super();
         this.state={
@@ -48,18 +48,33 @@ class EntryInfo extends Component {
     }
 
     submitEntry() {
-      console.log(this.state)
+      const { mutate, competition, close } = this.props
+      const { name, description, primaryPhoto, secondaryPhotos } = this.state
+      console.log(mutate)
+      console.log('submitEntry')
+      mutate({
+        variables: {
+          input: {
+            name: name,
+            desc: description,
+            primaryPhoto: primaryPhoto,
+            otherMedia: secondaryPhotos,
+            CompetitionId: competition.id
+          }
+        }
+      })
+      close()
     }
 
     render() {
     return (
         <div>
             <ImgContainer>
-                <PhotoUpload id={1} addImageButton={AddImageButton} onChange={this.handleImageChange}/>
-                <PhotoUpload id={2} onChange={this.handleImageChange}/>
-                <PhotoUpload id={3} onChange={this.handleImageChange}/>
-                <PhotoUpload id={4} onChange={this.handleImageChange}/>
-                <PhotoUpload id={5} onChange={this.handleImageChange}/>
+                <ImageInput id={1} addImageButton={AddImageButton} onChange={this.handleImageChange}/>
+                <ImageInput id={2} onChange={this.handleImageChange}/>
+                <ImageInput id={3} onChange={this.handleImageChange}/>
+                <ImageInput id={4} onChange={this.handleImageChange}/>
+                <ImageInput id={5} onChange={this.handleImageChange}/>
             </ImgContainer>
             <ImgDescription>(cover photo)</ImgDescription>
 
@@ -81,7 +96,20 @@ class EntryInfo extends Component {
 };
 }
 
-export default EntryInfo;
+const submitEntry = gql`
+  mutation newEntry($input: EntryInput) {
+    submitEntry(input:$input) {
+      id
+      design {
+        id
+        name
+        desc
+      }
+    }
+  }
+`
+
+export default graphql(submitEntry)(EntryInfo);
 
 const Container = styled.section`
     display: flex;

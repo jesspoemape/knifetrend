@@ -595,9 +595,6 @@ const sync_database = async function() {
     },
     {
       UserId: 3
-    },
-    {
-
     }
   ])
 
