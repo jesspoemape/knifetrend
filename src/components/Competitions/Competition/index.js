@@ -5,9 +5,9 @@ import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 import withViewer from 'kt-hocs/withViewer';
 
 import Header from './../Header';
-import CompetitionDetails from './CompetitionDetails';
+import CompetitionDetails from './Details';
 import EntriesContainer from './EntriesContainer';
-import EntryUploadModal from './../NewEntryForm/EntryUploadModal';
+import EntryUploadModal from './../NewEntryForm';
 
 const url = "https://s3-us-west-2.amazonaws.com/knifetrend-assets/kt-competitions-entries-header.jpg";
 
@@ -50,6 +50,7 @@ class CompetitionPage extends Component {
         <EntryUploadModal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
+          competition={competition}
         />
       </div>
     )

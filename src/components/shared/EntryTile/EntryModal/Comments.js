@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Comments = ({ comments }) => (
-  <CommentBox>
-    { comments.map(comment => (
-      <Comment key={comment.id}>
-        <em>{ comment.user.name }</em> { comment.text }
-      </Comment>
-    ))}
-  </CommentBox>
-)
+const renderComments = comments => {
+  return comments.map(comment => (
+    <Comment key={comment.id}>
+      <em>{ comment.user.name }</em> { comment.text }
+    </Comment>
+  ))
+}
 
-export default Comments;
+export default ({ comments }) =>
+  <CommentBox>
+    { renderComments(comments) }
+  </CommentBox>
 
 const CommentBox = styled.div`
   max-height: 200px;

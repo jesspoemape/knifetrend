@@ -1,30 +1,35 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
-import {withRouter} from 'react-router';
 
 import withViewer from 'kt-hocs/withViewer'
 
 import profile from './../../assets/profile.svg';
-import cart from './../../assets/cart.svg';
+import cartIcon from './../../assets/cart.svg';
 
 const Login = ({ viewer }) => {
   const authLink = `${process.env.REACT_APP_SERVER_URL}/auth`;
 
   if(viewer) {
     return (
+
       <MenuList>
-        <ProfileLink to="/profile">
+        <MenuLink to="/profile">
           <ProfileImg src={ viewer.avatar } />
           <Username>{viewer.name}</Username>
-        </ProfileLink>
-        <Link to='/cart'><ShoppingCart path={cart} /></Link>
+        </MenuLink>
+        <MenuLink to='/cart'>
+          <ShoppingCart path={cartIcon} />
+          <Qty>({viewer.shoppingCart.totalItemQuantity})</Qty>
+        </MenuLink>
       </MenuList>
-      
+
     )
   } else {
     return (
+
       <MenuList>
         <LoginLink href={ authLink }>
           <ProfileIcon path={ profile } />
@@ -32,6 +37,7 @@ const Login = ({ viewer }) => {
         </LoginLink>
         <SignUpLink href={ authLink }>Sign Up</SignUpLink>
       </MenuList>
+
     )
   }
 }
@@ -40,10 +46,9 @@ export default withRouter(withViewer(Login));
 
 const ProfileImg = styled.img`
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
 `
-
 const MenuList = styled.div`
   display: flex;
   align-items: center;
@@ -69,7 +74,7 @@ const LoginLink = styled.a`
     color: white;
   }
 `
-const ProfileLink = LoginLink.withComponent(NavLink);
+const MenuLink = LoginLink.withComponent(NavLink);
 
 const SignUpLink = LoginLink.extend`
   background: white;
@@ -92,8 +97,8 @@ const ProfileIcon = styled(ReactSVG)`
 const ShoppingCart = styled(ReactSVG)`
   stroke: white;
   fill: white;
-  padding-left: 32px;
-  width: 18px;
+  width: 20px;
+  height: 20px
   &:hover {
     background: #B20E0D;
     color: white;
@@ -110,6 +115,7 @@ const Username = styled.h4`
   ${props => props.theme.media.xl} {
     display: block;
   }
-  
-
+`
+const Qty = styled.p`
+  font-weight: 300;
 `

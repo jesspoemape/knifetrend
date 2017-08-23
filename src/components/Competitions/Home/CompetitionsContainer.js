@@ -3,7 +3,6 @@ import { gql } from 'react-apollo';
 import styled from 'styled-components';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading'
-import Filter from './../Filter/Filter';
 import SponserCompetitionTile from './SponserCompetitionTile';
 import CompetitionTile from './CompetitionTile';
 
@@ -16,7 +15,6 @@ const Landing = props => {
   return (
     <div>
       <Section>
-        <Filter />
       </Section>
       <Container>
         { tiles }

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
+import Navbar from './Navbar';
+import Home from './Home';
+import Competitions from './Competitions';
+import Shop from './Shop';
+import Storefront from './Storefront';
+import ShoppingCart from './ShoppingCart';
+import Profile from './Profile'
+import Footer from './Footer';
 
-import Home from './Home/Home';
-import Competitions from './Competitions/Competitions';
-import Shop from './Shop/Shop';
-import Storefront from './Storefront/Storefront';
-import ShoppingCart from './ShoppingCart/ShoppingCart';
-
-const App = props => (
+export default props => (
   <div>
     <Navbar />
     <Switch>
@@ -19,8 +19,8 @@ const App = props => (
       <Route path="/shop" component={ Shop } />
       <Route path="/storefront/:makerId" component={ Storefront } />
       <Route path="/cart" component={ ShoppingCart } />
+      <Route path="/profile" component={ Profile } />
     </Switch>
     <Footer />
   </div>
 )
-export default App;

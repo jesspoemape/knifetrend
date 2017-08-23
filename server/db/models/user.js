@@ -29,5 +29,16 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Order, {as: 'orders'});
   })
 
+  User.prototype.getEntries = async function() {
+    const { Entry } = this.sequelize.models
+    const designs = await this.getDesigns({
+      include: [{ model: Entry, as: 'entries' }]
+    })
+    return designs.reduce((acc, design) => {
+      console.log(acc.length)
+      return acc.concat(design.entries)
+    }, [])
+  }
+
   return User;
 }

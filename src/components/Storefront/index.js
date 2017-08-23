@@ -5,11 +5,11 @@ import { gql } from 'react-apollo';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
-import Header from './Header'
-import Nav from './Nav/NavContainer';
-import Store from './Store/Store'
-import About from './About/About'
-import Entries from './Entries/Entries'
+import Header from './Header';
+import Nav from './Nav';
+import Store from './Store';
+import About from './About';
+import Entries from './CompetitionEntries';
 
 const Storefront = ({data:{ maker }}) => (
   <div>
@@ -19,8 +19,8 @@ const Storefront = ({data:{ maker }}) => (
       <PageContent>
         <Switch>
           <Route exact path="/storefront/:makerId" component={ Store } />
-          <Route path="/storefront/:makerId/entries" component={ Entries } />
           <Route path="/storefront/:makerId/about" component={ About } />
+          <Route path="/storefront/:makerId/entries" component={ Entries } />
         </Switch>
       </PageContent>
     </Section>

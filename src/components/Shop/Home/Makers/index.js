@@ -6,20 +6,21 @@ import Divider from 'kt-components/Divider';
 import MinimalButton from 'kt-components/MinimalButton';
 import MakerCarousel from './MakerCarousel';
 
-const MakersContainer = props => {
-    return(
-        <Section>
-            <Header>A Community of Craftsmen</Header>
-            <Desc>The Knife Trend community is made of of hundreds of highly skilled craftsmen from all over the world. Browse through our library of knife makers and follow your favorites to see their latest work!</Desc>
-            <Divider width={70} />
-            <Search/>
-            <ButtonWrapper>
-                <BrowseButton>Browse All Makers</BrowseButton>
-            </ButtonWrapper>
-            <MakerCarousel/>
-        </Section>
-    )
-}
+const MakersContainer = props =>
+  <Section>
+    <Header>A Community of Craftsmen</Header>
+    <Desc>
+      The Knife Trend community is made of of hundreds of highly skilled
+      craftsmen from all over the world. Browse through our library of knife makers
+      and follow your favorites to see their latest work!
+    </Desc>
+    <Divider width={70} />
+    <Search/>
+    <ButtonWrapper>
+        <BrowseButton>Browse All Makers</BrowseButton>
+    </ButtonWrapper>
+    <MakerCarousel/>
+  </Section>
 
 export default MakersContainer;
 
@@ -61,7 +62,7 @@ ${props => props.theme.mainFont({})};
       line-height: 32pt;
       font-size: 19pt;
     }
-    
+
 `
 const BrowseButton = styled(MinimalButton)`
     ${props => props.theme.mainFont({})};

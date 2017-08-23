@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Header = ({ imgUrl, title }) => (
+const Header = ({ imgUrl, title }) =>
   <Section url={ imgUrl }>
     <Title>{ title }</Title>
   </Section>
-)
+  
 
 const Section = styled.header`
   display: flex;

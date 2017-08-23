@@ -4,19 +4,16 @@ import styled from 'styled-components';
 
 import Login from './Login';
 
-const Menu = props => {
-  return (
-    <MenuContainer>
-      <MenuList>
-        <MenuLink exact={true} to="/">Home</MenuLink>
-        <MenuLink to="/competitions">Competitions</MenuLink>
-        <MenuLink to="/shop">Shop</MenuLink>
-        <MenuLink to="#">Makers</MenuLink>
-      </MenuList>
-      <Login />
-    </MenuContainer>
-  )
-}
+const Menu = props =>
+  <MenuContainer>
+    <MenuList>
+      <MenuLink exact={true} to="/">Home</MenuLink>
+      <MenuLink to="/competitions">Competitions</MenuLink>
+      <MenuLink to="/shop">Shop</MenuLink>
+    </MenuList>
+    <Login />
+  </MenuContainer>
+
 
 const MenuList = styled.div`
   display: flex;

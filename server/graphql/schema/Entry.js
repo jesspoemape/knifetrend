@@ -11,6 +11,15 @@ const typeDef = `
     comments: [Comment]
     votes: [Vote]
   }
+
+  input EntryInput {
+    name: String!
+    desc: String!
+    primaryPhoto: String!
+    otherMedia: [String]
+    CompetitionId: Int!
+  }
+
 `
 const resolvers = {
   competition(entry, args, context) {

@@ -2,17 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
 
-import ItemTile from './ItemTile'
+import ItemTile from './../../shared/ItemTile'
 
-const ItemsContainer = ({itemsList}) => {
-    return (
-        <Container>
-          { itemsList.map(item => <ItemTile key={item.id} {...item} />) }
-        </Container>
-    )
-}
+const Items = ({itemsList}) =>
+  <Container>
+    { itemsList.map(item => <ItemTile key={item.id} {...item} />) }
+  </Container>
 
-ItemsContainer.fragment = gql`
+Items.fragment = gql`
   fragment ItemsContainer on Maker {
     items {
       ...ItemTile
@@ -21,7 +18,7 @@ ItemsContainer.fragment = gql`
   ${ItemTile.fragment}
 `
 
-export default ItemsContainer;
+export default Items;
 
 const Container = styled.div`
     display: flex;

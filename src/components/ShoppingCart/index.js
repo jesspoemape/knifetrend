@@ -1,39 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'react-apollo';
-import {Link} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
 import Header from './Header';
-import LineItems from './LineItems/LineItemsContainer';
+import LineItems from './LineItems';
 import AddNote from './AddNote';
-import Checkout from './Checkout';
 import Subtotal from './Subtotal';
+import Checkout from './Checkout';
 
 const ShoppingCart = ({data}) => {
+  if(!data.viewer) return <Redirect href={`${process.env.REACT_APP_SERVER_URL}/auth`}/>
+
   const cart = data.viewer.shoppingCart;
-  console.log(cart.totalItemQuantity);
-if (cart.totalItemQuantity !== 0) {
-  return (
-    <Container>
-      <Header cart={cart} />
-      <Divider />
-      <LineItems lineItems={cart.lineItems} />
-      <AddNote />
-      <Subtotal lineItems={cart.lineItems} />
-      <Checkout />
-    </Container>
-  )
-}
-else {
-  return (
-    <Container>
-      <EmptyCart>There are no items in your cart! Head to the <Link to='/shop'>Shop</Link>.</EmptyCart>
-    </Container>   
-  )
-}
-  
+  if (cart.totalItemQuantity !== 0) {
+    return (
+      <Container>
+        <Header cart={cart} />
+        <Divider />
+        <LineItems lineItems={cart.lineItems} />
+        <AddNote />
+        <Subtotal lineItems={cart.lineItems} />
+        <Checkout />
+      </Container>
+    )
+  }
+  else {
+    return (
+      <Container>
+        <EmptyCart>There are no items in your cart! Head to the <Link to='/shop'>Shop</Link>.</EmptyCart>
+      </Container>
+    )
+  }
 }
 
 const ShoppingCartData = gql`
@@ -43,8 +43,9 @@ const ShoppingCartData = gql`
       name
       avatar
       shoppingCart {
-          totalItemQuantity
-          ...LineItemContainer
+        id
+        totalItemQuantity
+        ...LineItems
       }
     }
   }

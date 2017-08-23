@@ -6,7 +6,7 @@ import graphqlWithLoading from 'kt-hocs/graphqlWithLoading';
 
 import Search from './Search';
 import Filter from './Filter';
-import Items from './ItemsContainer/ItemsContainer';
+import Items from './Items';
 
 const Store = props => {
   const { maker } = props.data

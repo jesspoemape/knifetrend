@@ -5,17 +5,12 @@ import SVG from 'kt-components/SVG';
 
 import exit from './../../../../assets/exit.svg';
 
-const Header = ({ entry, close }) => {
-  return (
-    <TileHeader>
-      <ProfileImg src={ entry.design.user.avatar } />
-      <StoreName>{ entry.design.user.storeName }</StoreName>
-      <Exit path={exit} onClick={close}/>
-    </TileHeader>
-  )
-}
-
-export default Header;
+export default ({ entry, close }) =>
+  <TileHeader>
+    <ProfileImg src={ entry.design.user.avatar } />
+    <StoreName>{ entry.design.user.storeName }</StoreName>
+    <Exit path={exit} onClick={close}/>
+  </TileHeader>
 
 const TileHeader = styled.div`
   display: flex;

@@ -5,11 +5,13 @@ const typeDef = `
     vote(EntryId: Int!): Entry
     comment(EntryId: Int!, text: String!): Entry
     addToCart(ItemId: Int!, quantity: Int!): ShoppingCartLineItem
-    updateCartQuantity(ItemId: Int!, newQuantity: Int!): ShoppingCartLineItem
+    updateCartQuantity(ItemId: Int!, newQuantity: Int!): User
     removeFromCart(ItemId: Int!): User
     emptyCart: ShoppingCart
     confirmCheckout: Order
+    submitEntry(input: EntryInput): Entry
   }
+
 `
 const resolvers = {
   async vote(obj, args, { viewer, db }) {
@@ -22,11 +24,13 @@ const resolvers = {
   },
   async updateCartQuantity(obj, args, { viewer }) {
     if (!viewer) return null;
-    return await viewer.ShoppingCart.updateLineItem(args.ItemId, args.newQuantity, viewer)
+    await viewer.ShoppingCart.updateLineItem(args.ItemId, args.newQuantity, viewer)
+    return viewer
   },
   async addToCart(obj, args, { viewer }){
     if (!viewer) return null;
-    return await viewer.ShoppingCart.addLineItem(args.ItemId, args.quantity, viewer)
+    await viewer.ShoppingCart.addLineItem(args.ItemId, args.quantity, viewer)
+    return viewer
   },
   async removeFromCart(obj, args, { viewer }) {
     if (!viewer) return null;
@@ -40,6 +44,10 @@ const resolvers = {
   async confirmCheckout(obj, args, { viewer }) {
     if (!viewer) return null;
     return await viewer.ShoppingCart.confirmCheckout();
+  },
+  async submitEntry(obj, {input}, { viewer, db }) {
+    if(!viewer) return null;
+    return await db.Entry.addNewEntry(input, viewer);
   }
 }
 
