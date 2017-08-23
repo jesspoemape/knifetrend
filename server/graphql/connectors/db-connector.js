@@ -1,4 +1,4 @@
-const db = require('./../../db/models/index');
+const db = require('./../../models');
 
 function findAll(model, filter, limit) {
   return db[model].findAll({where:filter, limit: limit})

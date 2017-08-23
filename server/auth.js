@@ -1,7 +1,7 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
-const db = require('./db/models/index');
+const db = require('./models');
 
 const strategy = new Auth0Strategy({
   domain: process.env.AUTH0_DOMAIN,

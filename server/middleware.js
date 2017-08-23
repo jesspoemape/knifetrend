@@ -1,4 +1,4 @@
-const db = require('./db/models/index');
+const db = require('./models');
 
 const addDatabase = (req, res, next) => {
   req.db = db;
