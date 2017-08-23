@@ -1,52 +1,66 @@
 <img src="http://www.knifetrend.com/wp-content/uploads/2016/12/KTLOGO.png" width="250" align="right">
+# [Knife Trend] (http://www.beta.knifetrend.com)
 
-# Knife Trend Group Project
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-You can find the most recent version of the Create React App Guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-<!--
 ## Table of Contents
-- [Getting Started](#getting-started)
--->
-## Getting Started
+### Front End
+### Back End
+### Additional Tools
+### Screenshots
 
-This repo has two parts, the React App and the Express Server.
+### Introduction
 
-### Upgrade Node
-Make sure you have **Node v8.2.1** installed.
-*The Express Server requires Node v8.2.1.*
+#### About the Project
 
-#### On Mac using NPM
-```sh
-$ sudo npm cache clean -f
-$ sudo npm install -g n
-$ sudo n 8.2.1
-```
-#### On Mac or Windows using installer
-Choose the correct installer from [here](https://nodejs.org/en/download/current/).
+Knife Trend is a marketplace for knife makers and enthusiasts. 
 
-### Set Environment Variables
-Add a file named `.env` to the root directory of the project and make sure the following variables are set. The app and server both rely on these settings to run correctly. 
-```txt
-#REACT SETTINGS
-REACT_APP_SERVER_URL=
+#### Team Members and Responsibility
+* [Joseph Isabell] (https://github.com/joeisabell)
+* [Mitchel Foster] (https://github.com/mitchyboy3) 
+* [Ashlyn Mitros] (https://github.com/ashlyndanielle) 
+* [Jessica Poemape] (https://github.com/jesspoemape)
 
-#NODE SETTINGS
-DB_HOST=
-DB_USER=
-DB_PASS=
-DB_NAME=
-DB_DIALECT=postgres
-SSL=true
+### 1. Front-End
+####1.1 User Features
+  * Users can browse featured knives and featured makers in the shop
+  * Users can browse competitions 
+  * Users can comment and vote on competition entries
+  * Users can enter knives into competitions
+  * Users can browse individual maker storefronts
+  * Users can add knives to their cart and adjust quantities
+  * Users can remove knives from cart
+  * Users can checkout using Stripe
 
-AUTH0_DOMAIN=
-AUTH0_CLIENT_ID=
-AUTH0_CLIENT_SECRET=
-AUTH0_CALLBACK_URL=
+####1.2 Maker Features
+  * Makers can customize their storefront
+  * Makers can post knives for sale in their shop
 
-SESSION_SECRET=
-```
+####1.3 Technologies
+  * HTML/CSS
+  * Materialize CSS
+  * React
+  * Styled Components
 
-### What's the deal with the second `node_modules` folder in the `src` directory? 
-This is basically a hack that allows us to refer to the components in there by `folder_name/component_name` instead of `./../../../../../../folder_name/deeper_folder_name/even_deeper/component_name`.
-The idea is to only have 
+### 2. Back-End
+
+####2.1 Technologies
+  * Postgres with Sequelize ORM
+  * Node.js
+  * GraphQL
+
+### 3. Additional Tools
+  * Auth0
+  * Stripe
+
+### 4. Screenshots
+  * [Home Page - Desktop] (http://i.imgur.com/iR3lg3t.png)
+  * [Home Page - Mobile] (http://i.imgur.com/y7F8mrV.png)
+  * [Shop Page - Desktop] (http://i.imgur.com/SU3SosE.png)
+  * [Shop Page - Mobile]  (http://i.imgur.com/EfD2ymE.png)
+  * [Maker Storefront - Desktop] (http://i.imgur.com/bjrEujq.png)
+  * [Maker Storefront  - Mobile]  (http://i.imgur.com/HfQVZo1.png)
+  * [Competition Home - Desktop] (http://i.imgur.com/ypZtMrr.png)
+  * [Competition Home  - Mobile] (http://i.imgur.com/exZFEjc.png)
+  * [Competition Detail - Desktop] (http://i.imgur.com/szUAtnS.png)
+  * [Competition Detail  - Mobile]  (http://i.imgur.com/MoZ4mSv.png)
+  * [Cart - Desktop] (http://i.imgur.com/mK3RItt.png)
+  * [Cart  - Mobile]  (http://i.imgur.com/TxGfsFl.png)
