@@ -1,5 +1,5 @@
 const env = require('dotenv').config();
-const db = require('./server/db/models/index')
+const db = require('./server/models')
 
 const sync_database = async function() {
   await db.sequelize.drop();
@@ -9,7 +9,7 @@ const sync_database = async function() {
     {
       name: 'Joe Isabell',
       username: 'josephisabell',
-      providerAvatar: 'https://scontent.cdninstagram.com/t51.2885-19/11272883_487814924721110_310600987_a.jpg',
+      providerAvatar: 'https://instagram.fmkc1-1.fna.fbcdn.net/t51.2885-19/s150x150/21041261_288385834971838_3901301051894005760_a.jpg',
       auth_id: '1581915443',
       auth_provider: 'instagram',
       isAdmin: true

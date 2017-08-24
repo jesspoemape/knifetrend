@@ -15,7 +15,9 @@ const MobileMenu =  ({ toggleDisplay }) => {
         <NavLink onClick={ toggleDisplay } to="/">Home</NavLink>
         <NavLink onClick={ toggleDisplay } to="/competitions">Competitions</NavLink>
         <NavLink onClick={ toggleDisplay } to="/shop">Shop</NavLink>
-        <NavLink onClick={ toggleDisplay } to="#">Login</NavLink>
+        <LoginLink onClick={ toggleDisplay } href={`${process.env.REACT_APP_SERVER_URL}/auth`}>
+          Login
+        </LoginLink>
       </MenuList>
     </MenuContainer>
   )
@@ -63,5 +65,6 @@ const NavLink = styled(Link)`
     border-top: none;
   }
 `
+const LoginLink = NavLink.withComponent('a')
 
 export default MobileMenu

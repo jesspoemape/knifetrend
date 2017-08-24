@@ -16,10 +16,10 @@ const Login = ({ viewer }) => {
     return (
 
       <MenuList>
-        <MenuLink to="/profile">
+        <LoginLink href={ `${process.env.REACT_APP_SERVER_URL}/logout` }>
           <ProfileImg src={ viewer.avatar } />
           <Username>{viewer.name}</Username>
-        </MenuLink>
+        </LoginLink>
         <MenuLink to='/cart'>
           <ShoppingCart path={cartIcon} />
           <Qty>({viewer.shoppingCart.totalItemQuantity})</Qty>
