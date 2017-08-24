@@ -1,5 +1,6 @@
 <img src="http://www.knifetrend.com/wp-content/uploads/2016/12/KTLOGO.png" width="250" align="right">
-# [Knife Trend](http://beta.knifetrend.com)
+
+[View Live Demo](http://beta.knifetrend.com)
 
 ### Introduction
 
