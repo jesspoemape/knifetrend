@@ -43,6 +43,7 @@
     "s3": "^4.4.0",
     "sequelize": "^4.3.2",
     "slick-carousel": "^1.6.0",
+    "stripe": "^4.24.0",
     "styled-components": "^2.1.1",
     "superagent": "^3.5.2",
     "uuid4": "^1.0.0"

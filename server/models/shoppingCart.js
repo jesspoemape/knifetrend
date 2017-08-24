@@ -1,3 +1,5 @@
+const { createCharge } = require('./../services/stripe');
+
 module.exports = (sequelize, DataTypes) => {
 
   const ShoppingCart = sequelize.define("ShoppingCart")
@@ -35,21 +37,20 @@ module.exports = (sequelize, DataTypes) => {
     return lineItems[0]
   }
 
-  ShoppingCart.prototype.confirmCheckout = async function(viewer) {
-    const order = await viewer.createOrder();
-    const shoppingCartLineItems = await this.getItems();
-    await order.process(shoppingCartLineItems);
-    return order;
-  }
-
-
   ShoppingCart.prototype.getQtyInCart = async function() {
     const lineItems = await this.getItems();
     return lineItems.reduce((acc, lineItem) => {
       return acc + lineItem.quantity
     }, 0)
-
   }
-  
+
+  ShoppingCart.prototype.confirmCheckout = async function(token, viewer) {
+    const order = await viewer.createOrder();
+    const shoppingCartLineItems = await this.getItems();
+    await order.process(shoppingCartLineItems);
+    createCharge(token, order.total)
+    return order;
+  }
+
   return ShoppingCart;
 }

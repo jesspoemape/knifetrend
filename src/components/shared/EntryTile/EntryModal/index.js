@@ -21,6 +21,7 @@ const EntryModal = ({ entry, close, isOpen }) => {
           render={ () => <Header entry={entry} close={close} /> }
         />
         <EntryImg src={ entry.design.imgUrl } />
+        <div>
         <EntryDetails>
           <Media
             query="(min-width: 950px)"
@@ -35,6 +36,7 @@ const EntryModal = ({ entry, close, isOpen }) => {
           <Comments comments={ entry.comments } />
           <CommentInput id={entry.id} />
         </EntryDetails>
+      </div>
       </Container>
     </ReactModal>
   )

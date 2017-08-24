@@ -6,13 +6,12 @@ const cors = require('cors');
 const session = require('express-session');
 const multer = require('multer');
 
-
-const passport = require('./auth');
+const passport = require('./services/auth0');
 const { addDatabase, addViewer } = require('./middleware');
 const { schema } = require('./graphql/schema');
-const { handleFileUpload } = require('./services/upload');
+const { handleFileUpload } = require('./services/s3');
 const upload = multer();
-
+const checkout = require('./services/checkout');
 const port = process.env.PORT || 3001;
 const app = express();
 
@@ -38,6 +37,8 @@ app.use('/graphql', addViewer, graphqlHTTP({
   graphiql: true
 }));
 
+app.use('/checkout', addViewer, checkout)
+
 app.use('/upload', upload.single('image'), handleFileUpload)
 
 app.get('/auth', passport.authenticate('auth0'));
@@ -51,7 +52,7 @@ app.get('/auth/callback',
   passport.authenticate('auth0', {
     successRedirect: process.env.REACT_APP_CLIENT_SERVER || '/'
   })
-);
+)
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static(`${__dirname}/../build`));

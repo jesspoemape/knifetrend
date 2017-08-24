@@ -27,19 +27,22 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Nav>
-        <BackButton
-          path={ chevronLeft }
-          callback={ (svg) => svg.addEventListener("click", this.props.history.goBack) }
-        />
-        <Logo src={ logo } alt="KnifeTrend Logo" />
-        <Menu toggleDisplay={ this.toggleDisplay } />
-        <MobileMenuButton
-          path={ menu }
-          callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
-        />
+      <div>
+        <Nav>
+          <BackButton
+            path={ chevronLeft }
+            callback={ (svg) => svg.addEventListener("click", this.props.history.goBack) }
+          />
+          <Logo src={ logo } alt="KnifeTrend Logo" />
+          <Menu toggleDisplay={ this.toggleDisplay } />
+          <MobileMenuButton
+            path={ menu }
+            callback={ (svg) => svg.addEventListener("click", this.toggleDisplay) }
+          />
+
+        </Nav>
         { this.state.displayMenu ? <MobileMenu toggleDisplay={ this.toggleDisplay } /> : null }
-      </Nav>
+      </div>
     )
   }
 }
